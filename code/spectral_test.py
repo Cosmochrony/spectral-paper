@@ -199,13 +199,13 @@ def plot_spectrum_analysis(network, eigenvalues, eigenvectors, results):
   ax = axes[0, 0]
   ax.plot(eigenvalues, 'o-', linewidth=2, markersize=8)
   ax.axhline(y=results['lambda_1'], color='r', linestyle='--',
-             label=f'λ₁ = {results["lambda_1"]:.3e}')
+             label=f"$\\lambda_1$ = {results['lambda_1']:.3e}")
   if results['lambda_2/lambda_1'] is not None:
     ax.axhline(y=results['lambda_1'] * 8 / 3, color='g', linestyle='--',
                label=f'λ₁ × 8/3 = {results["lambda_1"] * 8 / 3:.3e}')
   ax.set_xlabel('Mode index n', fontsize=12)
-  ax.set_ylabel('Eigenvalue λₙ', fontsize=12)
-  ax.set_title('Spectrum of ∆⁽⁰⁾_G', fontsize=14, fontweight='bold')
+  ax.set_ylabel(r"Eigenvalue $\lambda_n$", fontsize=12)
+  ax.set_title(r"Spectrum of $\Delta^{(0)}_G$", fontsize=14, fontweight="bold")
   ax.legend()
   ax.grid(True, alpha=0.3)
 

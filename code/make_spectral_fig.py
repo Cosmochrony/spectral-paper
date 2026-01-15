@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import re
+import sys
 import subprocess
 from dataclasses import dataclass
 from typing import List, Tuple, Optional, Dict
@@ -53,7 +54,7 @@ def run_one(
   Runs the toy simulation once and parses lowest eigenvalues/IPR.
   """
   cmd = [
-    "python",
+    sys.executable,
     toy_path,
     "--sep", str(sep),
     "--pin",
@@ -211,7 +212,7 @@ def plot_kappa_split(
 
 if __name__ == "__main__":
   # ---- CONFIG ----
-  TOY = "toy_cosmochrony_1d_a.py"
+  TOY = "../scripts/toy_cosmochrony_1d_a.py"
 
   # Your scan points (sym case): choose the ones you already explored
   seps = [20, 30, 40, 50, 60, 160]
@@ -232,7 +233,7 @@ if __name__ == "__main__":
     results_sym.append(run_one(TOY, sep=s, kappa1=kappa1, kappa2=kappa2, steps=local_steps, lr=lr, k_eigs=k_eigs))
     print(f"  converged={results_sym[-1].converged}, E={results_sym[-1].energy}")
 
-  plot_sep_scan(results_sym, outfile="spectral_scan_sep.pdf", mode_indices=(0, 1, 2, 3))
+  plot_sep_scan(results_sym, outfile="../figures/spectral_scan_sep.pdf", mode_indices=(0, 1, 2, 3))
 
   # ---- OPTIONAL: kappa2 split plot at fixed sep=50 ----
   # Uncomment to generate the degeneracy-lifting plot.

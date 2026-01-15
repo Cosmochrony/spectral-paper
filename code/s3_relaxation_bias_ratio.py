@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 
 def sample_on_S3_biased(n_samples, alpha, rng):
     """
-    Échantillonnage biaisé sur S^3
-    Densité ∝ exp(alpha * cos²θ)
+    Biased sampling on S^3.
+    Probability density ∝ exp(alpha * cos²θ).
     """
     accepted = []
     fiber_axis = np.array([1.0, 0.0, 0.0, 0.0])
 
-    # borne sup du poids (cos² <= 1)
+    # Upper bound of the weight (cos² <= 1)
     w_max = np.exp(alpha)
 
     while len(accepted) < n_samples:
@@ -45,7 +45,7 @@ def run_bias_study():
     ratios = []
     errs = []
 
-    print("Étude du biais de relaxation\n")
+    print("Relaxation bias study\n")
     for alpha in alphas:
         vals = []
         for _ in range(repeats):
@@ -64,7 +64,7 @@ def run_bias_study():
         )
 
     # ------------------
-    # Visualisation
+    # Visualization
     # ------------------
 
     plt.figure(figsize=(9, 6))
@@ -73,7 +73,7 @@ def run_bias_study():
         y=8 / 3,
         linestyle="--",
         color="black",
-        label="Isotropie (8/3)"
+        label="Isotropy (8/3)"
     )
 
     plt.errorbar(
@@ -82,12 +82,12 @@ def run_bias_study():
         yerr=errs,
         fmt="o-",
         capsize=4,
-        label="Relaxation biaisée"
+        label="Biased relaxation"
     )
 
-    plt.xlabel("Biais de relaxation α")
+    plt.xlabel("Relaxation bias α")
     plt.ylabel("Ratio R")
-    plt.title("Déviation du ratio cosmochronique sous biais de relaxation")
+    plt.title("Deviation of the cosmochrony ratio under relaxation bias")
     plt.grid(True, alpha=0.5)
     plt.legend()
     plt.tight_layout()
