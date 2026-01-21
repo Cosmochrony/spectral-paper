@@ -1,0 +1,68 @@
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl} % Math and Physical Sciences Numbered Reference Style
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{physics}
+\usepackage{tikz}
+\usepackage{amsopn}
+\usepackage{amstext}
+\usepackage{microtype}
+\usepackage{xparse}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+% Boxes
+\usepackage[most]{tcolorbox}
+% Plots (pgfplots provides axis/addplot)
+\usepackage{pgfplots}
+\usetikzlibrary{intersections}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.18}
+\NewDocumentCommand{\subsubsubsection}{s m}{%
+  \IfBooleanTF{#1}{\paragraph*{#2}}{\paragraph{#2}}%
+}
+\usetikzlibrary
+{arrows.meta, calc, fit, decorations.pathmorphing, decorations.pathreplacing, shapes.geometric, shadings, positioning,
+  decorations.markings, patterns}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\title[Emergent Metricity from Spectral Connectivity]
+{Relational Reconstruction of Spacetime Geometry from Graph Laplacians}
+\author*[1]{\fnm{Jérôme} \sur{Beau}}\email{javarome@gmail.com}
+\affil*[1]{\orgname{Independent Researcher}, \country{France}}
+\date{}
+
+\input{abstract}
+
+\keywords{Pre-geometric substrate, emergent spacetime, relational dynamics,
+  Born–Infeld dynamics, spectral geometry, quantum non-injectivity}
+
+\begin{document}
+  \maketitle
+
+  \clearpage
+  \tableofcontents
+
+  \input{01-relational-substrate-and-spectral-structure/relational-substrate-and-spectral-structure}
+  \input{02-spectral-distance-and-embedding/spectral-distance-and-embedding}
+  \input{03-continuum-limit-and-emergent-metric/continuum-limit-and-emergent-metric}
+  \input{04-operational-geometry/operational-geometry}
+  \input{05-gr-limit-schwarzschild-type-recovery/gr-limit-schwarzschild-type-recovery}
+  \input{06-discussion/discussion}
+
+  \appendix
+
+  \section*{Appendices}
+
+    \backmatter
+
+    \bmhead{Acknowledgements}
+    The author acknowledges the use of large language models as a supportive tool
+    for refining language, structure, and internal consistency during the
+    development of this manuscript.
+    All conceptual contributions, theoretical choices, and interpretations remain the sole responsibility of the author.
+
+    \bibliography{refs}
+
+\end{document}
