@@ -1,3 +1,88 @@
 \clearpage
 \section{Spectral Distance and Embedding}
   \label{sec:spectral-distance-and-embedding}
+
+  A central step in the reconstruction of geometry from relational data is the
+  definition of a notion of distance that does not rely on a pre-existing metric or
+  coordinate structure.
+  In this section, we introduce spectral notions of proximity and distance derived
+  directly from relational connectivity and Laplacian operators.
+
+  We consider a relational system represented by a graph or coarse-grained network
+  endowed with a Laplacian operator $\Delta$.
+  No embedding space or background geometry is assumed.
+  The spectrum and eigenfunctions of $\Delta$ encode the connectivity structure of
+  the system and constitute the only input for the constructions below.
+
+  \subsection{Spectral proximity}
+
+    Given the Laplacian spectrum $\{\lambda_n, \phi_n\}$, one may define spectral kernels
+    that quantify relational proximity between nodes or abstract elements of the
+    relational system.
+    A generic example is provided by heat-kernel–type constructions,
+    \begin{equation}
+      K(i,j;\alpha) \;=\; \sum_{n} e^{-\alpha \lambda_n}\,\phi_n(i)\,\phi_n(j),
+    \end{equation}
+    where $\alpha$ is a spectral scale parameter.
+    Such kernels measure the degree of connectivity between elements $i$ and $j$ through
+    the spectrum of $\Delta$, without reference to any metric distance.
+
+    Spectral kernels of this type are invariant under relabeling of nodes and do not
+    presuppose any embedding.
+    They provide a natural notion of relational proximity that depends solely on the
+    spectral properties of the Laplacian.
+
+  \subsection{Spectral distance}
+
+    From spectral proximity measures, one may define an effective distance by monotonic
+    transformations.
+    A convenient choice is
+    \begin{equation}
+      d_{\mathrm{spec}}(i,j)
+      \;=\;
+      -\log\!\left(
+               \frac{K(i,j;\alpha)}{\sqrt{K(i,i;\alpha)\,K(j,j;\alpha)}}
+      \right),
+    \end{equation}
+    which defines a symmetric, non-negative quantity vanishing when $i=j$.
+    This definition is purely spectral and does not invoke any geometric or physical
+    interpretation.
+
+    The resulting distance is generically non-injective:
+    distinct relational configurations may induce identical spectral distances, and
+    multiple embeddings may correspond to the same distance matrix.
+    This non-uniqueness is a structural feature of spectral reconstruction rather than a
+    limitation of the formalism.
+
+  \subsection{Local embedding and quadratic approximation}
+
+    When the relational system admits a sufficiently regular spectral structure, the
+    spectral distance matrix may be locally approximated by a low-dimensional embedding.
+    In such regimes, one may introduce local coordinates $x^\mu$ as auxiliary variables
+    parametrizing the embedding space.
+
+    To leading order, the spectral distance between nearby elements admits a quadratic
+    approximation of the form
+    \begin{equation}
+      d_{\mathrm{spec}}(i,j)^2
+      \;\approx\;
+      g_{\mu\nu}(x)\,\Delta x^\mu \Delta x^\nu ,
+    \end{equation}
+    where $g_{\mu\nu}$ is a symmetric tensor encoding the local geometry of the embedding.
+    This tensor is not postulated as a fundamental object, but arises as a local summary
+    of spectral distances.
+
+    The introduction of $g_{\mu\nu}$ should be understood as a descriptive convenience,
+    valid only in regimes where a smooth spectral embedding exists.
+    Outside such regimes, no metric interpretation is assumed or required.
+
+  \subsection{Scope and limitations}
+
+    The constructions presented in this section are entirely kinematical.
+    They do not rely on assumptions about dynamics, temporal ordering, or causal
+    structure.
+    Their purpose is solely to establish how effective geometric notions may be
+    reconstructed from spectral data associated with relational connectivity.
+
+    The emergence of continuum geometry, curvature, and comparison with known geometric
+    solutions are addressed in the following sections.
