@@ -1,6 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+mpl.rcParams["pdf.fonttype"] = 42
+mpl.rcParams["ps.fonttype"] = 42
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent
+FIG_DIR = BASE_DIR / "figures"
 
 def sample_on_S3(n_samples, rng):
     """
@@ -75,31 +81,31 @@ def run_convergence_study(repeats=30, seed=0):
         )
 
     # ------------------
-    # Visualisation
+    # Visualisation (PDF)
     # ------------------
 
     plt.figure(figsize=(10, 6))
 
     plt.axhline(
-        y=8 / 3,
-        linestyle="--",
-        color="black",
-        label="Cible théorique (8/3)"
+      y=8 / 3,
+      linestyle="--",
+      color="black",
+      label="Cible théorique (8/3)"
     )
 
     plt.plot(
-        resolutions,
-        ratios_mean,
-        "o-",
-        label="Moyenne Monte-Carlo"
+      resolutions,
+      ratios_mean,
+      "o-",
+      label="Moyenne Monte-Carlo"
     )
 
     plt.fill_between(
-        resolutions,
-        ci_low,
-        ci_high,
-        alpha=0.25,
-        label="IC 95 % (sur repeats)"
+      resolutions,
+      ci_low,
+      ci_high,
+      alpha=0.25,
+      label="IC 95 % (sur repeats)"
     )
 
     plt.xscale("log")
@@ -109,7 +115,16 @@ def run_convergence_study(repeats=30, seed=0):
     plt.legend()
     plt.grid(True, which="both", alpha=0.5)
     plt.tight_layout()
-    plt.show()
+
+    FIG_DIR.mkdir(exist_ok=True)
+
+    plt.savefig(
+      FIG_DIR / "convergence_8_3_S3.pdf",
+      format="pdf",
+      bbox_inches="tight"
+    )
+
+    plt.close()
 
 
 if __name__ == "__main__":
