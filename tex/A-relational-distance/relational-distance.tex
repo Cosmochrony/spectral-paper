@@ -27,6 +27,11 @@
       where $w_{uv}$ is a positive weight associated with each link. This distance is used
       for the \textbf{emergent geometry} (and in particular for spectral constructions),
       because it encodes the effective relational stiffness of the network.
+      The minimization over weighted paths corresponds to the classical shortest-path
+      problem, efficiently solvable by Dijkstra-type algorithms~\cite{Dijkstra1959}.
+      Algorithmic aspects of weighted shortest-path computations and their
+      computational complexity are discussed in standard references~\cite{Cormen2009}.
+
     \end{enumerate}
 
     This distinction ensures that the coarse-graining background $\bar{\chi}$ can be defined

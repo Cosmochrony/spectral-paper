@@ -1,4 +1,5 @@
 \clearpage
+
 \section{Spectral Distance and Embedding}
   \label{sec:spectral-distance-and-embedding}
 
@@ -13,6 +14,8 @@
   No embedding space or background geometry is assumed.
   The spectrum and eigenfunctions of $\Delta$ encode the connectivity structure of
   the system and constitute the only input for the constructions below.
+  The relation between Laplacian spectra and global connectivity properties
+  of graphs is a central result of spectral graph theory~\cite{Chung1997}.
 
   \subsection{Spectral proximity}
 
@@ -27,8 +30,9 @@
     Such kernels measure the degree of connectivity between elements $i$ and $j$ through
     the spectrum of $\Delta$, without reference to any metric distance.
 
-    Spectral kernels of this type are invariant under relabeling of nodes and do not
-    presuppose any embedding.
+    Spectral kernels of this type are widely used in clustering and manifold
+    learning to extract geometric information from graph spectra~\cite{VonLuxburg2007}.
+    They are invariant under relabeling of nodes and do not presuppose any embedding.
     They provide a natural notion of relational proximity that depends solely on the
     spectral properties of the Laplacian.
 
@@ -54,6 +58,10 @@
     This non-uniqueness is a structural feature of spectral reconstruction rather than a
     limitation of the formalism.
 
+    Explicit constructions of local embeddings, intrinsic dimension selection,
+    and the breakdown of manifold reconstruction outside the projectable regime
+    are presented in Appendix~\ref{subsec:emergent-coordinates}.
+
     \paragraph{Emergent spectral dimension.}
       In Eq.~(2), the exponent $d$ should not be interpreted as a fixed or postulated
       topological dimension.
@@ -73,7 +81,7 @@
       that the four-dimensional behavior is not a transient finite-size effect but a stable
       property of the admissible relational regime.
 
-  At smaller spectral scales, deviations from integer dimensionality encode
+      At smaller spectral scales, deviations from integer dimensionality encode
       local curvature and connectivity distortions, providing a direct bridge
       between spectral observables and effective geometric structure.
 
@@ -89,7 +97,7 @@
       $d_s$ as an emergent property of the relational organization rather than as an imposed
       dimensional parameter.
 
-  \paragraph{From graph distance to effective geodesics.}
+    \paragraph{From graph distance to effective geodesics.}
       The operational distance defined via shortest weighted paths on the relational
       graph plays the role of an effective geodesic distance.
       While combinatorial distances count edge hops, the weighted distance incorporates
@@ -106,33 +114,36 @@
 
 \subsection{Local embedding and quadratic approximation}
 
-    When the relational system admits a sufficiently regular spectral structure, the
-    spectral distance matrix may be locally approximated by a low-dimensional embedding.
-    In such regimes, one may introduce local coordinates $x^\mu$ as auxiliary variables
-    parametrizing the embedding space.
+  When the relational system admits a sufficiently regular spectral structure, the
+  spectral distance matrix may be locally approximated by a low-dimensional embedding.
+  In such regimes, one may introduce local coordinates $x^\mu$ as auxiliary variables
+  parametrizing the embedding space.
 
-    To leading order, the spectral distance between nearby elements admits a quadratic
-    approximation of the form
-    \begin{equation}
-      d_{\mathrm{spec}}(i,j)^2
-      \;\approx\;
-      g_{\mu\nu}(x)\,\Delta x^\mu \Delta x^\nu ,
-    \end{equation}
-    where $g_{\mu\nu}$ is a symmetric tensor encoding the local geometry of the embedding.
-    This tensor is not postulated as a fundamental object, but arises as a local summary
-    of spectral distances.
+  To leading order, the spectral distance between nearby elements admits a quadratic
+  approximation of the form
+  \begin{equation}
+    d_{\mathrm{spec}}(i,j)^2
+    \;\approx\;
+    g_{\mu\nu}(x)\,\Delta x^\mu \Delta x^\nu ,
+  \end{equation}
+  where $g_{\mu\nu}$ is a symmetric tensor encoding the local geometry of the embedding.
+  This tensor is not postulated as a fundamental object, but arises as a local summary
+  of spectral distances.
 
-    The introduction of $g_{\mu\nu}$ should be understood as a descriptive convenience,
-    valid only in regimes where a smooth spectral embedding exists.
-    Outside such regimes, no metric interpretation is assumed or required.
+  Local quadratic approximations of distance functions and their relation
+  to effective metric tensors are standard results in metric geometry~\cite{Burago2001}.
 
-  \subsection{Scope and limitations}
+  The introduction of $g_{\mu\nu}$ should be understood as a descriptive convenience,
+  valid only in regimes where a smooth spectral embedding exists.
+  Outside such regimes, no metric interpretation is assumed or required.
 
-    The constructions presented in this section are entirely kinematical.
-    They do not rely on assumptions about dynamics, temporal ordering, or causal
-    structure.
-    Their purpose is solely to establish how effective geometric notions may be
-    reconstructed from spectral data associated with relational connectivity.
+\subsection{Scope and limitations}
 
-    The emergence of continuum geometry, curvature, and comparison with known geometric
-    solutions are addressed in the following sections.
+  The constructions presented in this section are entirely kinematical.
+  They do not rely on assumptions about dynamics, temporal ordering, or causal
+  structure.
+  Their purpose is solely to establish how effective geometric notions may be
+  reconstructed from spectral data associated with relational connectivity.
+
+  The emergence of continuum geometry, curvature, and comparison with known geometric
+  solutions are addressed in the following sections.
