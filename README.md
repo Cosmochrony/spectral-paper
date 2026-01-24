@@ -114,17 +114,17 @@ It **does** provide:
 - robust spectral invariants constraining admissible geometric regimes
 
 ## Repository Contents
-
+```
 paper/
 ├── pdf/ # Compiled Spectral Geometry PDF
 ├── tex/ # LaTeX sources
 ├── figures/ # Diagrams and illustrations
 └── README.md
-
+```
 
 ## Links
 
-- 📄 Paper PDF: https://github.com/Cosmochrony/spectral-geometry
+- 📄 Paper PDF: https://github.com/Cosmochrony/spectral-paper/blob/main/pdf/Spectral.pdf
 - 💻 GitHub organization: https://github.com/Cosmochrony
 
 ## Citation
