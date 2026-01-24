@@ -1,4 +1,4 @@
-\subsection{Emergent Coordinates via Manifold Reconstruction}
+\section{Emergent Coordinates via Manifold Reconstruction}
   \label{subsec:emergent-coordinates}
 
   A coordinate chart $x^\mu$ is not postulated in the relational ontology.
@@ -6,7 +6,8 @@
   embedding, coordinates can be \emph{reconstructed} from $D$ using standard manifold
   learning techniques.
 
-  \subsubsection*{MDS embedding from relational distances}
+  \subsection{MDS embedding from relational distances}
+    \label{subsec:mds-embedding-from-relational-distances}
     Compute the centered Gram matrix
     \begin{equation}
       G_{ij} \;=\; -\frac{1}{2}\Big(d_{ij}^2 - d_{i\cdot}^2 - d_{\cdot j}^2 + d_{\cdot\cdot}^2\Big),
@@ -26,7 +27,8 @@
     (reflections, translations, and rotations), which carry no physical
     significance at the relational level.
 
-  \subsubsection*{Intrinsic dimension from the eigenvalue gap}
+  \subsection{Intrinsic dimension from the eigenvalue gap}
+    \label{subsec:intrinsic-dimension-from-the-eigenvalue-gap}
     The embedding dimension $d$ is not assumed but selected by the dominant eigenvalue
     gap $\Delta\lambda_k=\lambda_k-\lambda_{k+1}$.
     Operationally, choose $d$ as the smallest integer such that
@@ -59,7 +61,8 @@
       \label{fig:eigenvalue-gap}
     \end{figure}
 
-  \subsubsection*{Breakdown as a physical prediction}
+  \subsection{Breakdown as a physical prediction}
+    \label{subsec:breakdown-as-a-physical-prediction}
     The reconstruction may fail when (i) connectivity becomes highly non-local, or (ii) the
     spectrum of $G$ exhibits no clear gap (glassy/fractal regimes). In Cosmochrony this is
     not a pathology: it signals a transition to a pre-geometric regime where a smooth

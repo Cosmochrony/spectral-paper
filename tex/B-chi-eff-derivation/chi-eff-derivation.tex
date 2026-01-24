@@ -1,4 +1,4 @@
-\subsection{Derivation of \texorpdfstring{$\chi_{\mathrm{eff}}$}{χeff} from Relational Observables}
+\section{Derivation of \texorpdfstring{$\chi_{\mathrm{eff}}$}{χeff} from Relational Observables}
   \label{app:chi-eff-derivation}
 
   The effective field $\chi_{\mathrm{eff}}$ is introduced as an operational description of
@@ -12,7 +12,8 @@
   distinction between the combinatorial distance $d_{ij}^{C}$ and the weighted distance
   $d_{ij}^{W}$ introduced in Appendix~E.4.
 
-  \paragraph{(1) Relational background field \texorpdfstring{$\bar{\chi}$}{χ̄}.}
+  \subsection{Relational background field \texorpdfstring{$\bar{\chi}$}{χ̄}.}
+    \label{subsec:relational-background-field-texorpdfstring-bar-chi.}
     We define a background field $\bar{\chi}$ by a \textbf{relational average} that uses only the
     \textbf{combinatorial (pre-geometric) distance} $d_{ij}^{C}$. Let
     \begin{equation}
@@ -35,7 +36,8 @@ of any weighted metric} and therefore does not depend on $\chi$ through a distan
     relational neighborhood required for stability of the effective description; it does
     not correspond to a physical length scale prior to the emergence of geometry.
 
-  \paragraph{(2) Emergent connectivity and weighted distance.}
+  \subsection{Emergent connectivity and weighted distance.}
+    \label{subsec:emergent-connectivity-and-weighted-distance}
     Using the background field $\bar{\chi}$, we define the link weights and the corresponding
     connectivity through Eq.~\eqref{eq:weight_function_background}:
     \[
@@ -58,7 +60,8 @@ of any weighted metric} and therefore does not depend on $\chi$ through a distan
     \end{equation}
     which depends on $\bar{\chi}$ but not on instantaneous $\chi$ values through the metric definition.
 
-  \paragraph{(3) Effective field \texorpdfstring{$\chi_{\mathrm{eff}}$}{χeff} (geometry-aware coarse-graining).}
+  \subsection{Effective field \texorpdfstring{$\chi_{\mathrm{eff}}$}{χeff} (geometry-aware coarse-graining).}
+    \label{subsec:effective-field-chi_eff-geometry-aware-coarse-graining}
     Finally, we define $\chi_{\mathrm{eff}}$ by coarse-graining $\chi$ over neighborhoods defined
     with the \textbf{weighted distance} $d_{ij}^{W}$:
     \begin{equation}
@@ -75,7 +78,8 @@ of any weighted metric} and therefore does not depend on $\chi$ through a distan
       \label{eq:chi_eff_definition}
     \end{equation}
 
-  \paragraph{Non-circular dependency structure.}
+  \subsection{Non-circular dependency structure.}
+    \label{subsec:non-circular-dependency-structure.}
     The construction is explicitly hierarchical:
     \[
       d^{C} \;\Longrightarrow\; \bar{\chi}
@@ -83,11 +87,11 @@ of any weighted metric} and therefore does not depend on $\chi$ through a distan
       \;\Longrightarrow\; d^{W}
       \;\Longrightarrow\; \chi_{\mathrm{eff}}.
     \]
-    The neighborhood used to compute $\bar{\chi}$ is defined using $d^{C}$ and is therefore
-    $\chi$-independent. The effective geometry is encoded in $d^{W}$ through weights that depend
-    only on $\bar{\chi}$, breaking any instantaneous feedback loop. This makes the operational
-    definition of $\chi_{\mathrm{eff}}$ compatible with the pre-geometric status of $\chi$, while still
-    allowing an emergent geometric regime for spectral and effective-field analyses.
+    The neighborhood used to compute $\bar{\chi}$ is defined using $d^{C}$ and is therefore $\chi$-independent.
+    The effective geometry is encoded in $d^{W}$ through weights that depend only on $\bar{\chi}$, breaking any
+    instantaneous feedback loop.
+    This makes the operational definition of $\chi_{\mathrm{eff}}$ compatible with the pre-geometric status of $\chi$,
+    while still allowing an emergent geometric regime for spectral and effective-field analyses.
 
     No dynamical equation for $\chi$ or $\chi_{\mathrm{eff}}$ is assumed in this construction;
     the procedure is purely kinematical and defines the conditions under which an effective
