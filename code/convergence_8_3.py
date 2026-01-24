@@ -10,8 +10,8 @@ FIG_DIR = BASE_DIR / "figures"
 
 def sample_on_S3(n_samples, rng):
     """
-    Échantillonne uniformément des points sur S^3
-    via normalisation d'une gaussienne 4D.
+    Uniformly samples points on S^3
+    by normalizing a 4D Gaussian distribution.
     """
     vecs = rng.normal(size=(n_samples, 4))
     vecs /= np.linalg.norm(vecs, axis=1)[:, None]
@@ -20,14 +20,14 @@ def sample_on_S3(n_samples, rng):
 
 def calculate_ratio_and_moments(n_samples, rng):
     """
-    Calcule :
+    Computes:
       - ⟨cos²⟩
       - ⟨sin²⟩
       - R = 8 ⟨cos²⟩ / ⟨sin²⟩
     """
     vecs = sample_on_S3(n_samples, rng)
 
-    # axe de la fibre (choix arbitraire, isotropie de S^3)
+    # Fiber axis (arbitrary choice, due to isotropy of S^3)
     fiber_axis = np.array([1.0, 0.0, 0.0, 0.0])
 
     cos_sq = np.dot(vecs, fiber_axis) ** 2
@@ -50,7 +50,7 @@ def run_convergence_study(repeats=30, seed=0):
     ci_low = []
     ci_high = []
 
-    print("Convergence Monte-Carlo vers 8/3 sur S³\n")
+    print("Monte Carlo convergence toward 8/3 on S³\n")
 
     for n in resolutions:
         ratios = []
@@ -81,7 +81,7 @@ def run_convergence_study(repeats=30, seed=0):
         )
 
     # ------------------
-    # Visualisation (PDF)
+    # Visualization (PDF)
     # ------------------
 
     plt.figure(figsize=(10, 6))
@@ -90,14 +90,14 @@ def run_convergence_study(repeats=30, seed=0):
       y=8 / 3,
       linestyle="--",
       color="black",
-      label="Cible théorique (8/3)"
+      label="Theoretical target (8/3)"
     )
 
     plt.plot(
       resolutions,
       ratios_mean,
       "o-",
-      label="Moyenne Monte-Carlo"
+      label="Monte Carlo mean"
     )
 
     plt.fill_between(
@@ -105,13 +105,13 @@ def run_convergence_study(repeats=30, seed=0):
       ci_low,
       ci_high,
       alpha=0.25,
-      label="IC 95 % (sur repeats)"
+      label="95% CI (over repeats)"
     )
 
     plt.xscale("log")
-    plt.xlabel("Résolution (N)")
+    plt.xlabel("Resolution (N)")
     plt.ylabel("Ratio R")
-    plt.title("Convergence Monte-Carlo vers 8/3 sur S³")
+    plt.title("Monte Carlo convergence toward 8/3 on S³")
     plt.legend()
     plt.grid(True, which="both", alpha=0.5)
     plt.tight_layout()
