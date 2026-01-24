@@ -1,0 +1,20 @@
+\subsection{MDS embedding from relational distances}
+  \label{subsec:mds-embedding-from-relational-distances}
+  Compute the centered Gram matrix
+  \begin{equation}
+    G_{ij} \;=\; -\frac{1}{2}\Big(d_{ij}^2 - d_{i\cdot}^2 - d_{\cdot j}^2 + d_{\cdot\cdot}^2\Big),
+    \label{eq:gram-matrix}
+  \end{equation}
+  where $d_{i\cdot}^2=\frac{1}{N}\sum_k d_{ik}^2$ and $d_{\cdot\cdot}^2=\frac{1}{N^2}\sum_{k\ell} d_{k\ell}^2$.
+  Diagonalizing $G$ yields the eigenpairs $(\lambda_k, v_k)$.
+  The embedding in $\mathbb{R}^d$ is then obtained by
+  \begin{equation}
+    x_i^{(a)} \;=\; \sqrt{\lambda_a}\, (v_a)_i,
+    \qquad a=1,\dots,d,
+    \label{eq:mds-embedding}
+  \end{equation}
+  so that $d_{ij}\approx \|x_i-x_j\|$ in the projectable regime.
+
+  The reconstructed coordinates are defined up to global isometries
+  (reflections, translations, and rotations), that carry no physical
+  significance at the relational level.

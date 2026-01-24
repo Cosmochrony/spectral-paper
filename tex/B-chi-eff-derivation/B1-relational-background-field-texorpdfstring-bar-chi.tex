@@ -1,0 +1,23 @@
+\subsection{Relational background field \texorpdfstring{$\bar{\chi}$}{χ̄}.}
+  \label{subsec:relational-background-field-texorpdfstring-bar-chi}
+  We define a background field $\bar{\chi}$ using a \textbf{relational average} that uses only the
+  \textbf{combinatorial (pre-geometric) distance} $d_{ij}^{C}$. Let
+  \begin{equation}
+    N_i \;=\; \left\{ j \,\middle|\, d_{ij}^{C} \le \ell_0 \right\}
+    \label{eq:combinatorial_neighborhood}
+  \end{equation}
+  be the combinatorial neighborhood of radius $\ell_0$ around node $i$. We then set
+  \begin{equation}
+    \bar{\chi}_i
+    \;=\;
+    \frac{1}{|N_i|}
+    \sum_{j\in N_i} \chi_j.
+    \label{eq:relational_average_bar_chi}
+  \end{equation}
+  Because $N_i$ depends only on $d_{ij}^{C}$, the definition of $\bar{\chi}$ is \textbf{independent
+of any weighted metric} and therefore does not depend on $\chi$ through a distance function.
+  This is a crucial step in the preventions of circularity.
+
+  The scale $\ell_0$ is an auxiliary coarse-graining parameter defining the minimal
+  relational neighborhood required for stability of the effective description; it does
+  not correspond to a physical length scale prior to the emergence of geometry.

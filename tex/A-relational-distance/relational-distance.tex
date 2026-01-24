@@ -1,12 +1,11 @@
 \section{Relational Distance as a Minimal Path Functional}
   \label{app:relational-distance-minimal-path}
 
-  A central step in the relational construction is the introduction of a distance notion
+  A central step in relational construction is the introduction of a distance notion
   defined \emph{within} the relational adjacency structure underlying the $\chi$
   description, without presupposing any embedding space or fundamental lattice.
-  To avoid ambiguity and to prevent hidden circularity in subsequent coarse-graining
-  procedures, we explicitly distinguish two distances that operate at different descriptive
-  levels.
+  To avoid ambiguity and prevent hidden circularity in subsequent coarse-graining
+  procedures, we explicitly distinguish between two distances that operate at different descriptive levels.
 
   \subsection{Combinatorial vs.\ weighted distance.}
     \label{subsec:combinatorial-vs.-weighted-distance}
@@ -17,26 +16,27 @@
       \[
         d_{ij}^{C} \;=\; \min_{\gamma_{ij}} \sum_{(u,v)\in\gamma_{ij}} 1,
       \]
-      where $\gamma_{ij}$ is any path connecting nodes $i$ and $j$ through the network links.
-      This distance counts \emph{graph steps only} and is \textbf{independent of the field values of $\chi$}\citep{Diestel2017,Newman2010}.
-      It is used to define the neighborhood sets employed in relational averaging\citep{Dijkstra1959,Cormen2009}.
+      where $\gamma_{ij}$ is any path connecting nodes $i$ and $j$ through network links.
+      This distance only counts the \emph{graph steps} and is \textbf{independent of the field values of $\chi$}
+      \citep{Diestel2017,Newman2010}.
+      It is used to define neighborhood sets employed in relational averaging\citep{Dijkstra1959,Cormen2009}.
 
-      \item \textbf{Weighted distance} $d_{ij}^{W}$ (emergent / effective).
+      \item \textbf{Weighted distance} $d_{ij}^{W}$ (emergent/effective).
       \[
         d_{ij}^{W} \;=\; \min_{\gamma_{ij}} \sum_{(u,v)\in\gamma_{ij}} w_{uv},
       \]
-      where $w_{uv}$ is a positive weight associated with each link. This distance is used
-      for the \textbf{emergent geometry} (and in particular for spectral constructions),
+      where $w_{uv}$ denotes the positive weight associated with each link. This distance is used
+      for the \textbf{emergent geometry} (particularly for spectral constructions)
       because it encodes the effective relational stiffness of the network.
-      The minimization over weighted paths corresponds to the classical shortest-path
-      problem, efficiently solvable by Dijkstra-type algorithms~\cite{Dijkstra1959}.
-      Algorithmic aspects of weighted shortest-path computations and their
+      The minimization of weighted paths corresponds to the classical shortest-path
+      problem, which is efficiently solved by Dijkstra-type algorithms~\cite{Dijkstra1959}.
+      The algorithmic aspects of weighted shortest-path computations and their
       computational complexity are discussed in standard references~\cite{Cormen2009}.
 
     \end{enumerate}
 
     This distinction ensures that the coarse-graining background $\bar{\chi}$ can be defined
-    using $d_{ij}^{C}$ without any metric dependence, while the effective geometry is encoded
+    using $d_{ij}^{C}$ without any metric dependence, whereas the effective geometry is encoded
     by $d_{ij}^{W}$ through weights that depend only on $\bar{\chi}$ (not on instantaneous $\chi$).
 
     The combinatorial distance $d_{ij}^{C}$ has no physical interpretation and plays no
@@ -63,13 +63,13 @@
       K_{uv}(\bar{\chi}) \;=\; \frac{1}{w_{uv}(\bar{\chi})}.
       \label{eq:weight_function_background}
     \end{equation}
-    The positivity $w_{uv}(\bar{\chi})>0$ is guaranteed by construction, so $d_{ij}^{W}$ is a
-    well-defined weighted path metric whenever the graph is connected on the domain considered.
+    The positivity $w_{uv}(\bar{\chi})>0$ is guaranteed by construction; therefore, so $d_{ij}^{W}$ is a
+    well-defined weighted path metric whenever the graph is connected to the domain considered.
 
   \subsection{Metric status.}
     \label{subsec:metric-status}
-    Both the combinatorial distance $d_{ij}^{C}$ and the weighted distance $d_{ij}^{W}$ define
+    Both the combinatorial distance $d_{ij}^{C}$ and weighted distance $d_{ij}^{W}$ define
     proper metric spaces on the $\chi$-network, albeit at different descriptive levels:
-    $d_{ij}^{C}$ is discrete and topological, while $d_{ij}^{W}$ encodes emergent relational structure.
-    This duality is essential: $d_{ij}^{C}$ provides a pre-geometric scaffold for defining $\bar{\chi}$,
+    $d_{ij}^{C}$ is discrete and topological, while $d_{ij}^{W}$ encodes an emergent relational structure.
+    This duality is essential; $d_{ij}^{C}$ provides a pre-geometric scaffold for defining $\bar{\chi}$,
     whereas $d_{ij}^{W}$ provides the effective distance used in the emergent geometric regime.

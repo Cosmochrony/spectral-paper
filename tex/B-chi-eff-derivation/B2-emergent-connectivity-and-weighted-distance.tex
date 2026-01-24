@@ -1,0 +1,23 @@
+\subsection{Emergent connectivity and weighted distance.}
+  \label{subsec:emergent-connectivity-and-weighted-distance}
+  Using the background field $\bar{\chi}$, we define the link weights and the corresponding
+  connectivity using Eq.~\eqref{eq:weight_function_background}:
+  \[
+    w_{uv}(\bar{\chi})
+    \;=\;
+    \frac{1}{K_0}
+    \left[
+      1 + \left(\frac{\bar{\chi}_u-\bar{\chi}_v}{\chi_c}\right)^2
+    \right],
+    \qquad
+    K_{uv}(\bar{\chi}) \;=\; \frac{1}{w_{uv}(\bar{\chi})}.
+  \]
+  The \textbf{weighted distance} used for effective geometry is then
+  \begin{equation}
+    d_{ij}^{W}
+    \;=\;
+    \min_{\gamma_{ij}}
+    \sum_{(u,v)\in\gamma_{ij}} w_{uv}(\bar{\chi}),
+    \label{eq:weighted_distance}
+  \end{equation}
+  which depends on $\bar{\chi}$ but not on instantaneous $\chi$ values through the metric definition.

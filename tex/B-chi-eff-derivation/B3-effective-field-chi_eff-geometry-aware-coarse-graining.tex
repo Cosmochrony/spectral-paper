@@ -1,0 +1,17 @@
+\subsection{Effective field \texorpdfstring{$\chi_{\mathrm{eff}}$}{χeff} (geometry-aware coarse-graining).}
+  \label{subsec:effective-field-chi_eff-geometry-aware-coarse-graining}
+  Finally, we define $\chi_{\mathrm{eff}}$ by coarse-graining $\chi$ over neighborhoods defined
+  by the \textbf{weighted distance} $d_{ij}^{W}$:
+  \begin{equation}
+    V_{\ell_0}(i)
+    \;=\;
+    \left\{ j \,\middle|\, d_{ij}^{W} \le \ell_0 \right\},
+    \label{eq:weighted_neighborhood}
+  \end{equation}
+  \begin{equation}
+    \chi_{\mathrm{eff}}(i)
+    \;=\;
+    \frac{1}{|V_{\ell_0}(i)|}
+    \sum_{j\in V_{\ell_0}(i)} \chi_j.
+    \label{eq:chi_eff_definition}
+  \end{equation}
