@@ -24,6 +24,9 @@
   As an illustrative example, we show that a discrete relational Laplacian constructed on a Hopf-fibered graph admits a
   robust spectral ratio between the first two non-trivial eigenvalues of
   the effective scalar Laplacian, $\lambda_2/\lambda_1$, converges toward the universal value $8/3$.
+  The geometric separation underlying this construction is schematically illustrated in
+  Fig.~\ref{fig:hopf_schematic}.
+
   In this section, we demonstrate that this ratio \emph{emerges naturally} from the discrete spectral response of a
   representative graph approximation of the pre-geometric substrate, without fine-tuning or imposed constraints.
 
@@ -106,8 +109,11 @@
         The base contribution remains nearly constant, while the fiber energy increases
         monotonically, indicating a selective excitation of fiber modes.
       }
-      \label{fig:D7-compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_1}
+      \label{fig:compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_1}
     \end{figure}
+
+    The behavior of the kernel-weighted energies as a function of $\alpha$ is shown in
+    Fig.~\ref{fig:compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_1}.
 
     \begin{figure}[t]
       \centering
@@ -119,8 +125,11 @@
         Both estimators coincide within statistical uncertainty, demonstrating that the observable is independent of
         the numerical method.
       }
-      \label{fig:D7-compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_2}
+      \label{fig:compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_2}
     \end{figure}
+
+    The agreement between Monte--Carlo and spectral estimators is illustrated in
+    Fig.~\ref{fig:compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_2}.
 
   \subsubsection*{Emergence of the \texorpdfstring{$8/3$}{8/3} Ratio}
     \label{subsec:emergence_8_3}
@@ -157,8 +166,11 @@
         a robust growth toward the universal ratio $8/3$, independently recovered by
         both Monte--Carlo and spectral evaluations.
       }
-      \label{fig:D7-compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_3}
+      \label{fig:compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_3}
     \end{figure}
+
+    The normalized spectral response revealing the convergence toward $8/3$ is shown in
+    Fig.~\ref{fig:compare_mc_vs_weighted_laplacian_hopf_fiberbase_split_3}.
 
   \subsubsection*{Analytical Foundation and Statistical Isotropy}
     \label{subsec:statistical_foundation}
@@ -208,7 +220,7 @@
         \hline
       \end{tabular}
       \caption{Convergence of the spectral ratio on $S^3$ as a function of substrate resolution.}
-      \label{tab:D7_convergence}
+      \label{tab:convergence}
     \end{table}
 
     Furthermore, spectral analysis on periodic relational grids (without explicit Hopf weighting) independently recovers
@@ -225,7 +237,8 @@
   \subsubsection*{Computational Protocol and Reproducibility}
     \label{subsec:computational_protocol}
 
-    The numerical values presented in Table~\ref{tab:D7_convergence}
+    The numerical convergence of the spectral ratio toward $8/3$ as a function of
+    substrate resolution is summarized in Table~\ref{tab:convergence}.
     were obtained using a high-precision Monte Carlo integration scheme implemented in Python.
     The protocol follows these steps:
     \begin{enumerate}
