@@ -1,7 +1,5 @@
-# Spectral Geometry
-
-This repository contains the source of the **Spectral Geometry** whitepaper  
-[*Relational Reconstruction of Spacetime Geometry from Graph Laplacians*](pdf/Spectral.pdf).
+This repository contains the source of the **Spectral Geometry** paper  
+[*Relational Reconstruction of Spacetime Geometry from Graph Laplacians*](pdf/Spectral.pdf) (paper A).
 
 This work develops a **relational and spectral framework** in which effective
 spacetime geometry is reconstructed from correlation structure alone, without
@@ -72,7 +70,12 @@ A **spectral admissibility criterion** selects regimes in which:
 - a low-dimensional embedding exists
 - continuum notions become operationally meaningful
 
-Within such regimes:
+Spectral admissibility implicitly assumes that relational relaxation remains
+below saturation thresholds.
+Outside such regimes, spectral geometry ceases to provide a faithful effective
+description, even though the underlying relational structure remains well-defined.
+
+Within admissible regimes:
 
 - an **emergent spectral dimension** can be extracted from eigenvalue scaling
 - this dimension stabilizes (typically toward four) without being imposed
@@ -87,31 +90,37 @@ Curvature is interpreted as a **collective relational effect**:
 - no gravitational field equation is postulated at the fundamental level
 
 In static, symmetric, and weakly inhomogeneous regimes, the reconstructed metric
-naturally reproduces **Schwarzschild-type geometry** as the unique effective
-description compatible with symmetry and spectral consistency.
+naturally reproduces **Schwarzschild-type geometry** as the unique spectrally
+admissible exterior solution compatible with symmetry, stationarity, and
+spectral consistency.
 
 General-relativistic phenomenology thus appears as a **kinematical consistency
-condition** of emergent geometry, not as a microscopic law.
+condition** of emergent geometry, not as a microscopic dynamical law.
 
 ## Status of the Framework
 
 This work is:
 
 - **pre-geometric and relational**
-- **purely kinematical**
-- **focused on geometric reconstruction**
+- **purely kinematical**, in the sense that no dynamical field equations are
+  postulated at the geometric level
+- **focused on geometric reconstruction and its limits of validity**
 
 It does **not** address:
 
 - matter fields or particle physics
 - quantum statistics or dynamics
 - cosmological evolution
+- saturation or strong-field regimes
 
 It **does** provide:
 
 - a minimal, non-circular reconstruction of geometry
 - intrinsic criteria for the validity and breakdown of spacetime descriptions
 - robust spectral invariants constraining admissible geometric regimes
+
+The breakdown of geometric description is understood as a loss of spectral
+projectability, rather than as a failure of the underlying relational structure.
 
 ## Repository Contents
 ```
