@@ -247,17 +247,19 @@
     \end{table}
 
     Furthermore, spectral analysis of periodic relational grids (without explicit Hopf weighting) yields ratios that are
-    numerically consistent with $8/3$ for the first two distinct energy levels in the same projectable regime.
-    This supports the practical robustness of the ratio across discretization families that effectively sample the same
-    Hopf-compatible geometry.
-    This evidence should be interpreted as stability under refinement and discretization choice, rather than as a claim
+    numerically consistent with $8/3$ for the first two distinct energy levels within the same projectable regime.
+    Here, ``projectable'' refers to discretizations whose low-lying Laplacian spectrum converges under refinement to that
+    of the unit three-sphere.
+
+    This supports the practical robustness of the ratio across discretization families whose induced Laplacian spectra
+    share the same low-energy structure as $\Delta_{S^3}$.
+    The statement is therefore one of spectral stability under refinement and discretization choice, rather than a claim
     of universality across arbitrary relational topologies.
 
     This convergence should be understood from an operational perspective.
-    This indicates that the discrete relational Laplacian reproduces a stable spectral response under refinement, rather
+    It indicates that the discrete relational Laplacian reproduces a stable spectral response under refinement, rather
     than establishing a strict operator-level convergence to a continuum Laplace--Beltrami operator.
-    This distinction reflects the fact that geometric operators arise here as effective descriptors of relational
-    spectra, rather than as fundamental continuum objects.
+    Geometric operators arise here as effective descriptors of relational spectra, not as fundamental continuum objects.
 
   \subsubsection*{Computational Protocol and Reproducibility}
     \label{subsec:computational_protocol}
