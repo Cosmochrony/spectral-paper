@@ -11,3 +11,46 @@
   Compared to non-commutative or spectral geometry programs, the emphasis here is not
   on algebraic generalization of manifolds, but on operational reconstruction of metric
   structures from admissible relational correlations.
+
+  \paragraph{Relation to graph Laplacian convergence results.}
+    The spectral reconstruction developed in this work operates within a well-established
+    analytical framework.
+    The convergence of graph Laplacians toward the Laplace--Beltrami operator on a
+    smooth manifold in the dense sampling limit was established by Belkin and
+    Niyogi~\cite{Belkin2003} and refined by Hein, Audibert, and von
+    Luxburg~\cite{Hein2007}.
+    These results ensure that the spectral data of the relational graph faithfully
+    approximate the continuous spectral data of the underlying geometric object as the
+    graph becomes dense, under mild regularity assumptions on the sampling measure.
+
+    The use of spectral proximity to define effective distances is closely related to the
+    diffusion map framework of Coifman and Lafon~\cite{Coifman2006}, in which a
+    diffusion distance is constructed from the heat kernel of the graph Laplacian.
+    The spectral distance $d_S(i,j)$ introduced in Section~\ref{subsec:spectral-distance}
+    is the $t=1$ instance of this family.
+    The present framework differs from diffusion maps in two respects: the distance is
+    used as an input to a \emph{hierarchical} construction of the effective field
+    $\chi_\mathrm{eff}$ (Appendix~\ref{subsec:chi_eff}), rather than as a standalone
+    embedding tool, and the admissibility filter $F_{\lambda^*}$ imposes an additional
+    spectral regularity condition that has no direct counterpart in standard manifold
+    learning.
+
+    The analytical underpinning of geodesic reconstruction from spectral data traces
+    back to Varadhan's formula~\cite{Varadhan1967}:
+    \begin{equation}
+      d(x, y)^2 = -4t \log p_t(x, y) + o(t) \quad \text{as } t \to 0^+,
+    \end{equation}
+    where $p_t(x,y)$ is the heat kernel of the manifold.
+    The spectral distances used here exploit the same correspondence in the finite
+    resolution regime, replacing the continuous heat kernel by its discrete spectral
+    approximation.
+
+    The approach differs structurally from Connes' noncommutative
+    geometry~\cite{Connes1994}, which reconstructs a metric from a spectral triple
+    $(\mathcal{A}, \mathcal{H}, D)$ involving a Dirac operator.
+    The present framework uses only the scalar Laplacian and does not require a
+    spinor structure, an algebra of observables, or a specific operator-theoretic
+    axiom set.
+    The two approaches share the goal of recovering geometric structure from spectral
+    data but operate at different levels of generality and with different motivating
+    physical assumptions.

@@ -1,0 +1,64 @@
+\subsection{Analytical derivation of the spectral ratio on $S^3$}
+  \label{sec:analytical_ratio}
+
+  The numerical convergence of the ratio $\lambda_2 / \lambda_1$ toward $8/3$ observed in
+  Appendix~\ref{subsec:numerical_ratio}
+      admits an exact analytical counterpart in the
+      continuous setting, which we now establish.
+
+  \paragraph{Spectrum of the scalar Laplacian on $S^3$.}
+    The eigenvalues of the scalar Laplacian $\Delta_{S^3}$ on the unit three-sphere are
+    given by the standard formula (see, e.g., \cite{Berger1971}).
+    Here $S^3$ is taken with unit radius and $\Delta_{S^3}$ denotes the positive
+    Laplace--Beltrami operator.
+    \begin{equation}
+      \label{eq:S3spectrum}
+      \lambda_k = k(k + 2), \qquad k = 0, 1, 2, \ldots,
+    \end{equation}
+    with multiplicity $(k+1)^2$.
+    The first non-trivial eigenvalue ($k=1$) is therefore
+    \begin{equation}
+      \lambda_1 = 1 \cdot 3 = 3,
+    \end{equation}
+    and the second distinct eigenvalue ($k=2$) is
+    \begin{equation}
+      \lambda_2 = 2 \cdot 4 = 8.
+    \end{equation}
+    Their ratio is exactly
+    \begin{equation}
+      \label{eq:exact_ratio}
+      \frac{\lambda_2}{\lambda_1} = \frac{8}{3}.
+    \end{equation}
+
+  \paragraph{Preservation under the Hopf fibration.}
+    The Hopf fibration $S^1 \hookrightarrow S^3 \to S^2$ provides a geometric
+    decomposition of $S^3$ into base and fiber directions, but it does not alter
+    the intrinsic spectrum of $\Delta_{S^3}$.
+    The first non-trivial eigenvalue ($k=1$) corresponds to the fundamental
+    irreducible representation of $\mathrm{SU}(2)\cong S^3$, and the ratio
+    $\lambda_2/\lambda_1=8/3$ follows purely from this representation structure.
+    The fibration offers a natural interpretation of these modes in terms of base
+    and fiber excitations, but the ratio itself is an intrinsic spectral property
+    of the three-sphere.
+
+  \paragraph{Status of the numerical result.}
+    The Monte--Carlo and spectral estimators reported in Appendix~\ref{subsec:numerical_ratio}
+    converge to $R_0 \simeq 0.876$ in the isotropic regime, which corresponds to
+    $E_\mathrm{fiber}/E_\mathrm{base}$ at $\alpha = 0$.
+    The limiting value $8/3 \simeq 2.667$ is reached in the normalized fiber energy
+    ratio~\eqref{eq:normalized_ratio} as $\alpha$ increases and fiber modes are selectively excited.
+    Equation~\eqref{eq:exact_ratio} confirms that this limit is not a numerical artifact
+    but the exact spectral invariant of the underlying $S^3$ geometry.
+
+  \paragraph{Diagnostic role.}
+    The ratio $\lambda_2/\lambda_1 = 8/3$ is therefore a \emph{topological invariant}
+    of the Hopf-fibered $S^3$ substrate, not a universal constant of all relational graphs.
+    Its role in the present framework is diagnostic: relational substrates exhibiting this
+    ratio in the projectable regime are spectrally compatible with a four-dimensional spacetime-like geometry.
+    In the present framework, the effective four-dimensional character arises once
+    the $S^1$ fiber is interpreted as a gauge degree of freedom, yielding a
+    three-dimensional base geometry supplemented by a compact internal direction.
+    Substrates with different topologies yield different ratios and are thereby
+    distinguishable at the spectral level without reference to any background metric.
+    This provides a criterion for identifying admissible geometric regimes that is
+    stronger than metric reconstruction alone.

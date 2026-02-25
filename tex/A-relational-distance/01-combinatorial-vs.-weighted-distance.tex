@@ -1,0 +1,35 @@
+\subsection{Combinatorial vs.\ weighted distance.}
+  \label{subsec:combinatorial-vs.-weighted-distance}
+  We define:
+
+  \begin{enumerate}
+    \item \textbf{Combinatorial distance} $d_{ij}^{C}$ (pre-geometric).
+    \[
+      d_{ij}^{C} \;=\; \min_{\gamma_{ij}} \sum_{(u,v)\in\gamma_{ij}} 1,
+    \]
+    where $\gamma_{ij}$ is any path connecting nodes $i$ and $j$ through network links.
+    This distance only counts the \emph{graph steps} and is \textbf{independent of the field values of $\chi$}
+    \citep{Diestel2017,Newman2010}.
+    It is used to define neighborhood sets employed in relational averaging\citep{Dijkstra1959,Cormen2009}.
+
+    \item \textbf{Weighted distance} $d_{ij}^{W}$ (emergent/effective).
+    \[
+      d_{ij}^{W} \;=\; \min_{\gamma_{ij}} \sum_{(u,v)\in\gamma_{ij}} w_{uv},
+    \]
+    where $w_{uv}$ denotes the positive weight associated with each link.
+    This distance is used for the \textbf{emergent geometry} (particularly for spectral constructions)
+    because it encodes the effective relational stiffness of the network.
+    The minimization of weighted paths corresponds to the classical shortest-path
+    problem, which is efficiently solved by Dijkstra-type algorithms~\cite{Dijkstra1959}.
+    The algorithmic aspects of weighted shortest-path computations and their
+    computational complexity are discussed in standard references~\cite{Cormen2009}.
+
+  \end{enumerate}
+
+  This distinction ensures that the coarse-graining background $\bar{\chi}$ can be defined
+  using $d_{ij}^{C}$ without any metric dependence, whereas the effective geometry is encoded
+  by $d_{ij}^{W}$ through weights that depend only on $\bar{\chi}$ (not on instantaneous $\chi$).
+
+  The combinatorial distance $d_{ij}^{C}$ has no physical interpretation and plays no
+  direct observational role; it serves solely as an auxiliary construct for defining
+  relational neighborhoods in a pre-geometric manner.

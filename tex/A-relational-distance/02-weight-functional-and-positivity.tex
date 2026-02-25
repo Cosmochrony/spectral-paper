@@ -1,0 +1,91 @@
+\subsection{Weight functional and positivity.}
+  \label{subsec:weight-functional-and-positivity}
+  We parameterize the weights by an effective connectivity (stiffness) matrix $K_{uv}>0$:
+  \[
+    w_{uv} \;=\; \frac{1}{K_{uv}}.
+  \]
+  In the circularity-free construction used in this appendix, $K_{uv}$ is not taken as a
+  direct functional of $\chi$, but as a functional of a slowly varying \emph{background} field
+  $\bar{\chi}$ defined by relational averaging.
+  Concretely, we use
+  \begin{equation}
+    w_{uv}(\bar{\chi})
+    \;=\;
+    \frac{1}{K_0}
+    \left[
+      1 + \left(\frac{\bar{\chi}_u-\bar{\chi}_v}{\chi_c}\right)^2
+    \right],
+    \qquad
+    K_{uv}(\bar{\chi}) \;=\; \frac{1}{w_{uv}(\bar{\chi})}.
+    \label{eq:weights}
+  \end{equation}
+  The positivity $w_{uv}(\bar{\chi})>0$ is guaranteed by construction; therefore, so $d_{ij}^{W}$ is a
+  well-defined weighted path metric whenever the graph is connected to the domain considered.
+
+  % -----------------------------------------------------------------------
+% REPLACEMENT / ADDITION for Appendix A.2 (Weight functional and positivity)
+% -----------------------------------------------------------------------
+
+  \paragraph{Intrinsic definition of the saturation scale.}
+    The weight functional introduced in Eq.~\eqref{eq:weights} involves a characteristic
+    scale $\chi_c$.
+    In the present standalone framework, $\chi_c$ is not imported from an external
+    physical theory but is defined intrinsically from the relational graph itself.
+    Specifically, we set
+    \begin{equation}
+      \label{eq:chi_c_intrinsic}
+      \chi_c^2 := \mathrm{Var}\!\left(\,\{\bar\chi_u - \bar\chi_v\}_{(u,v)\in E}\right)
+      = \frac{1}{|E|}\sum_{(u,v)\in E}(\bar\chi_u - \bar\chi_v)^2
+      - \left(\frac{1}{|E|}\sum_{(u,v)\in E}(\bar\chi_u - \bar\chi_v)\right)^{\!2},
+    \end{equation}
+    where $\bar\chi$ is the background field of Appendix~\ref{subsec:chi_bar} and the sum
+    runs over all edges $E$ of the graph.
+    This definition is:
+    \begin{enumerate}
+      \item \emph{intrinsic}: it depends only on the combinatorial structure and on
+      $\bar\chi$, with no reference to external parameters;
+      \item \emph{translation-invariant}: a global shift $\bar\chi \mapsto \bar\chi + c$
+      leaves $\chi_c$ unchanged;
+      \item \emph{dimensionally consistent}: $\chi_c$ carries the same units as $\bar\chi$,
+      so the ratio $(\bar\chi_u - \bar\chi_v)/\chi_c$ is dimensionless;
+      \item \emph{non-degenerate} for any non-constant $\bar\chi$: $\chi_c > 0$ whenever
+      the graph supports at least one edge with $\bar\chi_u \neq \bar\chi_v$.
+    \end{enumerate}
+    With this choice, $w_{uv}(\bar\chi) = K_0^{-1}\bigl[1 + (\bar\chi_u -
+\bar\chi_v)^2/\chi_c^2\bigr] > 0$ by construction, so positivity of the weight
+    functional is guaranteed.
+
+  \paragraph{Invariance of the spectral distance under rescaling of $\chi_c$.}
+    \begin{lemma}
+      \label{lem:chi_c_invariance}
+      In the admissible spectral window defined by the filter $F_{\lambda^*}$,
+      the normalized spectral distance $d_S(i,j)$ is invariant under the rescaling
+      $\chi_c \mapsto \alpha\,\chi_c$ for any $\alpha > 0$.
+    \end{lemma}
+
+    \begin{proof}[Sketch of proof]
+Under the rescaling $\chi_c \mapsto \alpha\,\chi_c$, the edge weights transform as
+\begin{equation}
+  w_{uv} \;\mapsto\; K_0^{-1}\!\left[1 + \frac{(\bar\chi_u - \bar\chi_v)^2}{\alpha^2\chi_c^2}\right].
+\end{equation}
+At leading order in the smooth (weak-gradient) regime where
+$|\bar\chi_u - \bar\chi_v| \ll \chi_c$, the weights reduce to $w_{uv} \approx K_0^{-1}$,
+independently of $\chi_c$.
+The graph Laplacian constructed from these weights is then $\alpha$-independent to
+this order, and so is its spectrum.
+The normalized spectral distance
+\begin{equation}
+  d_S(i,j)^2 = \sum_{k\geq 1} \frac{(\psi_k(i) - \psi_k(j))^2}{\lambda_k}
+\end{equation}
+depends only on the normalized eigenpairs $(\lambda_k, \psi_k)$, which are
+insensitive to a uniform rescaling of the Laplacian.
+Outside the smooth regime, corrections are of order $(\bar\chi_u - \bar\chi_v)^2/\chi_c^2$,
+which are suppressed within the spectral admissibility window by construction.
+    \end{proof}
+
+    \noindent
+    Lemma~\ref{lem:chi_c_invariance} ensures that the geometric reconstruction carried out
+    in the main text is not sensitive to the precise numerical value of $\chi_c$, only to
+    the local relational contrast structure encoded in $\bar\chi$.
+    The intrinsic definition~\eqref{eq:chi_c_intrinsic} therefore closes the dependency
+    chain without introducing any free external parameter.
