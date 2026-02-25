@@ -1,83 +1,55 @@
 \subsection{Analytical derivation of the spectral ratio on $S^3$}
   \label{sec:analytical_ratio}
 
-  The numerical convergence of the ratio $\lambda_2 / \lambda_1$ toward $8/3$ observed in
-  the Monte--Carlo simulations of Appendix~D admits an exact analytical counterpart in the
-  continuous setting, which we now establish.
+  The numerical convergence of $\lambda_2/\lambda_1$ toward $8/3$
+  admits an exact analytical counterpart on the unit three-sphere.
 
-  \paragraph{Spectrum of the scalar Laplacian on $S^3$.}
-    Here $S^3$ is taken with unit radius and $\Delta_{S^3}$ denotes the positive
-    Laplace--Beltrami operator $\Delta_{S^3} = -\operatorname{div}\operatorname{grad}$.
-    The eigenvalues of $\Delta_{S^3}$ are given by the standard formula
-    (see, e.g., \cite{Berger1971})
+  \paragraph{Scalar spectrum of $S^3$.}
+    For the positive Laplace--Beltrami operator
+    $\Delta_{S^3}=-\mathrm{div}\,\mathrm{grad}$,
+    the eigenvalues are~\cite{Berger1971}
     \begin{equation}
+      \lambda_k = k(k+2), \qquad k=0,1,2,\ldots,
       \label{eq:S3spectrum}
-      \lambda_k = k(k + 2), \qquad k = 0, 1, 2, \ldots,
     \end{equation}
     with multiplicity $(k+1)^2$.
-    The first non-trivial eigenvalue ($k=1$) is therefore $\lambda_1 = 3$,
-    and the second distinct eigenvalue ($k=2$) is $\lambda_2 = 8$.
-    Their ratio is exactly
+    Hence
+    \[
+      \lambda_1=3, \qquad \lambda_2=8,
+    \]
+    and
     \begin{equation}
+      \frac{\lambda_2}{\lambda_1}=\frac{8}{3}.
       \label{eq:exact_ratio}
-      \frac{\lambda_2}{\lambda_1} = \frac{8}{3}.
     \end{equation}
-    This result follows directly from the representation theory of
-    $\mathrm{SU}(2) \cong S^3$: the eigenspaces are irreducible representations of
-    $\mathrm{SU}(2)$ labeled by $k$, so the spectrum is algebraically determined by the
-    group structure and is independent of any choice of coordinates or discretization.
+    This follows algebraically from the $\mathrm{SU}(2)\cong S^3$
+    representation structure and is independent of coordinates,
+    discretization, or fibration.
 
-    \begin{remark}
-      The ratio $\lambda_2/\lambda_1=8/3$ follows directly from the scalar spectrum $\lambda_k=k(k+2)$ on the unit
-      three-sphere and is independent of the Hopf fibration.
-      The fibration is used only to interpret the fiber/base partition underlying the kernel-weighted observable
-      $R(\alpha)$ in Appendix~\ref{subsec:hopf_spectral}.
-    \end{remark}
-
-  \paragraph{Role of the Hopf fibration.}
-    The Hopf fibration $S^1 \hookrightarrow S^3 \to S^2$ provides a geometric decomposition
-    of $S^3$ into base and fiber directions, but it does not alter the intrinsic spectrum of
-    $\Delta_{S^3}$.
-    The first non-trivial eigenvalue ($k=1$) corresponds to the fundamental irreducible
-    representation of $\mathrm{SU}(2)$, and the ratio $\lambda_2/\lambda_1 = 8/3$ follows
-    purely from this representation structure.
-    The fibration offers a natural interpretation of the $k=1$ modes in terms of base and
-    fiber excitations, but the ratio itself is an intrinsic spectral property of the
-    three-sphere, not an artifact of the fibered construction.
-
-    In the present framework, the effective four-dimensional character arises once the $S^1$
-    fiber is interpreted as a compact gauge direction, yielding a three-dimensional base
-    geometry supplemented by an internal degree of freedom.
-    This interpretation is consistent with the fibered graph construction used in the
-    numerical simulations of Appendix~D, where the $k$-NN graph is sampled from $S^3$ with
-    the Hopf structure made explicit through the anisotropic kernel $K_\alpha$.
+  \paragraph{Role of the Hopf structure.}
+    The Hopf fibration $S^1\hookrightarrow S^3\to S^2$
+    does not modify the intrinsic spectrum.
+    It provides only a geometric interpretation of the
+    $k=1$ eigenspace in terms of fiber and base excitations.
+    The ratio $8/3$ is therefore an intrinsic spectral
+    property of $S^3$, not a consequence of fiber weighting.
 
   \paragraph{Relation to the numerical estimator.}
-    The Monte--Carlo and spectral estimators in Appendix~D compute the ratio
-    $R(\alpha) = E_\mathrm{fiber}(\alpha)/E_\mathrm{base}(\alpha)$ of kernel-weighted edge
-    energies along fiber and base directions respectively.
-    In the isotropic regime ($\alpha \leq 0$), this ratio stabilizes at $R_0 \simeq 0.876$,
-    reflecting the geometric partition of $S^3$ into fiber and base contributions under
-    isotropic sampling.
-    As $\alpha$ increases and fiber modes are selectively excited, the normalized quantity
-    $E_\mathrm{fiber}(\alpha)/E_\mathrm{fiber}(0)$ converges to $8/3$.
-    This convergence is consistent with the exact result~\eqref{eq:exact_ratio}: in the
-    limit of strong fiber excitation, the ratio of fiber to base spectral energy approaches
-    the ratio of the corresponding eigenvalues, which equals $8/3$ by the spectral
-    formula~\eqref{eq:S3spectrum}.
-    The two quantities --- $R_0$ and $8/3$ --- measure different aspects of the same
-    spectral structure and are therefore not in contradiction.
+    The simulations evaluate a kernel-weighted ratio
+    $R(\alpha)=E_{\mathrm{fiber}}(\alpha)/E_{\mathrm{base}}(\alpha)$.
+    In the isotropic regime ($\alpha\le 0$), $R(\alpha)$
+    reflects geometric partitioning.
+    As $\alpha$ increases and fiber modes are selectively excited,
+    the normalized fiber response converges to $8/3$.
+    This is consistent with~\eqref{eq:exact_ratio}:
+    strong fiber excitation isolates the first two distinct
+    spectral levels, whose eigenvalue ratio equals $8/3$.
 
-  \paragraph{Diagnostic role.}
-    The ratio $\lambda_2/\lambda_1 = 8/3$ is a \emph{topological spectral invariant}
-    of $S^3$, not a universal constant of all relational graphs.
-    Its role in the present framework is diagnostic: a relational substrate exhibiting this
-    ratio in its projectable regime is spectrally compatible with a geometry modeled on $S^3$,
-    and the Hopf structure provides a natural interpretation in terms of a four-dimensional
-    spacetime with a compact gauge fiber.
-    Substrates with different topologies yield different ratios and are thereby
-    distinguishable at the spectral level without reference to any background metric.
-    This discriminating property makes the ratio a stronger structural signature than
-    metric reconstruction alone, since many distinct relational configurations may project
-    to indistinguishable effective metrics while still being separated by their spectral
-    invariants.
+  \paragraph{Diagnostic status.}
+    The value $8/3$ is a topological spectral invariant of $S^3$.
+    It is not universal for arbitrary relational graphs.
+    Its role is diagnostic: substrates reproducing this ratio
+    in a projectable regime are spectrally compatible with
+    $S^3$-type geometry.
+    Different topologies yield different ratios, providing a
+    structural discriminator stronger than metric reconstruction alone.

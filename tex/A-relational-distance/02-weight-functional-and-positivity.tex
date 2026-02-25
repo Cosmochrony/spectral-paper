@@ -1,91 +1,57 @@
-\subsection{Weight functional and positivity.}
+\subsection{Weight functional and positivity}
   \label{subsec:weight-functional-and-positivity}
-  We parameterize the weights by an effective connectivity (stiffness) matrix $K_{uv}>0$:
+
+  Edge weights are parameterized by a positive connectivity (stiffness)
+  matrix $K_{uv}>0$:
   \[
-    w_{uv} \;=\; \frac{1}{K_{uv}}.
+    w_{uv} = \frac{1}{K_{uv}}.
   \]
-  In the circularity-free construction used in this appendix, $K_{uv}$ is not taken as a
-  direct functional of $\chi$, but as a functional of a slowly varying \emph{background} field
-  $\bar{\chi}$ defined by relational averaging.
-  Concretely, we use
+  To avoid circularity, $K_{uv}$ is taken as a functional of the
+  coarse-grained background $\bar{\chi}$, not of $\chi$ itself. We use
   \begin{equation}
     w_{uv}(\bar{\chi})
-    \;=\;
+    =
     \frac{1}{K_0}
     \left[
       1 + \left(\frac{\bar{\chi}_u-\bar{\chi}_v}{\chi_c}\right)^2
     \right],
     \qquad
-    K_{uv}(\bar{\chi}) \;=\; \frac{1}{w_{uv}(\bar{\chi})}.
+    K_{uv} = \frac{1}{w_{uv}}.
     \label{eq:weights}
   \end{equation}
-  The positivity $w_{uv}(\bar{\chi})>0$ is guaranteed by construction; therefore $d_{ij}^{W}$
-  is a well-defined weighted path metric whenever the graph is connected over the domain
-  considered.
+  Positivity is manifest, hence $d_{ij}^{W}$ defines a weighted
+  path metric on any connected graph.
 
-  \paragraph{Intrinsic definition of the saturation scale.}
-    The scale $\chi_c$ appearing in~\eqref{eq:weights} is not imported from an external
-    physical theory but is defined intrinsically from the relational graph itself.
-    Specifically, we set
+  \paragraph{Intrinsic saturation scale.}
+    The scale $\chi_c$ is defined intrinsically by the edge-variance
     \begin{equation}
       \chi_c^2
-      \;:=\;
+      =
       \frac{1}{|E|}\sum_{(u,v)\in E}(\bar{\chi}_u - \bar{\chi}_v)^2
-      \;-\;
-      \left(\frac{1}{|E|}\sum_{(u,v)\in E}(\bar{\chi}_u - \bar{\chi}_v)\right)^{\!2},
+      -
+      \left(\frac{1}{|E|}\sum_{(u,v)\in E}(\bar{\chi}_u - \bar{\chi}_v)\right)^2,
       \label{eq:chi_c_intrinsic}
     \end{equation}
-    where the sum runs over all edges $E$ of the graph.
-    This definition satisfies four properties that are required for the construction to
-    remain self-contained:
-    \begin{enumerate}
-      \item \emph{Intrinsic}: it depends only on the combinatorial structure and on
-      $\bar{\chi}$, with no reference to external parameters.
-      \item \emph{Translation-invariant}: a global shift $\bar{\chi} \mapsto \bar{\chi} + c$
-      leaves $\chi_c$ unchanged.
-      \item \emph{Dimensionally consistent}: $\chi_c$ carries the same units as $\bar{\chi}$,
-      so the ratio $(\bar{\chi}_u - \bar{\chi}_v)/\chi_c$ is dimensionless.
-      \item \emph{Non-degenerate}: $\chi_c > 0$ whenever the graph supports at least one
-      edge with $\bar{\chi}_u \neq \bar{\chi}_v$.
-    \end{enumerate}
+    which depends only on the combinatorial structure and $\bar{\chi}$.
+    It is translation-invariant, dimensionally consistent, and strictly
+    positive whenever non-trivial contrasts exist.
 
-  \paragraph{Invariance of the spectral distance under rescaling of $\chi_c$.}
+  \paragraph{Rescaling invariance.}
     \begin{lemma}
-      \label{lem:chi_c_invariance}
-      In the admissible spectral regime selected by $F_{\lambda^*}$, the normalized
-      spectral distance $d_S(i,j)$ is invariant to leading order under the rescaling
-      $\chi_c \mapsto \alpha\,\chi_c$ for any $\alpha > 0$.
+      In the admissible spectral regime selected by $F_{\lambda^*}$,
+      the normalized spectral distance $d_S(i,j)$ is invariant to leading
+      order under $\chi_c \mapsto \alpha\,\chi_c$.
     \end{lemma}
 
-    \begin{proof}[Sketch of proof]
-  In the admissible spectral regime, only modes satisfying
-  $|\bar{\chi}_u - \bar{\chi}_v|/\chi_c \ll 1$ contribute dominantly.
-  Expanding the weight functional~\eqref{eq:weights} yields
-  \begin{equation}
-    w_{uv}
-    \;=\;
-    K_0^{-1}
-    \!\left[
-        1 + \mathcal{O}\!\left(\frac{(\bar{\chi}_u - \bar{\chi}_v)^2}{\chi_c^2}\right)
-    \right].
-  \end{equation}
-  The leading contribution to the graph Laplacian is therefore $\chi_c$-independent.
-  Corrections induced by the rescaling $\chi_c \mapsto \alpha\,\chi_c$ enter only at
-  second order in the contrast expansion and are suppressed by the spectral filter
-  $F_{\lambda^*}$.
-  The normalized spectral distance
-  \begin{equation}
-    d_S(i,j)^2
-    \;=\;
-    \sum_{k\geq 1} \frac{(\psi_k(i) - \psi_k(j))^2}{\lambda_k}
-  \end{equation}
-  depends on the eigenpairs of this Laplacian and is therefore insensitive to $\chi_c$
-  at leading order.
+    \begin{proof}[Sketch]
+For $|\bar{\chi}_u-\bar{\chi}_v|/\chi_c \ll 1$,
+\[
+  w_{uv}
+  =
+  K_0^{-1}
+  \Big[1 + \mathcal{O}((\bar{\chi}_u-\bar{\chi}_v)^2/\chi_c^2)\Big].
+\]
+The leading Laplacian is therefore $\chi_c$-independent.
+Rescaling affects only higher-order terms suppressed by
+$F_{\lambda^*}$, leaving $d_S$ unchanged at leading order.
     \end{proof}
-
-    \noindent
-    Lemma~\ref{lem:chi_c_invariance} ensures that the geometric reconstruction carried out
-    in the main text does not depend on the precise numerical value of $\chi_c$, only on
-    the local relational contrast structure encoded in $\bar{\chi}$.
-    The intrinsic definition~\eqref{eq:chi_c_intrinsic} therefore closes the dependency
-    chain without introducing any free external parameter.
