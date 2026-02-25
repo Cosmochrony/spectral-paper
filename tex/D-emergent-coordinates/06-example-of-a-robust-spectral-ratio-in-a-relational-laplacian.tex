@@ -192,29 +192,33 @@
   \subsubsection*{Analytical Foundation and Statistical Isotropy}
     \label{subsec:statistical_foundation}
 
-    The appearance of the $8/3$ ratio can be traced to the dimensional partitioning induced by the Hopf fibration on
-    the unit three-sphere.
-    Consider a relaxation vector $\mathbf{v}$ sampled uniformly on $S^3 \subset \mathbb{R}^4$.
-    Using statistical isotropy in the embedding space, the expectation of any component $v_i^2$
-    is constrained by the total dimensionality $d=4$:
+    The appearance of the $8/3$ ratio can be traced to the dimensional partitioning induced by the Hopf fibration on the
+    unit three-sphere.
+    Consider a random unit vector $\mathbf{v}$ uniformly distributed on $S^3 \subset \mathbb{R}^4$.
+    By statistical isotropy in the embedding space, the expectation of any squared component satisfies
     \begin{equation}
-      \mathbb{E}[v_i^2] = \frac{1}{d} = \frac{1}{4}.
+      \mathbb{E}[v_i^2] = \frac{1}{d} = \frac{1}{4},
     \end{equation}
-    Under the Hopf projection $\Pi: S^3 \to S^2$, we distinguish the fiber direction from the base directions.
-    The corresponding geometric moments are:
-    \begin{itemize}
-      \item \textbf{Fiber Moment:} $\langle d_{\text{fiber}}^2 \rangle \propto \mathbb{E}[v_1^2] = 1/4$,
-      \item \textbf{Base Moment:} $\langle d_{\text{base}}^2 \rangle \propto (1 - \mathbb{E}[v_1^2]) = 3/4$.
-    \end{itemize}
-    In the Cosmochrony framework, the spectral stiffness $K$ of the fiber mode is amplified by a factor of eight,
-    corresponding to the saturated Ricci curvature of the Hopf torsion relative to the base.
-    Consequently, the ratio of weighted moments is
+    where $d=4$ is the embedding dimension.
+
+    Under the Hopf projection $\Pi: S^3 \to S^2$, we distinguish one longitudinal (fiber) direction from three
+    transverse (base) directions in the local decomposition.
+    For a fixed reference fiber axis $\mathbf{e}_{\text{fiber}}$, define
     \begin{equation}
-      R_{\infty} = \frac{8 \cdot \langle d_{\text{fiber}}^2 \rangle}{\langle d_{\text{base}}^2 \rangle}
-      = \frac{8 \cdot (1/4)}{3/4} = \frac{8}{3}.
+      c^2 = (\mathbf{v}\cdot \mathbf{e}_{\text{fiber}})^2, \qquad s^2 = 1 - c^2.
     \end{equation}
-    This heuristic argument is consistent with the exact continuous Laplacian ratio on $S^3$
-    derived in Appendix~\ref{sec:analytical_ratio}.
+    Then $\mathbb{E}[c^2]=1/4$ and $\mathbb{E}[s^2]=3/4$.
+
+    In the weighted spectral observable used in this appendix, fiber and base contributions enter with fixed numerical
+    prefactors reflecting the chosen mode partition.
+    With the conventions of Eq.~\eqref{eq:R_alpha_def} and the normalization used in Fig.~\ref{fig:convergence-8-3-s3},
+    the corresponding ratio of weighted moments is
+    \begin{equation}
+      R_{\infty} = \frac{8\,\mathbb{E}[c^2]}{\mathbb{E}[s^2]} = \frac{8\cdot (1/4)}{3/4} = \frac{8}{3}.
+    \end{equation}
+    This statistical argument explains why the normalized response in Eq.~\eqref{eq:normalized_ratio} approaches $8/3$
+    in the Hopf-compatible regime.
+    It is consistent with the exact continuous Laplacian ratio on $S^3$ derived in Appendix~\ref{sec:analytical_ratio}.
 
   \subsubsection*{Numerical Convergence in the Continuum Limit}
     \label{subsec:continuum_convergence}
@@ -258,8 +262,9 @@
     \label{subsec:computational_protocol}
 
     The numerical convergence of the spectral ratio toward $8/3$ as a function of the substrate resolution summarized in
-    Table~\ref{tab:convergence} was obtained using a high-precision Monte Carlo integration scheme implemented in Python.
-    The protocol follows these steps:
+    Table~\ref{tab:convergence}
+        was obtained using a high-precision Monte Carlo integration scheme implemented in Python.
+        The protocol follows these steps:
     \begin{enumerate}
       \item \textbf{Substrate Sampling:} For a given resolution $N$, we generate $N$ 4-vectors
       $\mathbf{v} \in \mathbb{R}^4$ sampled from a standard normal distribution $\mathcal{N}(0,1)$.
@@ -267,7 +272,8 @@
       unit hypersphere.
       \item \textbf{Fiber-based Decomposition:} We define a reference fiber axis
       $\mathbf{e}_{\text{fiber}} = (1, 0, 0, 0)$.
-      For each sample, the fiber alignment was computed as $c_i^2 = (\mathbf{v}_i \cdot \mathbf{e}_{\text{fiber}})^2$ and
+      For each sample, the fiber alignment was computed as $c_i^2 = (\mathbf{v}_i \cdot \mathbf{e}_{\text{fiber}})^2$
+      and
       the base alignment was $s_i^2 = 1 - c_i^2$.
       \item \textbf{Stiffness Estimation:} The spectral energies are estimated as the statistical moments:
       \begin{equation}
@@ -303,16 +309,18 @@
     \label{subsec:spectral_interpretation}
 
     These results demonstrate that the ratio $\lambda_2/\lambda_1 = 8/3$
-    is not imposed but \emph{emerges} as a stable spectral signature of the discrete Laplacian under biased relaxation in
-    a Hopf-compatible, projectable regime.
-    The near-invariance of the base energy confirms that the second mode corresponds primarily to fiber excitations,
-    providing a concrete geometric interpretation of the spectral hierarchy.
+    is not imposed but \emph{emerges}
+        as a stable spectral signature of the discrete Laplacian under biased relaxation in
+        a Hopf-compatible, projectable regime.
+        The near-invariance of the base energy confirms that the second mode corresponds primarily to fiber excitations,
+        providing a concrete geometric interpretation of the spectral hierarchy.
 
-    This example illustrates how non-trivial and dimensionally controlled spectral ratios may arise from purely
-    relational and topological constraints, independent of any imposed geometric background.
+        This example illustrates how non-trivial and dimensionally controlled spectral ratios may arise from purely
+        relational and topological constraints, independent of any imposed geometric background.
 
-    Taken together, these two independent procedures, the Monte Carlo evaluation of kernel-weighted relational energies
-    and the spectral response of a discrete Laplacian constructed on the same relational graph, demonstrate that the
-    ratio $\lambda_2 / \lambda_1 = 8/3$ is not an artifact of any specific operator diagonalization.
+        Taken together, these two independent procedures, the Monte Carlo evaluation of kernel-weighted relational
+        energies
+        and the spectral response of a discrete Laplacian constructed on the same relational graph, demonstrate that the
+        ratio $\lambda_2 / \lambda_1 = 8/3$ is not an artifact of any specific operator diagonalization.
     Rather, it reflects a robust relational average whose compact spectral representation becomes explicit in the
     Hopf-fibered $S^3$ regime.
