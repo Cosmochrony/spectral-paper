@@ -1,19 +1,17 @@
 \subsection{Spectral proximity}
   \label{subsec:spectral-proximity}
 
-  Given the Laplacian spectrum $\{\lambda_n, \phi_n\}$, one may define spectral kernels
-  that quantify the relational proximity between nodes or abstract elements of the
-  relational system.
-  A generic example is provided using heat-kernel–type constructions.
+  Given the Laplacian spectrum $\{\lambda_n, \phi_n\}$, spectral kernels define
+  relational proximity between nodes.
+  A canonical example is the heat kernel
   \begin{equation}
-    K(i,j;\alpha) \;=\; \sum_{n} e^{-\alpha \lambda_n}\,\phi_n(i)\,\phi_n(j),
+    K(i,j;\alpha)
+    \;=\;
+    \sum_{n} e^{-\alpha \lambda_n}\,\phi_n(i)\,\phi_n(j),
   \end{equation}
-  where $\alpha$ is the spectral scale parameter.
-  Such kernels measure the degree of connectivity between elements $i$ and $j$ through
-  the spectrum of $\Delta$, without reference to any metric distance.
+  where $\alpha$ sets the spectral scale.
 
-  Spectral kernels of this type are widely used in clustering and manifold
-  learning to extract geometric information from graph spectra~\cite{VonLuxburg2007}.
-  They are invariant under the relabeling of nodes and do not presuppose embedding.
-  They provided a natural notion of relational proximity that depends solely on the
-  spectral properties of the Laplacian.
+  This kernel measures connectivity between elements $i$ and $j$
+  through the spectrum of $\Delta$, without reference to metric distance.
+  Such constructions are standard in clustering and manifold learning~\cite{VonLuxburg2007}.
+  They are invariant under node relabeling and require no embedding structure.

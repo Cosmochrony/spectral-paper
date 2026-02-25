@@ -1,8 +1,7 @@
 \subsection{Spectral distance}
   \label{subsec:spectral-distance}
 
-  From the spectral proximity measures, an effective distance can be defined using monotonic transformations.
-  A convenient choice is
+  From the spectral kernel, an effective distance is defined by
   \begin{equation}
     d_{\mathrm{spec}}(i,j)
     \;=\;
@@ -10,66 +9,44 @@
              \frac{K(i,j;\alpha)}{\sqrt{K(i,i;\alpha)\,K(j,j;\alpha)}}
     \right),
   \end{equation}
-  which defines a symmetric, non-negative quantity that vanishes when $i=j$.
-  This definition is purely spectral and does not involve geometric or physical
-  interpretations.
+  which is symmetric, non-negative, and vanishes for $i=j$.
+  The definition is purely spectral and requires no geometric interpretation.
 
-  The resulting distance is generically non-injective;
-  distinct relational configurations may induce identical spectral distances, and
-  multiple embeddings may correspond to the same distance matrix.
-  This non-uniqueness is a structural feature of spectral reconstruction rather than a
-  limitation of formalism.
+  Spectral reconstruction is non-injective:
+  distinct relational configurations may yield identical distance matrices,
+  and multiple embeddings may correspond to the same $d_{\mathrm{spec}}$.
+  This non-uniqueness is structural.
 
-  The explicit constructions of local embeddings, intrinsic dimension selection,
-  and breakdown of the manifold reconstruction outside the projectable regime
-  are presented in Appendix~\ref{subsec:emergent-coordinates}.
+  Local embeddings, intrinsic dimension selection,
+  and breakdown outside the projectable regime
+  are detailed in Appendix~\ref{subsec:emergent-coordinates}.
 
   \paragraph{Emergent spectral dimension.}
-    In Eq.~(2), exponent $d$ should not be interpreted as a fixed or postulated
-    topological dimension.
-    Within the present framework, $d$ is an \emph{emergent spectral quantity}
-    that characterizes the asymptotic scaling of the eigenvalue counting function
-    $N(\lambda)$ in the low-energy regime.
-    Operationally, $d$ is extracted from the slope of $\log N(\lambda)$ versus
-    $\log \lambda$ and may take non-integer values at a finite spectral resolution.
 
-    In particular, the convergence of $d$ toward an integer value reflects the
-    stabilization of the relational substrate in a smooth and effective geometric
-    regime.
-    The numerical evidence presented in this work indicates that under admissibility
-    and regularity conditions, the substrate converges toward a four-dimensional
-    spectral behavior, $d \to 4$, without this value being imposed \emph{a priori}.
-    This convergence is observed to persist across multiple spectral decades, indicating
-    that the four-dimensional behavior is not a transient finite-size effect but a stable
-    property of the admissible relational regime.
+    The exponent $d$ appearing in Eq.~(2) is not postulated as a topological
+    dimension.
+    It is extracted from the asymptotic scaling of the eigenvalue counting function
+    $N(\lambda)$ in the low-energy regime,
+    via the slope of $\log N(\lambda)$ versus $\log \lambda$.
+    At finite resolution, $d$ may be non-integer.
 
-    At smaller spectral scales, deviations from integer dimensionality encode
-    local curvature and connectivity distortions, thereby providing a direct bridge
-    between spectral observables and effective geometric structures.
-
-  \paragraph{Stability of the spectral dimension.}
-    Numerical evaluations of the spectral counting function, performed on distinct
-    relational realizations and resolutions of the substrate, indicated that the extracted
-    spectral dimension $d_s$ remained stable and converged toward $d_s \simeq 4$ over a broad
-    range of spectral scales.
-    Deviations appear only near the ultraviolet cutoff, where the notion of effective
-    geometry is not applicable.
-
-    This stability across scales and discretizations supports the interpretation of
-    $d_s$ as an emergent property of relational organization rather than as an imposed
-    dimensional parameter.
+    Under admissibility and regularity conditions,
+    the relational substrate exhibits stable convergence toward
+    $d \simeq 4$ across multiple spectral decades.
+    This behavior is not imposed \emph{a priori}
+    and is robust across discretizations.
+    Deviations at high spectral scales correspond to ultraviolet effects,
+    where an effective geometric interpretation is not applicable.
 
   \paragraph{From graph distance to effective geodesics.}
-    The operational distance defined via the shortest weighted paths on the relational
-    graph plays the role of an effective geodesic distance.
-    While combinatorial distances count edge hops, the weighted distance incorporates
-    local variations in connectivity through edge weights, thereby encoding the
-    inhomogeneous relational structure of the substrate.
 
-    In the continuum limit, the local density of nodes contributing to admissible
-    paths controls the scaling of volumes and distances.
-    This node density acts as the discrete analog of the metric determinant
-    $\sqrt{-g}$, governing how relational neighborhoods are mapped onto effective
-    geometric volumes.
-    Thus, geometric notions arise from connectivity statistics rather than from
-    a postulated metric field.
+    Shortest weighted paths on the relational graph define an operational
+    geodesic distance.
+    Edge weights encode local connectivity variations,
+    so path length reflects inhomogeneous relational structure.
+
+    In the continuum limit,
+    the density of admissible nodes along paths controls volume and distance scaling.
+    This density plays the role of a discrete analog of $\sqrt{-g}$,
+    so geometric structure arises from connectivity statistics rather than
+    a fundamental metric field.

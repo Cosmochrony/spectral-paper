@@ -1,58 +1,46 @@
 \subsection{Non-uniqueness of Spectral Reconstruction}
   \label{subsec:non-uniqueness}
 
-  Reconstruction of an effective metric from relational spectral data is not generically unique.
-  This non-uniqueness is not a consequence of approximation or incomplete information,
-  but a structural feature of spectral geometry.
+  Reconstruction of an effective metric from spectral data is generically non-unique.
+  This ambiguity is structural, not a consequence of approximation.
 
-  Spectral reconstruction proceeds by extracting geometric descriptors from a restricted
-  set of spectral features, typically after the application of the admissibility or regularity criteria.
-  As a result, distinct relational configurations may share identical low-resolution
-  spectral content and therefore give rise to the same effective metric description.
-  Conversely, a given relational structure may admit multiple continuum embeddings that
-  are spectrally equivalent within an admissible window.
+  Distinct relational configurations may share identical low-resolution
+  spectral content within an admissible window and therefore yield the same
+  effective metric.
+  Conversely, a given configuration may admit multiple spectrally equivalent
+  continuum embeddings.
 
-  The operational notions of distance further reinforces this ambiguity.
-  Distance is defined in terms of correlation efficiency or spectral proximity rather
-  than through an underlying coordinate separation.
-  Different choices of spectral filtering, coarse-graining scale, or embedding procedure
-  may therefore lead to metrically equivalent but geometrically distinct descriptions.
-
-  Importantly, this ambiguity does not compromise the physical consistency.
-  All equivalent metric descriptions agree on the observable geometric properties within
-  their shared domain of validity.
-  Thus, the effective metric should be understood as representative of an equivalence
-  class of geometries compatible with the same relational spectral data.
-
-  Therefore, non-uniqueness is an intrinsic aspect of emergent geometry in relational frameworks.
-  This reflects that geometric descriptions encode only a subset of the underlying
-  relational structure and should not be interpreted as faithful microscopic
-  representations.
+  Because distance is defined operationally through spectral proximity,
+  different filtering scales or embedding procedures can produce metrically
+  equivalent but geometrically distinct descriptions.
+  All such descriptions agree on observable properties within their common
+  domain of validity.
+  The effective metric thus represents an equivalence class compatible with
+  the same spectral data.
 
   \paragraph{Flux conservation and radial scaling.}
-    The emergence of a $1/r$-type effective potential does not rely on the imposed force law.
-    This follows from the conservation of the relaxation flux in the relational substrate.
-    In a quasi-static regime, the total relaxation flux crossing any closed
-    relational surface surrounding a localized perturbation is conserved.
 
-    In an effective three-dimensional projectable regime, this conservation
-    implies that the perturbation of connectivity must decay as $1/r^{2}$ with the radial distance.
-    When integrated along admissible paths, this scaling naturally yields an
-    effective potential proportional to $1/r$, providing the structural origin
-    of the Schwarzschild radius without assuming Newtonian dynamics or a prior
-    gravitational law.
+    The emergence of a $1/r$ profile follows from conservation of relational
+    relaxation flux in quasi-static regimes.
+    The total flux through any closed relational surface surrounding a localized
+    perturbation is conserved.
+
+    In an effective three-dimensional projectable regime,
+    flux conservation implies a $1/r^{2}$ decay of connectivity perturbations.
+    Integration along admissible paths then yields an effective potential
+    proportional to $1/r$.
+    The Schwarzschild factor $1 - r_s/r$ thus arises from isotropic
+    flux conservation rather than from an imposed force law.
 
   \paragraph{Origin of the $1/r$ profile.}
-    In the present framework, the notion of mass does not correspond to a fundamental
-    source term, but to a localized inhibition of admissible relaxation in the relational substrate.
-    Such a configuration reduces the local density of optimal relational paths, as measured
-    by the shortest-path connectivity under the operational distance defined via Dijkstra-type minimization.
 
-    In the continuum regime where an effective geometric description becomes valid,
-    this reduction acts as a source term for the scalar Laplacian governing admissible
-    deformations of the effective metric.
-    In three spatial dimensions, the fundamental solution of the corresponding Poisson
-    equation is uniquely fixed by flux conservation and exhibits a $1/r$ decay.
-    Therefore, the emergence of the Schwarzschild factor $1 - r_s/r$ follows directly from
-    the conservation of the relational relaxation flux in an isotropic three-dimensional
-    effective geometry, rather than from an imposed potential or symmetry assumption.
+    Mass corresponds operationally to a localized inhibition of admissible
+    relaxation in the relational substrate.
+    This reduces the density of optimal relational paths.
+
+    In the continuum regime, this reduction acts as a source term for the
+    effective scalar Laplacian governing metric deformations.
+    In three spatial dimensions, the corresponding Poisson equation has the
+    unique fundamental solution proportional to $1/r$.
+    The Schwarzschild scaling therefore follows from flux conservation in an
+    isotropic effective geometry, not from an assumed gravitational law.

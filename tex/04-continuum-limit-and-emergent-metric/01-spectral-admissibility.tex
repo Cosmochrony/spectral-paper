@@ -1,43 +1,36 @@
 \subsection{Spectral Admissibility and Regularity}
   \label{subsec:spectral-admissibility}
 
-  The emergence of an effective continuum geometry from the relational spectral data
-  requires additional regularity conditions.
+  An effective continuum geometry requires additional spectral regularity.
   Not all relational configurations admit a meaningful continuum approximation,
-  even when a spectral distance can be defined.
-  In this subsection, we introduce the spectral admissibility criteria that characterize
-  the regimes in which the geometric reconstruction is well-defined.
+  even when a spectral distance exists.
+  We therefore introduce spectral admissibility criteria.
 
-  Let $L$ denote a self-adjoint relational operator acting on a suitable Hilbert space for the configurations.
-  In discrete realizations, $L$ is reduced to a graph Laplacian associated with the
-  relational connectivity of the system.
-  In general, $L$ encodes a relational structure without reference to the background manifold or metric.
+  Let $L$ be a self-adjoint relational operator acting on a suitable Hilbert space.
+  In discrete realizations, $L$ reduces to a graph Laplacian.
+  It encodes relational structure without reference to any manifold or metric.
 
-  The operator $L$ admits a spectral decomposition
+  The spectral decomposition
   \begin{equation}
     L \psi_n = \lambda_n \psi_n ,
   \end{equation}
-  with non-negative eigenvalues $\{\lambda_n\}$ and the corresponding eigenmodes $\{\psi_n\}$.
-  No geometric interpretation was assumed at this stage.
+  with non-negative eigenvalues $\{\lambda_n\}$,
+  provides the basis for reconstruction.
 
-  Spectral admissibility is defined by restricting the attention to a controlled spectral
-  window.
-
-  Specifically, we introduce a smooth spectral filter
+  Admissibility is defined by restricting attention to a controlled spectral window.
+  We introduce a smooth spectral filter
   \begin{equation}
     F_{\lambda_*} \;=\; f\!\left(\frac{L}{\lambda_*}\right),
   \end{equation}
-  where $f(x)$ is a fixed cutoff function and $\lambda_*$ sets a characteristic spectral scale.
-  Only modes below this scale contribute significantly to the effective geometric reconstruction.
+  where $f(x)$ is a cutoff function and $\lambda_*$ sets the characteristic scale.
+  Only modes below $\lambda_*$ contribute to the effective geometry.
 
-  This filtering procedure defines the admissibility purely in spectral terms.
-  It does not rely the locality, coordinates, or spatiotemporal integration measures.
-  Instead, it reflects that continuum geometry, when it emerges, is
-  necessarily insensitive to fine-grained spectral details beyond a given resolution.
+  This criterion is purely spectral and does not rely on locality,
+  coordinates, or integration measures.
+  It reflects the insensitivity of continuum geometry to
+  fine-grained spectral structure beyond a given resolution.
 
-  Spectral admissibility is generally non-injective.
-  Distinct relational configurations may share identical spectral content within the
-  admissible window and therefore give rise to the same effective continuum geometry.
-  Conversely, a given relational structure can admit multiple equivalent continuum embeddings.
-  This non-uniqueness is a structural feature of spectral reconstruction and does not
-  indicate inconsistency in the framework.
+  As before, spectral reconstruction is non-injective:
+  distinct configurations may coincide within the admissible window,
+  and a single configuration may admit multiple equivalent embeddings.
+  This ambiguity is structural.

@@ -1,63 +1,52 @@
 \section{Continuum Limit and Emergent Metric}
   \label{sec:continuum-limit-and-emergent-metric}
 
-  The spectral distance introduced in the previous section provides a purely relational notion of the proximity.
-  A natural question is under what conditions such a construction admits an effective
-  continuum description, allowing the use of familiar geometric tools.
-  In this section, we analyze the regimes in which a relational spectral structure can be
-  approximated using a smooth metric geometry.
+  The spectral distance provides a relational notion of proximity.
+  We now identify the conditions under which it admits a smooth continuum
+  approximation and an effective metric description.
 
-  We consider families of relational graphs or coarse-grained networks whose Laplacian
-  spectra exhibit sufficient regularity.
-  No assumptions were made concerning the underlying manifold or dimensionality.
-  Instead, the continuum limit is operationally defined, as the regime in which spectral
+  Consider families of relational graphs whose Laplacian spectra exhibit
+  sufficient regularity.
+  No manifold or dimensionality is assumed.
+  The continuum regime is defined operationally as one in which spectral
   distances vary smoothly and admit consistent local approximations.
 
-  A key requirement for the emergence of continuum description is local factorizability.
-  In such regimes, the relational system admits an approximate decomposition into
-  weakly coupled subsystems, allowing the spectral distances to be defined locally and independently.
-  This property underlies the emergence of an effective locality and permits the
-  introduction of local coordinate charts as auxiliary descriptive tools.
+  A central requirement is local factorizability:
+  the relational system decomposes approximately into weakly coupled
+  subsystems, enabling local definitions of spectral distance.
+  This property underlies effective locality and permits the introduction
+  of auxiliary coordinate charts.
 
-  The continuum approximation is inherently non-unique.
-  Because spectral reconstruction is generically non-injective, distinct relational
-  configurations may give rise to identical effective metric descriptions.
-  Conversely, a given relational structure can admit multiple equivalent continuum embeddings.
-  This ambiguity is a structural feature of the spectral geometry and does not signal a loss
-  of consistency.
+  Continuum reconstruction is non-unique.
+  Spectral geometry is generically non-injective:
+  distinct relational configurations may induce identical effective metrics,
+  and a given configuration may admit multiple equivalent embeddings.
+  This ambiguity is structural.
 
-  When local factorizability and spectral regularity are satisfied, spectral distance
-  admits a local quadratic approximation.
-  In this regime, one may introduce an effective metric tensor $g_{\mu\nu}(x)$ is defined by
-  the leading-order expansion:
+  When factorizability and spectral regularity hold,
+  the spectral distance admits the local quadratic form
   \begin{equation}
     d_{\mathrm{spec}}(i,j)^2
     \;\approx\;
     g_{\mu\nu}(x)\,\Delta x^\mu \Delta x^\nu ,
   \end{equation}
-  where $\Delta x^\mu$ denotes the coordinate differences in the local embedding.
-  The metric tensor is not a fundamental structure but a derived descriptor that encodes the
-  local behavior of spectral distances.
+  where $g_{\mu\nu}(x)$ summarizes the leading-order behavior of
+  spectral distances.
+  The metric tensor is derived, not fundamental.
 
-  The validity of continuum approximation is limited to regimes in which higher-order
-  spectral corrections remain subdominant.
-  Outside such regimes, no smooth geometric interpretation is assumed, and the relational
-  description must be treated in its full spectral form.
+  The approximation is valid only when higher-order spectral corrections
+  remain subdominant.
+  Outside this regime, no smooth geometric interpretation is assumed.
 
-  The framework developed in this study is purely kinematic.
-  No assumptions regarding dynamics, temporal ordering, or causal structure were required
-  for the emergence of an effective metric description.
-  The analysis focuses solely on the conditions under which the relational spectral data
-  support a continuum geometric approximation.
+  The framework remains purely kinematic.
+  No assumptions on dynamics, causality, or temporal ordering are required
+  for metric emergence.
 
   \input{04-continuum-limit-and-emergent-metric/01-spectral-admissibility}
 
-  In some reconstruction schemes, admissibility criteria may involve monotonic
-  spectral filters or ordering parameters, reflecting the fact that effective
-  continuum descriptions are typically insensitive to fine-grained spectral
-  rearrangements beyond a given resolution.
+  Admissibility conditions may involve monotonic spectral filters,
+  reflecting the insensitivity of continuum structure to
+  fine-grained spectral rearrangements beyond a given resolution.
 
-  We emphasize that the spectral reconstruction of an effective metric does not
-  require the introduction of additional fundamental fields or degrees of freedom;
-  the geometric structures discussed here arise solely from relational spectral
-  data and their continuum approximation.
+  The effective metric arises solely from relational spectral data
+  and requires no additional fundamental fields.

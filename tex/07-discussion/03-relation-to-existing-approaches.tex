@@ -1,61 +1,48 @@
-\subsection{Relation to existing approaches.}
+\subsection{Relation to existing approaches}
   \label{subsec:relation-to-existing-approaches}
-  The present construction shares motivations with several background-independent
-  approaches to quantum gravity, including the causal set theory, loop quantum gravity,
-  and spectral geometry.
-  Unlike causal set models, no fundamental discreteness is postulated, and continuity is
-  maintained at all levels, with effective granularity arising from spectral filtering
-  rather than from an underlying lattice.
-  In contrast to loop-based approaches, no spin networks or combinatorial structures
-  have been introduced as fundamental entities.
-  Compared to non-commutative or spectral geometry programs, the emphasis here is not
-  on algebraic generalization of manifolds, but on operational reconstruction of metric
-  structures from admissible relational correlations.
 
-  \paragraph{Relation to graph Laplacian convergence results.}
-    The spectral reconstruction developed in this work operates within a well-established
-    analytical framework.
-    The convergence of graph Laplacians toward the Laplace--Beltrami operator on a
-    smooth manifold in the dense sampling limit was established by Belkin and
-    Niyogi~\cite{Belkin2003} and refined by Hein, Audibert, and von
-    Luxburg~\cite{Hein2007}.
-    These results ensure that the spectral data of the relational graph faithfully
-    approximate the continuous spectral data of the underlying geometric object as the
-    graph becomes dense, under mild regularity assumptions on the sampling measure.
+  The present construction shares motivations with
+  background-independent approaches such as causal set theory,
+  loop quantum gravity, and spectral geometry.
+  Unlike causal sets, no fundamental discreteness is postulated;
+  effective granularity arises from spectral filtering.
+  In contrast to loop-based models, no fundamental spin networks
+  or combinatorial structures are introduced.
+  Compared to noncommutative geometry,
+  the focus is not on algebraic generalization of manifolds
+  but on operational reconstruction of metric structure
+  from relational correlations.
 
-    The use of spectral proximity to define effective distances is closely related to the
-    diffusion map framework of Coifman and Lafon~\cite{Coifman2006}, in which a
-    diffusion distance is constructed from the heat kernel of the graph Laplacian.
-    The spectral distance $d_S(i,j)$ introduced in Section~3 is closely related to the
-    diffusion distance at fixed diffusion time, differing only by the choice of spectral
-    weighting.
-    The present framework differs from diffusion maps in two respects: the distance is
-    used as an input to a hierarchical construction of the effective field
-    $\chi_\mathrm{eff}$ (Appendix~B), rather than as a standalone embedding tool, and
-    the admissibility filter $F_{\lambda^*}$ imposes an additional spectral regularity
-    condition that has no direct counterpart in standard manifold learning.
+  \paragraph{Graph Laplacian convergence.}
 
-    The analytical underpinning of geodesic reconstruction from spectral data traces
-    back to Varadhan's formula~\cite{Varadhan1967}:
+    The reconstruction relies on established convergence results:
+    graph Laplacians converge to the Laplace--Beltrami operator
+    in the dense sampling limit under mild regularity assumptions~\cite{Belkin2003,Hein2007}.
+    This justifies interpreting the admissible spectral sector
+    as an effective continuum geometry.
+
+    Spectral proximity is closely related to diffusion maps~\cite{Coifman2006}.
+    The distance $d_S(i,j)$ corresponds to a fixed-time diffusion
+    distance with a specific spectral weighting.
+    The present framework differs in two respects:
+    (i) spectral distance feeds a hierarchical reconstruction
+    (Appendix~B) rather than serving as an embedding tool,
+    and (ii) the admissibility filter $F_{\lambda^*}$
+    imposes additional spectral regularity constraints.
+
+    Varadhan’s formula
     \begin{equation}
-      d(x, y)^2 = -4t \log p_t(x, y) + o(t) \quad \text{as } t \to 0^+,
+      d(x,y)^2 = -4t \log p_t(x,y) + o(t)
+      \quad \text{as } t \to 0^+,
     \end{equation}
-    where $p_t(x,y)$ is the heat kernel of the manifold.
-    This asymptotic relation establishes that short-time spectral data encode the
-    Riemannian geodesic distance, providing the analytical foundation for spectral
-    reconstruction methods.
-    The spectral distances used here exploit the same correspondence in the finite
-    resolution regime, replacing the continuous heat kernel by its discrete spectral
-    approximation.
+    establishes that short-time heat-kernel data encode
+    Riemannian geodesic distance~\cite{Varadhan1967}.
+    The present construction exploits this correspondence
+    in finite-resolution discrete form.
 
-    The approach differs structurally from Connes' noncommutative
-    geometry~\cite{Connes1994}, which reconstructs a metric from a spectral triple
-    $(\mathcal{A}, \mathcal{H}, D)$ involving a Dirac operator.
-    The present framework uses only the scalar Laplacian and does not require a spinor
-    structure, an algebra of observables, or a specific operator-theoretic axiom set.
-    The present construction may be interpreted as a restricted scalar instance of
-    spectral geometry, but it does not rely on the full operator-algebraic framework of
-    noncommutative geometry.
-    The two approaches share the goal of recovering geometric structure from spectral
-    data but operate at different levels of generality and with different motivating
-    physical assumptions.
+    The approach differs from Connes’ noncommutative geometry~\cite{Connes1994}, which reconstructs metrics from
+    spectral triples $(\mathcal A,\mathcal H,D)$.
+    Here only the scalar Laplacian is used,
+    without invoking spinor structure or operator-algebraic axioms.
+    Both approaches recover geometry from spectral data,
+    but at different levels of generality.
