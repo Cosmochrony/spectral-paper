@@ -1,10 +1,10 @@
 \subsection{Convergence of the hierarchical construction in the dense graph limit}
-\label{sec:convergence_dense}
+\label{subsec:convergence_dense}
 
-The hierarchical construction of $\chi_\mathrm{eff}$ in Appendix~\ref{subsec:chi_eff}
-is defined for a fixed finite graph.
+The hierarchical construction of $\chi_\mathrm{eff}$ in Appendix~B is defined for a
+fixed finite graph.
 A natural question is whether this construction commutes with the limit in which the
-graph becomes dense — that is, whether the effective field and the induced spectral
+graph becomes dense --- that is, whether the effective field and the induced spectral
 distances converge to well-defined continuous objects as the number of vertices $N$
 grows and the neighborhood radius $\ell_0$ is scaled appropriately.
 
@@ -13,17 +13,19 @@ However, the construction is compatible with the known convergence results for g
 Laplacians in the following sense.
 The combinatorial neighborhood $\mathcal{N}_i$ used to define $\bar\chi$ has radius
 $\ell_0$ in combinatorial distance, which corresponds to a ball of radius
-$O(\ell_0 / N^{1/d})$ in the ambient metric as the graph becomes dense.
+$O(\ell_0 / N^{1/d})$ in the ambient metric as the graph becomes dense, where $d$
+denotes the intrinsic dimension inferred from the spectral scaling of the graph.
 In this regime, $\bar\chi_i \to \chi(x_i)$ pointwise, where $\chi$ is the continuous
 field from which the discrete configuration is sampled.
-The weighted Laplacian constructed from these $\bar\chi$ values then converges to
-the Laplace--Beltrami operator weighted by the local relational stiffness, by the
-results of Belkin and Niyogi~\cite{Belkin2003} and Hein, Audibert, and von
-Luxburg~\cite{Hein2007}, provided $\ell_0 = \ell_0(N)$ is chosen to satisfy the
-standard bandwidth conditions.
-Under these conditions, the effective field $\chi_\mathrm{eff}$ converges to a
-smooth coarse-grained version of $\chi$ on the underlying manifold, and the spectral
-distances $d_S(i,j)$ approximate the continuous diffusion distances.
+The weight functional~\eqref{eq:weights} satisfies the standard smoothness and locality
+assumptions required by the convergence theorems of Belkin and Niyogi~\cite{Belkin2003}
+and Hein, Audibert, and von Luxburg~\cite{Hein2007}, provided $\ell_0 = \ell_0(N)$
+is chosen to satisfy the standard bandwidth conditions.
+Under these conditions, the weighted Laplacian converges to the Laplace--Beltrami
+operator weighted by the local relational stiffness, the effective field
+$\chi_\mathrm{eff}$ converges to a smooth coarse-grained version of $\chi$ on the
+underlying manifold, and the spectral distances $d_S(i,j)$ approximate the continuous
+diffusion distances.
 
 We therefore conclude that the finite-graph construction is consistent with the
 continuous limit under standard regularity assumptions, and that no structural
