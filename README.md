@@ -70,8 +70,8 @@ A **spectral admissibility criterion** selects regimes in which:
 - a low-dimensional embedding exists
 - continuum notions become operationally meaningful
 
-Spectral admissibility implicitly assumes that relational relaxation remains
-below saturation thresholds.
+Spectral admissibility selects regimes in which relational variations remain
+sufficiently smooth and weakly inhomogeneous.
 Outside such regimes, spectral geometry ceases to provide a faithful effective
 description, even though the underlying relational structure remains well-defined.
 
@@ -90,9 +90,8 @@ Curvature is interpreted as a **collective relational effect**:
 - no gravitational field equation is postulated at the fundamental level
 
 In static, symmetric, and weakly inhomogeneous regimes, the reconstructed metric
-naturally reproduces **Schwarzschild-type geometry** as the unique spectrally
-admissible exterior solution compatible with symmetry, stationarity, and
-spectral consistency.
+reproduces **Schwarzschild-type geometry** as the leading-order exterior solution
+compatible with symmetry, stationarity, and spectral consistency.
 
 General-relativistic phenomenology thus appears as a **kinematical consistency
 condition** of emergent geometry, not as a microscopic dynamical law.
@@ -117,19 +116,18 @@ It **does** provide:
 
 - a minimal, non-circular reconstruction of geometry
 - intrinsic criteria for the validity and breakdown of spacetime descriptions
-- robust spectral invariants constraining admissible geometric regimes
+- robust spectral invariants (such as the $\lambda_2/\lambda_1 = 8/3$ ratio on $S^3$)
+  constraining admissible geometric regimes
 
 The breakdown of geometric description is understood as a loss of spectral
 projectability, rather than as a failure of the underlying relational structure.
 
 ## Repository Contents
-```
 paper/
 ├── pdf/ # Compiled Spectral Geometry PDF
 ├── tex/ # LaTeX sources
 ├── figures/ # Diagrams and illustrations
 └── README.md
-```
 
 ## Links
 
