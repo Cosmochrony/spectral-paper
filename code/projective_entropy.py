@@ -45,50 +45,62 @@ def apply_local_mass(
     factor: float = 0.9,
     radius: int = 1,
 ) -> sp.csr_matrix:
-    """
-    Local inhibition: scale couplings ONLY from nodes in the ball, and only update diagonals
-    for affected nodes (ball nodes + their neighbors). This keeps dA localized.
-    """
-    n = nx * ny * nz
-    cx, cy, cz = center
+  """
+  Symmetric local inhibition:
+  - For every edge (p,q) with p in ball or q in ball, scale BOTH L[p,q] and L[q,p] by factor.
+  - Update diagonals only for affected nodes to keep row-sum zero.
+  """
+  n = nx * ny * nz
+  cx, cy, cz = center
 
-    in_ball = np.zeros(n, dtype=bool)
-    for k in range(max(0, cz - radius), min(nz, cz + radius + 1)):
-        for j in range(max(0, cy - radius), min(ny, cy + radius + 1)):
-            for i in range(max(0, cx - radius), min(nx, cx + radius + 1)):
-                if (i - cx) ** 2 + (j - cy) ** 2 + (k - cz) ** 2 <= radius ** 2:
-                    in_ball[idx(i, j, k, nx, ny)] = True
+  in_ball = np.zeros(n, dtype=bool)
+  for k in range(max(0, cz - radius), min(nz, cz + radius + 1)):
+    for j in range(max(0, cy - radius), min(ny, cy + radius + 1)):
+      for i in range(max(0, cx - radius), min(nx, cx + radius + 1)):
+        if (i - cx) ** 2 + (j - cy) ** 2 + (k - cz) ** 2 <= radius ** 2:
+          in_ball[idx(i, j, k, nx, ny)] = True
 
-    L = L.tolil(copy=True)
+  L = L.tolil(copy=True)
+  ball_nodes = set(np.where(in_ball)[0].tolist())
+  affected = set(ball_nodes)
 
-    affected = set(np.where(in_ball)[0].tolist())
+  # For each ball node p, scale all couplings (p,q) and (q,p).
+  for p in list(ball_nodes):
+    row_p = L.rows[p]
+    dat_p = L.data[p]
+    for t, q in enumerate(row_p):
+      if q == p:
+        continue
+      # scale p->q
+      dat_p[t] *= factor
+      affected.add(q)
 
-    for p in np.where(in_ball)[0]:
-        row = L.rows[p]
-        dat = L.data[p]
-        for t, q in enumerate(row):
-            if q != p:
-                dat[t] *= factor
-                affected.add(q)
+      # scale q->p (find entry in row q)
+      row_q = L.rows[q]
+      dat_q = L.data[q]
+      for s, qq in enumerate(row_q):
+        if qq == p:
+          dat_q[s] *= factor
+          break
 
-    for p in affected:
-        row = L.rows[p]
-        dat = L.data[p]
-        diag_idx = None
-        s_off = 0.0
-        for t, q in enumerate(row):
-            if q == p:
-                diag_idx = t
-            else:
-                s_off += dat[t]
-        if diag_idx is None:
-            row.append(p)
-            dat.append(-s_off)
-        else:
-            dat[diag_idx] = -s_off
+  # Recompute diagonals only for affected nodes to keep row-sum zero.
+  for p in affected:
+    row = L.rows[p]
+    dat = L.data[p]
+    diag_idx = None
+    s_off = 0.0
+    for t, q in enumerate(row):
+      if q == p:
+        diag_idx = t
+      else:
+        s_off += dat[t]
+    if diag_idx is None:
+      row.append(p)
+      dat.append(-s_off)
+    else:
+      dat[diag_idx] = -s_off
 
-    return L.tocsr()
-
+  return L.tocsr()
 
 def radial_profile(
     phi: np.ndarray,
@@ -199,36 +211,30 @@ def dense_submatrix(M: sp.csr_matrix, S: np.ndarray) -> np.ndarray:
   return M[S, :][:, S].toarray()
 
 
-def delta_logdet_local(A0: sp.csr_matrix, dA: sp.csr_matrix) -> tuple[float, int]:
-  """
-  Compute Delta logdet = log det(A0 + dA) - log det(A0) using restriction
-  to the support S of dA:
-    Delta logdet = log det(I + (A0^{-1})_{SS} dA_{SS})
-  where (A0^{-1})_{SS} is built by solving A0 X = I_S.
-  """
+def delta_logdet_local(A0: sp.csr_matrix, dA: sp.csr_matrix) -> tuple[float, float, int]:
   S = support_indices(dA)
   m = int(S.size)
   if m == 0:
-    return 0.0, 0
+    return 0.0, 0.0, 0
 
   dA_SS = dense_submatrix(dA, S)
-
   solve = spla.factorized(A0.tocsc())
 
-  # Build Ainv_SS by solving A0 x = e_j for each j in S
   Ainv_SS = np.zeros((m, m), dtype=float)
   for col, j in enumerate(S):
     ej = np.zeros(A0.shape[0], dtype=float)
     ej[int(j)] = 1.0
-    x = solve(ej)  # x = A0^{-1} e_j
+    x = solve(ej)
     Ainv_SS[:, col] = x[S]
 
-  M = np.eye(m) + Ainv_SS @ dA_SS
+  X = Ainv_SS @ dA_SS
+  tr1 = float(np.trace(X))
+
+  M = np.eye(m) + X
   sign, logabs = np.linalg.slogdet(M)
   if sign <= 0:
-    # Should not happen if A0 SPD and dA small enough, but keep it safe.
     raise ValueError(f"Non-positive determinant in local update: sign={sign}")
-  return float(logabs), m
+  return float(logabs), tr1, m
 
 def main() -> None:
     nx, ny, nz = 25, 25, 25
@@ -307,16 +313,12 @@ def main() -> None:
         print(f"{rr:2d} | {p0[rr]: .6e} {pm[rr]: .6e} {dp[rr]: .6e} {inv: .6e}")
 
     # logdet / trace check
-    dlogdet_loc, m = delta_logdet_local(A0, dA)
-    tr_loc = float(np.trace((np.linalg.inv(np.eye(m) + 0.0 * np.eye(m)))))  # dummy, ignore
-
-    tr_est = hutchinson_trace_Ainv_dA(A0, dA, n_probe=40, seed=12)
-
-    print("\nLocal Delta logdet (support-restricted) / trace check:")
-    print(f"  support size |S| = {m}")
+    dlogdet_loc, tr1_loc, m = delta_logdet_local(A0, dA)
+    print("\nLocal check on support S:")
+    print(f"  |S| = {m}")
     print(f"  Delta logdet(local) = {dlogdet_loc:.6e}")
-    print(f"  Tr(A0^-1 DeltaA) (Hutchinson) = {tr_est:.6e}")
-    print(f"  ratio (Delta logdet(local))/Tr ~ {dlogdet_loc / tr_est:.6e}")
+    print(f"  Tr((A0^-1)_SS dA_SS) = {tr1_loc:.6e}")
+    print(f"  ratio = {dlogdet_loc / tr1_loc:.6e}")
 
 if __name__ == "__main__":
     main()
