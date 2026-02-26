@@ -151,64 +151,64 @@ def poisson_residual(L: sp.csr_matrix, phi: np.ndarray, source: int) -> np.ndarr
 
 
 def main() -> None:
-    nx, ny, nz = 25, 25, 25
-    center = (nx // 2, ny // 2, nz // 2)
-    source = idx(*center, nx, ny)
+  nx, ny, nz = 25, 25, 25
+  center = (nx // 2, ny // 2, nz // 2)
+  source = idx(*center, nx, ny)
 
-    L0 = build_grid_laplacian(nx, ny, nz, kappa=1.0)
-    Lm = apply_local_mass(L0, nx, ny, nz, center=center, factor=0.35, radius=1)
+  L0 = build_grid_laplacian(nx, ny, nz, kappa=1.0)
+  Lm = apply_local_mass(L0, nx, ny, nz, center=center, factor=0.35, radius=1)
 
-    eps = 1e-6
-    phi0 = solve_green_column(L0, source, eps=eps)
-    phim = solve_green_column(Lm, source, eps=eps)
+  eps = 1e-6
+  phi0 = solve_green_column(L0, source, eps=eps)
+  phim = solve_green_column(Lm, source, eps=eps)
 
-    r, p0 = radial_profile(phi0, nx, ny, nz, center=center, rmax=12)
-    _, pm = radial_profile(phim, nx, ny, nz, center=center, rmax=12)
+  # Remove the (almost) uniform component induced by eps (gauge fixing / zero-mode handling).
+  phi0c = phi0 - phi0.mean()
+  phimc = phim - phim.mean()
+  dphic = (phim - phi0) - (phim - phi0).mean()
 
-    # Fit far field to a/r + b (avoid r=0,1,2).
-    fit_mask = (r >= 4) & (r <= 12)
-    X = np.vstack([1.0 / np.maximum(r[fit_mask], 1), np.ones(np.sum(fit_mask))]).T
-    a0, b0 = np.linalg.lstsq(X, p0[fit_mask], rcond=None)[0]
-    am, bm = np.linalg.lstsq(X, pm[fit_mask], rcond=None)[0]
+  r, p0 = radial_profile(phi0c, nx, ny, nz, center=center, rmax=12)
+  _, pm = radial_profile(phimc, nx, ny, nz, center=center, rmax=12)
+  _, dp = radial_profile(dphic, nx, ny, nz, center=center, rmax=12)
 
-    print("Far-field fit p(r) ~ a/r + b")
-    print(f"  baseline: a={a0:.6e}, b={b0:.6e}")
-    print(f"  mass    : a={am:.6e}, b={bm:.6e}")
-    print(f"  delta a : {am - a0:.6e} (strength change due to local inhibition)")
+  # Fit far field to a/r + b (b should now be ~0 if mean removal worked).
+  fit_mask = (r >= 4) & (r <= 12)
+  X = np.vstack([1.0 / np.maximum(r[fit_mask], 1), np.ones(np.sum(fit_mask))]).T
+  a0, b0 = np.linalg.lstsq(X, p0[fit_mask], rcond=None)[0]
+  am, bm = np.linalg.lstsq(X, pm[fit_mask], rcond=None)[0]
+  ad, bd = np.linalg.lstsq(X, dp[fit_mask], rcond=None)[0]
 
-    # Check discrete Poisson residual away from the source neighborhood.
-    res0 = poisson_residual(L0, phi0, source)
-    resm = poisson_residual(Lm, phim, source)
+  print("Far-field fit p(r) ~ a/r + b  (after mean removal)")
+  print(f"  baseline: a={a0:.6e}, b={b0:.6e}")
+  print(f"  mass    : a={am:.6e}, b={bm:.6e}")
+  print(f"  delta   : a={ad:.6e}, b={bd:.6e}")
 
-    # Ignore a small ball around source where eps regularization dominates.
-    ignore = set()
-    cx, cy, cz = center
-    for k in range(cz - 1, cz + 2):
-        for j in range(cy - 1, cy + 2):
-            for i in range(cx - 1, cx + 2):
-                if 0 <= i < nx and 0 <= j < ny and 0 <= k < nz:
-                    ignore.add(idx(i, j, k, nx, ny))
+  # Check discrete Poisson residual away from the source neighborhood (use original phi's).
+  # The residual is defined for L phi - delta; mean-removal shouldn't change it much for L,
+  # but eps * phi was used in the solve, so keep the check consistent with what you solved.
+  res0 = poisson_residual(L0, phi0, source)
+  resm = poisson_residual(Lm, phim, source)
 
-    mask = np.ones(nx * ny * nz, dtype=bool)
-    for p in ignore:
-        mask[p] = False
+  ignore = set()
+  cx, cy, cz = center
+  for k in range(cz - 1, cz + 2):
+    for j in range(cy - 1, cy + 2):
+      for i in range(cx - 1, cx + 2):
+        if 0 <= i < nx and 0 <= j < ny and 0 <= k < nz:
+          ignore.add(idx(i, j, k, nx, ny))
 
-    print("Poisson check (RMS of L phi - delta, excluding tiny ball):")
-    print(f"  baseline RMS: {np.sqrt(np.mean(res0[mask] ** 2)):.6e}")
-    print(f"  mass     RMS: {np.sqrt(np.mean(resm[mask] ** 2)):.6e}")
+  mask = np.ones(nx * ny * nz, dtype=bool)
+  for p in ignore:
+    mask[p] = False
 
-    # Quick look at delta potential (how mass changes the Green column).
-    dphi = phim - phi0
-    _, dp = radial_profile(dphi, nx, ny, nz, center=center, rmax=12)
-    ad, bd = np.linalg.lstsq(X, dp[fit_mask], rcond=None)[0]
-    print(f"Delta potential fit dp(r) ~ ad/r + bd: ad={ad:.6e}, bd={bd:.6e}")
+  print("Poisson check (RMS of L phi - delta, excluding tiny ball):")
+  print(f"  baseline RMS: {np.sqrt(np.mean(res0[mask] ** 2)):.6e}")
+  print(f"  mass     RMS: {np.sqrt(np.mean(resm[mask] ** 2)):.6e}")
 
-    # Print a small table.
-    print("\n r | p0(r)       pm(r)       dp(r)       1/r")
-    for rr in range(1, 13):
-        inv = 1.0 / rr
-        print(f"{rr:2d} | {p0[rr]: .6e} {pm[rr]: .6e} {dp[rr]: .6e} {inv: .6e}")
-
+  print("\n r | p0c(r)      pmc(r)      dpc(r)      1/r")
+  for rr in range(1, 13):
+    inv = 1.0 / rr
+    print(f"{rr:2d} | {p0[rr]: .6e} {pm[rr]: .6e} {dp[rr]: .6e} {inv: .6e}")
 
 if __name__ == "__main__":
     main()
