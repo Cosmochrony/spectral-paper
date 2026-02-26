@@ -38,22 +38,34 @@ def build_grid_laplacian(nx: int, ny: int, nz: int, kappa: float = 1.0) -> sp.cs
             for i in range(nx):
                 p = idx(i, j, k, nx, ny)
                 diag = 0.0
-                for di, dj, dk in ((1, 0, 0), (-1, 0, 0), (0, 1, 0),
-                                  (0, -1, 0), (0, 0, 1), (0, 0, -1)):
+                for di, dj, dk in (
+                    (1, 0, 0), (-1, 0, 0),
+                    (0, 1, 0), (0, -1, 0),
+                    (0, 0, 1), (0, 0, -1),
+                ):
                     ii, jj, kk = i + di, j + dj, k + dk
                     if 0 <= ii < nx and 0 <= jj < ny and 0 <= kk < nz:
                         q = idx(ii, jj, kk, nx, ny)
                         w = kappa
-                        rows.append(p); cols.append(q); data.append(-w)
+                        rows.append(p)
+                        cols.append(q)
+                        data.append(-w)
                         diag += w
-                rows.append(p); cols.append(p); data.append(diag)
-    L = sp.coo_matrix((data, (rows, cols)), shape=(n, n)).tocsr()
-    return L
+                rows.append(p)
+                cols.append(p)
+                data.append(diag)
+    return sp.coo_matrix((data, (rows, cols)), shape=(n, n)).tocsr()
 
 
-def apply_local_mass(L: sp.csr_matrix, nx: int, ny: int, nz: int,
-                     center: tuple[int, int, int], factor: float = 0.5,
-                     radius: int = 1) -> sp.csr_matrix:
+def apply_local_mass(
+    L: sp.csr_matrix,
+    nx: int,
+    ny: int,
+    nz: int,
+    center: tuple[int, int, int],
+    factor: float = 0.5,
+    radius: int = 1,
+) -> sp.csr_matrix:
     """
     Reduce conductivities (edge weights) in a local ball around 'center' by 'factor' in (0, 1].
     Operationally: scale off-diagonal couplings for edges incident to nodes in the ball, then fix diag.
@@ -79,7 +91,7 @@ def apply_local_mass(L: sp.csr_matrix, nx: int, ny: int, nz: int,
             if q != p:
                 dat[t] *= factor
 
-    # Recompute diagonals to keep "sum of row = 0" (Dirichlet boundary already handled by missing edges).
+    # Recompute diagonals to keep row-sum zero (Dirichlet boundary handled by missing edges).
     for p in range(n):
         row = L.rows[p]
         dat = L.data[p]
@@ -91,7 +103,8 @@ def apply_local_mass(L: sp.csr_matrix, nx: int, ny: int, nz: int,
             else:
                 s += dat[t]
         if diag_idx is None:
-            row.append(p); dat.append(-s)
+            row.append(p)
+            dat.append(-s)
         else:
             dat[diag_idx] = -s
 
@@ -106,18 +119,24 @@ def solve_green_column(L: sp.csr_matrix, source: int, eps: float = 1e-8) -> np.n
     A = L + eps * sp.eye(n, format="csr")
     b = np.zeros(n, dtype=float)
     b[source] = 1.0
-    phi = spla.spsolve(A, b)
-    return phi
+    return spla.spsolve(A, b)
 
 
-def radial_profile(phi: np.ndarray, nx: int, ny: int, nz: int,
-                   center: tuple[int, int, int], rmax: int | None = None) -> tuple[np.ndarray, np.ndarray]:
+def radial_profile(
+    phi: np.ndarray,
+    nx: int,
+    ny: int,
+    nz: int,
+    center: tuple[int, int, int],
+    rmax: int | None = None,
+) -> tuple[np.ndarray, np.ndarray]:
     """
     Radial average of phi over integer shells r = floor(|x-center|).
     """
     cx, cy, cz = center
     if rmax is None:
         rmax = int(math.sqrt((nx - 1) ** 2 + (ny - 1) ** 2 + (nz - 1) ** 2))
+
     sums = np.zeros(rmax + 1, dtype=float)
     cnts = np.zeros(rmax + 1, dtype=int)
 
@@ -150,65 +169,76 @@ def poisson_residual(L: sp.csr_matrix, phi: np.ndarray, source: int) -> np.ndarr
     return L @ phi - b
 
 
+def fit_a_over_r(r: np.ndarray, p: np.ndarray, r_lo: int, r_hi: int) -> tuple[float, float]:
+    """
+    Fit p(r) ~ a/r + b on r in [r_lo, r_hi].
+    """
+    fit_mask = (r >= r_lo) & (r <= r_hi)
+    X = np.vstack([1.0 / np.maximum(r[fit_mask], 1), np.ones(np.sum(fit_mask))]).T
+    a, b = np.linalg.lstsq(X, p[fit_mask], rcond=None)[0]
+    return float(a), float(b)
+
+
 def main() -> None:
-  nx, ny, nz = 25, 25, 25
-  center = (nx // 2, ny // 2, nz // 2)
-  source = idx(*center, nx, ny)
+    nx, ny, nz = 25, 25, 25
+    center = (nx // 2, ny // 2, nz // 2)
+    source = idx(*center, nx, ny)
 
-  L0 = build_grid_laplacian(nx, ny, nz, kappa=1.0)
-  Lm = apply_local_mass(L0, nx, ny, nz, center=center, factor=0.35, radius=1)
+    L0 = build_grid_laplacian(nx, ny, nz, kappa=1.0)
+    Lm = apply_local_mass(L0, nx, ny, nz, center=center, factor=0.35, radius=1)
 
-  eps = 1e-6
-  phi0 = solve_green_column(L0, source, eps=eps)
-  phim = solve_green_column(Lm, source, eps=eps)
+    eps = 1e-6
+    phi0 = solve_green_column(L0, source, eps=eps)
+    phim = solve_green_column(Lm, source, eps=eps)
 
-  # Remove the (almost) uniform component induced by eps (gauge fixing / zero-mode handling).
-  phi0c = phi0 - phi0.mean()
-  phimc = phim - phim.mean()
-  dphic = (phim - phi0) - (phim - phi0).mean()
+    # Gauge fixing / zero-mode handling: remove the (almost) uniform component induced by eps.
+    phi0c = phi0 - phi0.mean()
+    phimc = phim - phim.mean()
+    dphic = (phim - phi0) - (phim - phi0).mean()
 
-  r, p0 = radial_profile(phi0c, nx, ny, nz, center=center, rmax=12)
-  _, pm = radial_profile(phimc, nx, ny, nz, center=center, rmax=12)
-  _, dp = radial_profile(dphic, nx, ny, nz, center=center, rmax=12)
+    rmax = 12
+    r, p0 = radial_profile(phi0c, nx, ny, nz, center=center, rmax=rmax)
+    _, pm = radial_profile(phimc, nx, ny, nz, center=center, rmax=rmax)
+    _, dp = radial_profile(dphic, nx, ny, nz, center=center, rmax=rmax)
 
-  # Fit far field to a/r + b (b should now be ~0 if mean removal worked).
-  fit_mask = (r >= 4) & (r <= 12)
-  X = np.vstack([1.0 / np.maximum(r[fit_mask], 1), np.ones(np.sum(fit_mask))]).T
-  a0, b0 = np.linalg.lstsq(X, p0[fit_mask], rcond=None)[0]
-  am, bm = np.linalg.lstsq(X, pm[fit_mask], rcond=None)[0]
-  ad, bd = np.linalg.lstsq(X, dp[fit_mask], rcond=None)[0]
+    # Fit in a safer bulk window (less boundary contamination than [4,12] on 25^3).
+    r_lo, r_hi = 3, 8
+    a0, b0 = fit_a_over_r(r, p0, r_lo=r_lo, r_hi=r_hi)
+    am, bm = fit_a_over_r(r, pm, r_lo=r_lo, r_hi=r_hi)
+    ad, bd = fit_a_over_r(r, dp, r_lo=r_lo, r_hi=r_hi)
 
-  print("Far-field fit p(r) ~ a/r + b  (after mean removal)")
-  print(f"  baseline: a={a0:.6e}, b={b0:.6e}")
-  print(f"  mass    : a={am:.6e}, b={bm:.6e}")
-  print(f"  delta   : a={ad:.6e}, b={bd:.6e}")
+    print(f"Far-field fit p(r) ~ a/r + b (after mean removal), window r=[{r_lo},{r_hi}]")
+    print(f"  baseline: a={a0:.6e}, b={b0:.6e}")
+    print(f"  mass    : a={am:.6e}, b={bm:.6e}")
+    print(f"  delta   : a={ad:.6e}, b={bd:.6e}")
 
-  # Check discrete Poisson residual away from the source neighborhood (use original phi's).
-  # The residual is defined for L phi - delta; mean-removal shouldn't change it much for L,
-  # but eps * phi was used in the solve, so keep the check consistent with what you solved.
-  res0 = poisson_residual(L0, phi0, source)
-  resm = poisson_residual(Lm, phim, source)
+    # Poisson residual check (consistent with the solve: (L+eps I) phi = delta).
+    # We check L phi - delta (so residual includes -eps*phi term), but it should be small away from source
+    # when eps is tiny and phi is not huge.
+    res0 = poisson_residual(L0, phi0, source)
+    resm = poisson_residual(Lm, phim, source)
 
-  ignore = set()
-  cx, cy, cz = center
-  for k in range(cz - 1, cz + 2):
-    for j in range(cy - 1, cy + 2):
-      for i in range(cx - 1, cx + 2):
-        if 0 <= i < nx and 0 <= j < ny and 0 <= k < nz:
-          ignore.add(idx(i, j, k, nx, ny))
+    ignore = set()
+    cx, cy, cz = center
+    for k in range(cz - 1, cz + 2):
+        for j in range(cy - 1, cy + 2):
+            for i in range(cx - 1, cx + 2):
+                if 0 <= i < nx and 0 <= j < ny and 0 <= k < nz:
+                    ignore.add(idx(i, j, k, nx, ny))
 
-  mask = np.ones(nx * ny * nz, dtype=bool)
-  for p in ignore:
-    mask[p] = False
+    mask = np.ones(nx * ny * nz, dtype=bool)
+    for p in ignore:
+        mask[p] = False
 
-  print("Poisson check (RMS of L phi - delta, excluding tiny ball):")
-  print(f"  baseline RMS: {np.sqrt(np.mean(res0[mask] ** 2)):.6e}")
-  print(f"  mass     RMS: {np.sqrt(np.mean(resm[mask] ** 2)):.6e}")
+    print("Poisson check (RMS of L phi - delta, excluding tiny ball):")
+    print(f"  baseline RMS: {np.sqrt(np.mean(res0[mask] ** 2)):.6e}")
+    print(f"  mass     RMS: {np.sqrt(np.mean(resm[mask] ** 2)):.6e}")
 
-  print("\n r | p0c(r)      pmc(r)      dpc(r)      1/r")
-  for rr in range(1, 13):
-    inv = 1.0 / rr
-    print(f"{rr:2d} | {p0[rr]: .6e} {pm[rr]: .6e} {dp[rr]: .6e} {inv: .6e}")
+    print("\n r | p0c(r)      pmc(r)      dpc(r)      1/r")
+    for rr in range(1, rmax + 1):
+        inv = 1.0 / rr
+        print(f"{rr:2d} | {p0[rr]: .6e} {pm[rr]: .6e} {dp[rr]: .6e} {inv: .6e}")
+
 
 if __name__ == "__main__":
     main()
