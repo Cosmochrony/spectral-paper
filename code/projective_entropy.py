@@ -189,6 +189,47 @@ def hutchinson_trace_Ainv_dA(
     return total / float(n_probe)
 
 
+def support_indices(M: sp.csr_matrix) -> np.ndarray:
+  M = M.tocoo()
+  S = np.unique(np.concatenate([M.row, M.col]))
+  return S
+
+
+def dense_submatrix(M: sp.csr_matrix, S: np.ndarray) -> np.ndarray:
+  return M[S, :][:, S].toarray()
+
+
+def delta_logdet_local(A0: sp.csr_matrix, dA: sp.csr_matrix) -> tuple[float, int]:
+  """
+  Compute Delta logdet = log det(A0 + dA) - log det(A0) using restriction
+  to the support S of dA:
+    Delta logdet = log det(I + (A0^{-1})_{SS} dA_{SS})
+  where (A0^{-1})_{SS} is built by solving A0 X = I_S.
+  """
+  S = support_indices(dA)
+  m = int(S.size)
+  if m == 0:
+    return 0.0, 0
+
+  dA_SS = dense_submatrix(dA, S)
+
+  solve = spla.factorized(A0.tocsc())
+
+  # Build Ainv_SS by solving A0 x = e_j for each j in S
+  Ainv_SS = np.zeros((m, m), dtype=float)
+  for col, j in enumerate(S):
+    ej = np.zeros(A0.shape[0], dtype=float)
+    ej[int(j)] = 1.0
+    x = solve(ej)  # x = A0^{-1} e_j
+    Ainv_SS[:, col] = x[S]
+
+  M = np.eye(m) + Ainv_SS @ dA_SS
+  sign, logabs = np.linalg.slogdet(M)
+  if sign <= 0:
+    # Should not happen if A0 SPD and dA small enough, but keep it safe.
+    raise ValueError(f"Non-positive determinant in local update: sign={sign}")
+  return float(logabs), m
+
 def main() -> None:
     nx, ny, nz = 25, 25, 25
     center = (nx // 2, ny // 2, nz // 2)
@@ -266,25 +307,16 @@ def main() -> None:
         print(f"{rr:2d} | {p0[rr]: .6e} {pm[rr]: .6e} {dp[rr]: .6e} {inv: .6e}")
 
     # logdet / trace check
-    lam0 = estimate_lambda_max(A0)
-    lamm = estimate_lambda_max(Am)
-    alpha = 1.05 * max(lam0, lamm)
+    dlogdet_loc, m = delta_logdet_local(A0, dA)
+    tr_loc = float(np.trace((np.linalg.inv(np.eye(m) + 0.0 * np.eye(m)))))  # dummy, ignore
 
-    n_probe = 40
-    n_terms = 50
+    tr_est = hutchinson_trace_Ainv_dA(A0, dA, n_probe=40, seed=12)
 
-    logdet0 = hutchinson_logdet(A0, alpha=alpha, n_probe=n_probe, n_terms=n_terms, seed=10)
-    logdetm = hutchinson_logdet(Am, alpha=alpha, n_probe=n_probe, n_terms=n_terms, seed=11)
-    dlogdet = logdetm - logdet0
-
-    tr_est = hutchinson_trace_Ainv_dA(A0, dA, n_probe=n_probe, seed=12)
-
-    print("\nStochastic logdet / trace check (A=L+eps I):")
-    print(f"  lambda_max(A0) ~ {lam0:.6e}, lambda_max(Am) ~ {lamm:.6e}, alpha ~ {alpha:.6e}")
-    print(f"  Delta logdet ~ {dlogdet:.6e}")
-    print(f"  Tr(A0^-1 DeltaA) ~ {tr_est:.6e}")
-    print(f"  ratio (Delta logdet)/(Tr) ~ {dlogdet / tr_est:.6e}")
-
+    print("\nLocal Delta logdet (support-restricted) / trace check:")
+    print(f"  support size |S| = {m}")
+    print(f"  Delta logdet(local) = {dlogdet_loc:.6e}")
+    print(f"  Tr(A0^-1 DeltaA) (Hutchinson) = {tr_est:.6e}")
+    print(f"  ratio (Delta logdet(local))/Tr ~ {dlogdet_loc / tr_est:.6e}")
 
 if __name__ == "__main__":
     main()
