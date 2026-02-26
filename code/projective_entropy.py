@@ -59,43 +59,48 @@ def apply_local_mass(
     factor: float = 0.5,
     radius: int = 1,
 ) -> sp.csr_matrix:
-    n = nx * ny * nz
-    cx, cy, cz = center
+  n = nx * ny * nz
+  cx, cy, cz = center
 
-    in_ball = np.zeros(n, dtype=bool)
-    for k in range(max(0, cz - radius), min(nz, cz + radius + 1)):
-        for j in range(max(0, cy - radius), min(ny, cy + radius + 1)):
-            for i in range(max(0, cx - radius), min(nx, cx + radius + 1)):
-                if (i - cx) ** 2 + (j - cy) ** 2 + (k - cz) ** 2 <= radius ** 2:
-                    in_ball[idx(i, j, k, nx, ny)] = True
+  in_ball = np.zeros(n, dtype=bool)
+  for k in range(max(0, cz - radius), min(nz, cz + radius + 1)):
+    for j in range(max(0, cy - radius), min(ny, cy + radius + 1)):
+      for i in range(max(0, cx - radius), min(nx, cx + radius + 1)):
+        if (i - cx) ** 2 + (j - cy) ** 2 + (k - cz) ** 2 <= radius ** 2:
+          in_ball[idx(i, j, k, nx, ny)] = True
 
-    L = L.tolil(copy=True)
+  L = L.tolil(copy=True)
 
-    for p in np.where(in_ball)[0]:
-        row = L.rows[p]
-        dat = L.data[p]
-        for t, q in enumerate(row):
-            if q != p:
-                dat[t] *= factor
+  # We'll track which rows are affected (ball nodes + their neighbors).
+  affected = set(np.where(in_ball)[0].tolist())
 
-    for p in range(n):
-        row = L.rows[p]
-        dat = L.data[p]
-        diag_idx = None
-        s = 0.0
-        for t, q in enumerate(row):
-            if q == p:
-                diag_idx = t
-            else:
-                s += dat[t]
-        if diag_idx is None:
-            row.append(p)
-            dat.append(-s)
-        else:
-            dat[diag_idx] = -s
+  # Scale couplings from nodes inside ball to their neighbors.
+  for p in np.where(in_ball)[0]:
+    row = L.rows[p]
+    dat = L.data[p]
+    for t, q in enumerate(row):
+      if q != p:
+        dat[t] *= factor
+        affected.add(q)  # neighbor row's diagonal must be updated too
 
-    return L.tocsr()
+  # Recompute diagonals ONLY for affected nodes to keep row-sum zero.
+  for p in affected:
+    row = L.rows[p]
+    dat = L.data[p]
+    diag_idx = None
+    s_off = 0.0
+    for t, q in enumerate(row):
+      if q == p:
+        diag_idx = t
+      else:
+        s_off += dat[t]
+    if diag_idx is None:
+      row.append(p)
+      dat.append(-s_off)
+    else:
+      dat[diag_idx] = -s_off
 
+  return L.tocsr()
 
 def solve_green_column(L: sp.csr_matrix, source: int, eps: float = 1e-8) -> np.ndarray:
     n = L.shape[0]
