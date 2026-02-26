@@ -1,16 +1,14 @@
 """
 Test "projective entropy -> logdet(L) -> Green kernel -> 1/r -> Poisson" on a simple graph Laplacian.
 
-Idea:
-- Build a 3D grid graph Laplacian L (Dirichlet boundary).
-- Add a localized "mass" by reducing conductivities (edge weights) around a site.
-- Solve (L + eps I) phi = delta_source to get the Green column (potential).
-- Check:
-  (1) radial average phi(r) ~ const / r (in 3D, far from source),
-  (2) discrete Poisson: L phi ~ delta_source away from regularization.
-Optional:
-- Compare logdet(L) before/after via stochastic trace log (Hutchinson + Lanczos-ish approximation).
-  (This part is optional and can be slow; kept minimal.)
+Adds:
+- Stochastic estimate of Delta logdet(A) with A = L + eps I (Hutchinson + log-series).
+- Stochastic estimate of Tr(A0^{-1} DeltaA) to validate first-order link:
+  Delta logdet(A) ~ Tr(A0^{-1} DeltaA) for small perturbations.
+
+Notes:
+- Uses a log-series: log(A) = log(alpha)I + log(I - B) with B = I - A/alpha, ||B||<1.
+- alpha must be > lambda_max(A). We estimate lambda_max by eigsh.
 """
 
 from __future__ import annotations
@@ -26,11 +24,6 @@ def idx(i: int, j: int, k: int, nx: int, ny: int) -> int:
 
 
 def build_grid_laplacian(nx: int, ny: int, nz: int, kappa: float = 1.0) -> sp.csr_matrix:
-    """
-    3D 6-neighbor grid Laplacian with Dirichlet boundary (implicit).
-    Weighted edges with uniform kappa.
-    L = -div(kappa grad) discretized on nodes.
-    """
     n = nx * ny * nz
     rows, cols, data = [], [], []
     for k in range(nz):
@@ -66,11 +59,6 @@ def apply_local_mass(
     factor: float = 0.5,
     radius: int = 1,
 ) -> sp.csr_matrix:
-    """
-    Reduce conductivities (edge weights) in a local ball around 'center' by 'factor' in (0, 1].
-    Operationally: scale off-diagonal couplings for edges incident to nodes in the ball, then fix diag.
-    This models a local inhibition of relaxation (lower kappa).
-    """
     n = nx * ny * nz
     cx, cy, cz = center
 
@@ -83,7 +71,6 @@ def apply_local_mass(
 
     L = L.tolil(copy=True)
 
-    # Scale couplings from nodes inside ball to their neighbors.
     for p in np.where(in_ball)[0]:
         row = L.rows[p]
         dat = L.data[p]
@@ -91,7 +78,6 @@ def apply_local_mass(
             if q != p:
                 dat[t] *= factor
 
-    # Recompute diagonals to keep row-sum zero (Dirichlet boundary handled by missing edges).
     for p in range(n):
         row = L.rows[p]
         dat = L.data[p]
@@ -112,9 +98,6 @@ def apply_local_mass(
 
 
 def solve_green_column(L: sp.csr_matrix, source: int, eps: float = 1e-8) -> np.ndarray:
-    """
-    Solve (L + eps I) phi = e_source. eps removes the zero-mode (or near-zero) and stabilizes solve.
-    """
     n = L.shape[0]
     A = L + eps * sp.eye(n, format="csr")
     b = np.zeros(n, dtype=float)
@@ -130,9 +113,6 @@ def radial_profile(
     center: tuple[int, int, int],
     rmax: int | None = None,
 ) -> tuple[np.ndarray, np.ndarray]:
-    """
-    Radial average of phi over integer shells r = floor(|x-center|).
-    """
     cx, cy, cz = center
     if rmax is None:
         rmax = int(math.sqrt((nx - 1) ** 2 + (ny - 1) ** 2 + (nz - 1) ** 2))
@@ -160,9 +140,6 @@ def radial_profile(
 
 
 def poisson_residual(L: sp.csr_matrix, phi: np.ndarray, source: int) -> np.ndarray:
-    """
-    Compute residual: (L phi) - e_source.
-    """
     n = L.shape[0]
     b = np.zeros(n, dtype=float)
     b[source] = 1.0
@@ -170,13 +147,81 @@ def poisson_residual(L: sp.csr_matrix, phi: np.ndarray, source: int) -> np.ndarr
 
 
 def fit_a_over_r(r: np.ndarray, p: np.ndarray, r_lo: int, r_hi: int) -> tuple[float, float]:
-    """
-    Fit p(r) ~ a/r + b on r in [r_lo, r_hi].
-    """
     fit_mask = (r >= r_lo) & (r <= r_hi)
     X = np.vstack([1.0 / np.maximum(r[fit_mask], 1), np.ones(np.sum(fit_mask))]).T
     a, b = np.linalg.lstsq(X, p[fit_mask], rcond=None)[0]
     return float(a), float(b)
+
+
+def estimate_lambda_max(A: sp.csr_matrix, iters: int = 400) -> float:
+    # Largest algebraic eigenvalue for SPD matrix A
+    val = spla.eigsh(A, k=1, which="LA", return_eigenvectors=False, maxiter=iters)[0]
+    return float(val)
+
+
+def hutchinson_logdet(
+    A: sp.csr_matrix,
+    alpha: float,
+    n_probe: int = 30,
+    n_terms: int = 40,
+    seed: int = 0,
+) -> float:
+    """
+    Estimate logdet(A) for SPD A using:
+      log(A) = log(alpha)I + log(I - B),  B = I - A/alpha.
+      log(I - B) = -sum_{k>=1} B^k / k   if ||B|| < 1.
+    Then: logdet(A) = Tr(log(A)) ≈ E_z[z^T log(A) z] with Rademacher probes.
+
+    alpha must be > lambda_max(A), ideally a bit larger.
+    """
+    n = A.shape[0]
+    rng = np.random.default_rng(seed)
+
+    I = sp.eye(n, format="csr")
+    B = I - (A * (1.0 / alpha))
+
+    total = 0.0
+    for _ in range(n_probe):
+        z = rng.integers(0, 2, size=n, dtype=np.int8)
+        z = 2.0 * z.astype(np.float64) - 1.0  # Rademacher ±1
+
+        # Start with z^T [log(alpha)I] z = log(alpha) * ||z||^2 = log(alpha) * n
+        acc = math.log(alpha) * float(n)
+
+        # Add z^T log(I - B) z ≈ -sum (1/k) z^T B^k z
+        v = z.copy()
+        for k in range(1, n_terms + 1):
+            v = B @ v
+            acc += -(1.0 / k) * float(z @ v)
+
+        total += acc
+
+    return total / float(n_probe)
+
+
+def hutchinson_trace_Ainv_dA(
+    A0: sp.csr_matrix,
+    dA: sp.csr_matrix,
+    n_probe: int = 30,
+    seed: int = 1,
+) -> float:
+    """
+    Estimate Tr(A0^{-1} dA) by Hutchinson:
+      Tr(M) = E[z^T M z], with z Rademacher.
+      Here M = A0^{-1} dA, so z^T A0^{-1} dA z = x^T dA z with x = A0^{-1} z.
+    """
+    n = A0.shape[0]
+    rng = np.random.default_rng(seed)
+
+    solve = spla.factorized(A0.tocsc())
+
+    total = 0.0
+    for _ in range(n_probe):
+        z = rng.integers(0, 2, size=n, dtype=np.int8)
+        z = 2.0 * z.astype(np.float64) - 1.0
+        x = solve(z)
+        total += float(x @ (dA @ z))
+    return total / float(n_probe)
 
 
 def main() -> None:
@@ -188,10 +233,14 @@ def main() -> None:
     Lm = apply_local_mass(L0, nx, ny, nz, center=center, factor=0.35, radius=1)
 
     eps = 1e-6
-    phi0 = solve_green_column(L0, source, eps=eps)
-    phim = solve_green_column(Lm, source, eps=eps)
+    A0 = L0 + eps * sp.eye(L0.shape[0], format="csr")
+    Am = Lm + eps * sp.eye(Lm.shape[0], format="csr")
+    dA = Am - A0
 
-    # Gauge fixing / zero-mode handling: remove the (almost) uniform component induced by eps.
+    # Green column + gauge fix for 1/r check
+    phi0 = spla.spsolve(A0, sp.csr_matrix(([1.0], ([source], [0])), shape=(A0.shape[0], 1)).toarray().ravel())
+    phim = spla.spsolve(Am, sp.csr_matrix(([1.0], ([source], [0])), shape=(Am.shape[0], 1)).toarray().ravel())
+
     phi0c = phi0 - phi0.mean()
     phimc = phim - phim.mean()
     dphic = (phim - phi0) - (phim - phi0).mean()
@@ -201,20 +250,17 @@ def main() -> None:
     _, pm = radial_profile(phimc, nx, ny, nz, center=center, rmax=rmax)
     _, dp = radial_profile(dphic, nx, ny, nz, center=center, rmax=rmax)
 
-    # Fit in a safer bulk window (less boundary contamination than [4,12] on 25^3).
     r_lo, r_hi = 3, 8
     a0, b0 = fit_a_over_r(r, p0, r_lo=r_lo, r_hi=r_hi)
     am, bm = fit_a_over_r(r, pm, r_lo=r_lo, r_hi=r_hi)
     ad, bd = fit_a_over_r(r, dp, r_lo=r_lo, r_hi=r_hi)
 
-    print(f"Far-field fit p(r) ~ a/r + b (after mean removal), window r=[{r_lo},{r_hi}]")
+    print(f"Far-field fit p(r) ~ a/r + b (mean removed), window r=[{r_lo},{r_hi}]")
     print(f"  baseline: a={a0:.6e}, b={b0:.6e}")
     print(f"  mass    : a={am:.6e}, b={bm:.6e}")
     print(f"  delta   : a={ad:.6e}, b={bd:.6e}")
 
-    # Poisson residual check (consistent with the solve: (L+eps I) phi = delta).
-    # We check L phi - delta (so residual includes -eps*phi term), but it should be small away from source
-    # when eps is tiny and phi is not huge.
+    # Poisson residual check (L phi - delta) away from source neighborhood
     res0 = poisson_residual(L0, phi0, source)
     resm = poisson_residual(Lm, phim, source)
 
@@ -238,6 +284,28 @@ def main() -> None:
     for rr in range(1, rmax + 1):
         inv = 1.0 / rr
         print(f"{rr:2d} | {p0[rr]: .6e} {pm[rr]: .6e} {dp[rr]: .6e} {inv: .6e}")
+
+    # ---- logdet / trace tests ----
+    lam0 = estimate_lambda_max(A0)
+    lamm = estimate_lambda_max(Am)
+    alpha = 1.05 * max(lam0, lamm)
+
+    n_probe = 30
+    n_terms = 40
+
+    logdet0 = hutchinson_logdet(A0, alpha=alpha, n_probe=n_probe, n_terms=n_terms, seed=10)
+    logdetm = hutchinson_logdet(Am, alpha=alpha, n_probe=n_probe, n_terms=n_terms, seed=11)
+    dlogdet = logdetm - logdet0
+
+    tr_est = hutchinson_trace_Ainv_dA(A0, dA, n_probe=n_probe, seed=12)
+
+    print("\nStochastic logdet / trace check (A=L+eps I):")
+    print(f"  lambda_max(A0) ~ {lam0:.6e}, lambda_max(Am) ~ {lamm:.6e}, alpha ~ {alpha:.6e}")
+    print(f"  logdet(A0) ~ {logdet0:.6e}")
+    print(f"  logdet(Am) ~ {logdetm:.6e}")
+    print(f"  Delta logdet ~ {dlogdet:.6e}")
+    print(f"  Tr(A0^-1 DeltaA) ~ {tr_est:.6e}")
+    print(f"  ratio (Delta logdet)/(Tr) ~ {dlogdet / tr_est:.6e}")
 
 
 if __name__ == "__main__":
