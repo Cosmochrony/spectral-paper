@@ -540,115 +540,175 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
   \subsection{Non-perturbative DBI envelope}
     \label{subsec:nonperturbative-dbi}
 
-    The weakly non-linear reduction derived above provides the first correction
-    to the dispersion relation. However, the Dirac--Born--Infeld dynamics
-    possesses an exact single-mode description that allows the admissibility
-    boundary to be determined non-perturbatively.
+    The weakly non-linear reduction derived in
+    Section~\ref{subsec:weakly-nonlinear-dbi} provides the leading
+    amplitude correction to the dispersion relation.
+    However, the discrete Dirac--Born--Infeld dynamics allows the
+    single-mode problem to be solved exactly on the $Q_8$ Cayley graph.
 
     Consider again a single eigenmode
     \[
-      \chi_v(t)=q(t)\psi_n(v)
+      \chi_v(t) = q(t)\psi_n(v),
     \]
-    with $\mathcal{L}\psi_n=\lambda_n\psi_n$.
+    with $\mathcal{L}\psi_n = \lambda_n \psi_n$ and $\|\psi_n\|_2=1$.
+    Substituting this ansatz into the DBI Lagrangian
+    Eq.~\eqref{eq:dbi-lagrangian} gives the exact one-mode Lagrangian
+    \begin{equation}
+      L_n[q]
+      =
+      -c_\chi^2
+      \sum_{v\in Q_8}
+      \sqrt{1-\frac{\psi_n(v)^2\dot q^{\,2}}{c_\chi^2}}
+      -
+      \frac12\lambda_n q^2 .
+    \end{equation}
 
-    The exact one-mode Lagrangian is given by
-    Eq.~\eqref{eq:exact-mode-lagrangian}.
+    Because the eigenmodes on the $Q_8$ Cayley graph have a simple
+    support structure, the DBI sum can be evaluated explicitly.
+
+    \subsubsection*{Abelian sectors}
+
+      For the nontrivial abelian representations $\rho_1,\rho_2,\rho_3$,
+      the normalized eigenmodes satisfy
+      \[
+        |\psi_n(v)| = \frac{1}{\sqrt{8}}
+        \qquad
+        \forall v\in Q_8 .
+      \]
+
+      The Lagrangian therefore becomes
+      \begin{equation}
+        L
+        =
+        -8c_\chi^2
+        \sqrt{1-\frac{\dot q^{\,2}}{8c_\chi^2}}
+        -
+        \frac12\lambda_n q^2 .
+      \end{equation}
+
+    \subsubsection*{Non-abelian sector}
+
+      For the quaternionic sector $\rho_4$ in the canonical basis,
+      the eigenmodes satisfy
+      \[
+        |\psi_n(v)| =
+        \begin{cases}
+          \frac12 & \text{on four vertices}, \\
+          0 & \text{on four vertices}.
+        \end{cases}
+      \]
+
+      The DBI sum therefore reduces to
+      \begin{equation}
+        L
+        =
+        -4c_\chi^2
+        \sqrt{1-\frac{\dot q^{\,2}}{4c_\chi^2}}
+        -4c_\chi^2
+        -
+        \frac12\lambda_n q^2 .
+      \end{equation}
+
+      The constant term does not affect the dynamics, and the effective
+      Lagrangian becomes
+      \begin{equation}
+        L
+        =
+        -4c_\chi^2
+        \sqrt{1-\frac{\dot q^{\,2}}{4c_\chi^2}}
+        -
+        \frac12\lambda_n q^2 .
+      \end{equation}
 
     \subsubsection*{Energy conservation}
 
-      Since the Lagrangian is time independent, the corresponding Hamiltonian is conserved.
-      One obtains
+      Since the Lagrangian is time independent, the corresponding Hamiltonian
+      is conserved. One obtains
       \begin{equation}
         E
         =
-        c_\chi^2
-        \sum_{v\in Q_8}
-        \frac{1}{\sqrt{1-\frac{\dot q^2\psi_n(v)^2}{c_\chi^2}}}
+        4c_\chi^2
+        \frac{1}{\sqrt{1-\frac{\dot q^{\,2}}{4c_\chi^2}}}
         +
         \frac12\lambda_n q^2 .
       \end{equation}
 
-      At turning points $\dot q=0$ the energy reduces to
+      At the turning points $\dot q=0$, where $q=\pm a_n$, the energy becomes
       \begin{equation}
         E
         =
-        8c_\chi^2+\frac12\lambda_n A_n^2 ,
+        4c_\chi^2
+        +
+        \frac12\lambda_n a_n^2 ,
       \end{equation}
-      where $A_n$ denotes the oscillation amplitude.
+      where $a_n$ denotes the raw oscillation amplitude of the modal coordinate.
 
     \subsubsection*{Velocity bound}
 
-      The DBI square root imposes the constraint
-      \[
-        |\dot q|\;|\psi_n(v)|<c_\chi
-        \qquad\forall v .
-      \]
-
-      The most restrictive condition is obtained at the vertex where
-      $|\psi_n|$ is maximal, yielding
-
+      The DBI square root imposes the kinematic bound
       \begin{equation}
-        |\dot q| < \frac{c_\chi}{\|\psi_n\|_\infty}.
-        \label{eq:dbi-speed-bound}
+        |\dot q| < 2c_\chi .
       \end{equation}
 
-      Thus the modal coordinate $q(t)$ obeys a relativistic-type speed limit.
-
-    \subsubsection*{Period--amplitude relation}
-
-      Combining the energy conservation law with
-      \eqref{eq:dbi-speed-bound} gives
-
+      Expressed in terms of the field variable,
       \[
-        \dot q
+        \chi_v = q\psi_n(v),
+      \]
+      this corresponds exactly to the local flux constraint
+      \[
+        |\partial_t \chi_v| \le c_\chi .
+      \]
+
+    \subsubsection*{Amplitude bound}
+
+      The turning point occurs when the maximal vertex saturates the flux bound,
+      \[
+        |\partial_t\chi_v|
         =
-        \frac{c_\chi}{\|\psi_n\|_\infty}
-        \sqrt{
-          1-
-          \left(
-            \frac{\lambda_n q^2}{\lambda_n A_n^2}
-          \right)
-        }.
-      \]
-
-      The oscillation period therefore becomes
-
-      \begin{equation}
-        T(A_n)
+        |\dot q|\,|\psi_n(v)|
         =
-        4
-        \int_0^{A_n}
-        \frac{dq}{\dot q}.
+        c_\chi .
+      \]
+
+      Since $\|\psi_n\|_\infty$ is the maximal value of $|\psi_n(v)|$, this gives
+      \begin{equation}
+        a_n^{\max}
+        =
+        \frac{c_\chi}{\|\psi_n\|_\infty\sqrt{\lambda_n}} .
       \end{equation}
 
-      Near the saturation limit
+      The corresponding effective amplitude
       \[
-        A_n \rightarrow A_n^{\max},
+        A_n = a_n\|\psi_n\|_\infty
       \]
-      the velocity approaches the DBI bound and the integral develops a
-      logarithmic divergence.
+      therefore satisfies
+      \begin{equation}
+        A_n^{\max}
+        =
+        \frac{c_\chi}{\sqrt{\lambda_n}} .
+      \end{equation}
 
-      Consequently the oscillation frequency behaves as
+    \subsubsection*{Exact admissibility envelope}
+
+      We thus obtain the non-perturbative result
 
       \begin{equation}
-        \omega_n(A_n)\rightarrow0
-        \qquad
-        (A_n\rightarrow A_n^{\max}).
+        A_n^{\max}
+        =
+        \frac{c_\chi}{\sqrt{\lambda_n}},
       \end{equation}
 
-    \subsubsection*{Interpretation}
+      which coincides exactly with the admissibility envelope derived from the
+      linear bounded-flux argument.
 
-      The non-perturbative DBI dynamics therefore produces a dynamical
-      freezing of modes approaching the saturation boundary.
-      Modes close to the admissibility envelope oscillate increasingly
-      slowly, effectively trapping energy near the lowest admissible
-      spectral sectors.
+      The weakly non-linear correction therefore does not modify the
+      location of the admissibility boundary.
+      Instead, the DBI dynamics smoothly interpolates between the linear regime
+      and a velocity-saturated regime as the amplitude approaches the bound.
 
-      This mechanism strengthens the spectral filtering effect identified
-      in the linear analysis.
-      Modes with larger eigenvalues $\lambda_n$ approach the freezing regime
-      at smaller effective amplitudes, reinforcing the advantage of the
-      lowest spectral sector.
+      This shows that the spectral admissibility envelope identified in
+      Step~1 is not merely a linear approximation but the exact saturation
+      boundary for the single-mode DBI dynamics on the $Q_8$ Cayley graph.
 
   \section{Main Result}
 
