@@ -1294,89 +1294,370 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
     the first discrete instance of a potential mechanism by which bounded
     relational capacity selects $\mathrm{SU}(2)$-type symmetry sectors.
 
-  \section{Next Steps}
-  \label{sec:next-steps}
+  \section{Spectral Admissibility on the Binary Icosahedral Group $2I$}
+  \label{sec:step5}
 
-  The present note establishes the first four stages of the spectral
-  admissibility programme on the $Q_8$ Cayley graph.
+  \subsection{The group $2I$ and its place in the programme}
+    \label{sec:step5-intro}
 
-  \paragraph{Step 1: spectral admissibility.}
-    The bounded-flux constraint
-    $|\partial_t \chi_v| \le c_\chi$
-    selects admissible modes through the effective amplitude
-    $A_n = a_n \|\psi_n\|_\infty$,
-    leading to the envelope
+    The binary icosahedral group $2I$ is the double cover of the icosahedral
+    rotation group $A_5 \cong \mathrm{PSL}(2,\mathbb{F}_5)$, and has order
+    $|2I| = 120$.
+    It is the largest finite subgroup of $\mathrm{SU}(2)$ and sits in the
+    inclusion chain
+    \begin{equation}
+      Q_8 \subset 2I \subset \mathrm{SU}(2),
+      \label{eq:chain}
+    \end{equation}
+    making it the natural next test case for the spectral admissibility
+    programme.
+
+    The irreducible representations of $2I$ are labelled by spin and have
+    dimensions matching the low-spin content of $\mathrm{SU}(2)$:
+    \begin{equation}
+      \underbrace{1}_{\text{spin }0},\quad
+      \underbrace{2,\,2'}_{\text{spin }\tfrac{1}{2}},\quad
+      \underbrace{3,\,3'}_{\text{spin }1},\quad
+      \underbrace{4,\,4'}_{\text{spin }\tfrac{3}{2}},\quad
+      \underbrace{5}_{\text{spin }2},\quad
+      \underbrace{6}_{\text{spin }\tfrac{5}{2}}.
+      \label{eq:2I-irreps}
+    \end{equation}
+    Of these nine irreps, six are spin-type in the sense that they arise from
+    restrictions of $\mathrm{SU}(2)$ representations.
+    The remaining primed sectors encode additional finite-group structure.
+    For the present admissibility analysis, the spin-type sectors provide the
+    most direct comparison with the $Q_8 \subset 2I \subset \mathrm{SU}(2)$
+    programme.
+
+  \subsection{Conjugacy classes and character table}
+    \label{sec:step5-chars}
+
+    The group $2I$ has nine conjugacy classes, enumerated by element order:
+    \begin{center}
+      \begin{tabular}{llcl}
+        \hline
+        Class & Order & Size & Notation                      \\
+        \hline
+        $1a$  & 1     & 1    & identity                      \\
+        $2a$  & 2     & 1    & central element $-\mathbf{1}$ \\
+        $3a$  & 3     & 20   &                               \\
+        $4a$  & 4     & 30   &                               \\
+        $5a$  & 5     & 12   &                               \\
+        $5b$  & 5     & 12   & algebraic conjugate of $5a$   \\
+        $6a$  & 6     & 20   &                               \\
+        $10a$ & 10    & 12   &                               \\
+        $10b$ & 10    & 12   & algebraic conjugate of $10a$  \\
+        \hline
+      \end{tabular}
+    \end{center}
+    The class sizes satisfy
+    \[
+      1+1+20+30+12+12+20+12+12 = 120.
+    \]
+
+    Writing $\varphi = (1+\sqrt{5})/2$ and
+    $\bar\varphi = 1/\varphi = \varphi - 1 = (\sqrt{5}-1)/2$, the character
+    values of the spin-type irreps are
+    \begin{equation}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{array}{l|rrrrrrrrr}
+        & 1a & 2a & 3a & 4a & 5a & 5b & 6a & 10a & 10b \\
+        \hline
+        \chi_1 & 1 &  1 &  1 &  1 &  1 &  1 &  1 &  1 &  1 \\
+        \chi_2 & 2 & -2 & -1 &  0 & \bar\varphi & -\varphi & 1 & \varphi & -\bar\varphi \\
+        \chi_3 & 3 &  3 &  0 & -1 & \varphi & -\bar\varphi & 0 & -\bar\varphi & \varphi \\
+        \chi_4 & 4 & -4 &  1 &  0 & -1 & -1 & -1 & 1 & 1 \\
+        \chi_5 & 5 &  5 & -1 &  1 &  0 &  0 & -1 & 0 & 0 \\
+        \chi_6 & 6 & -6 &  0 &  0 &  1 &  1 &  0 & -1 & -1
+      \end{array}
+      \label{eq:CT-2I}
+    \end{equation}
+    These rows satisfy the expected orthogonality relations.
+
+  \subsection{Generating set: order-10 elements}
+    \label{sec:step5-genset}
+
+    A natural generating set for the comparison with $Q_8$ is the union of
+    the two order-10 conjugacy classes,
+    \begin{equation}
+      S = 10a \cup 10b,
+      \qquad
+      |S| = 24.
+      \label{eq:S-2I}
+    \end{equation}
+    This choice is canonical for three reasons.
+
+    First, $S$ is closed under inversion.
+    If $g \in 10a$, then $g^{-1} \in 10b$, so the Cayley graph is undirected
+    and the Laplacian is self-adjoint.
+
+    Second, this choice is the direct spinorial analogue of the $Q_8$ generating
+    set.
+    In $Q_8$, the generators $\{\pm i,\pm j,\pm k\}$ are the lifts of the
+    order-2 coordinate rotations of $SO(3)$.
+    In $2I$, the order-10 elements are the lifts of the order-5 rotations of
+    the icosahedral group.
+    In both cases, the generating set is built from the spinorial preimages of
+    the basic rotational classes.
+
+    Third, the set $S = 10a \cup 10b$ generates $2I$.
+    The resulting Cayley graph $\mathrm{Cay}(2I,S)$ is therefore $24$-regular
+    on $120$ vertices.
+
+  \subsection{Adjacency eigenvalues and spectral hierarchy}
+    \label{sec:step5-spectrum}
+
+    For a generating set that is a union of conjugacy classes, the adjacency
+    eigenvalue in the irreducible sector $\rho$ is
+    \begin{equation}
+      \mu_\rho
+      = \frac{1}{\dim\rho}
+      \sum_{C \subseteq S} |C|\,\chi_\rho(C).
+      \label{eq:mu-formula-2I}
+    \end{equation}
+    For $S = 10a \cup 10b$, with both classes of size $12$, this gives
+    \begin{equation}
+      \renewcommand{\arraystretch}{1.4}
+      \begin{array}{l|ccc}
+        \text{Sector} &
+        \mu_\rho &
+        \lambda_\rho = 24 - \mu_\rho &
+        A^{\max}_\rho = c_\chi/\sqrt{\lambda_\rho} \\
+        \hline
+        \chi_1\;(\text{trivial}) & 24 & 0  & \infty \\
+        \chi_2\;(\text{spin-}{\tfrac{1}{2}}) & 6  & 18 & c_\chi/\sqrt{18} \\
+        \chi_3\;(\text{spin-}1) & 4  & 20 & c_\chi/\sqrt{20} \\
+        \chi_4\;(\text{spin-}{\tfrac{3}{2}}) & 6  & 18 & c_\chi/\sqrt{18} \\
+        \chi_5\;(\text{spin-}2) & 0  & 24 & c_\chi/\sqrt{24} \\
+        \chi_6\;(\text{spin-}{\tfrac{5}{2}}) & -4 & 28 & c_\chi/\sqrt{28}
+      \end{array}
+      \label{eq:2I-spectrum}
+    \end{equation}
+
+    The spectral ordering of the non-trivial spin-type sectors is therefore
+    \begin{equation}
+      \lambda_{1/2} = \lambda_{3/2} = 18
+      < \lambda_1 = 20
+      < \lambda_2 = 24
+      < \lambda_{5/2} = 28.
+      \label{eq:2I-ordering}
+    \end{equation}
+    This yields the admissibility hierarchy
+    \begin{equation}
+      A^{\max}_{1/2} = A^{\max}_{3/2}
+      > A^{\max}_1
+      > A^{\max}_2
+      > A^{\max}_{5/2}.
+      \label{eq:2I-admissibility}
+    \end{equation}
+    The spin-$\tfrac{1}{2}$ and spin-$\tfrac{3}{2}$ sectors jointly admit the
+    largest effective amplitude window, while the spin-$\tfrac{5}{2}$ sector is
+    the most strongly penalized.
+    The resulting pattern is therefore a partial low-spin-favoured hierarchy.
+
+  \subsection{Algebraic origin: the golden ratio identity}
+    \label{sec:step5-golden}
+
+    The adjacency eigenvalues in~\eqref{eq:2I-spectrum} are fixed by simple
+    algebraic identities involving the golden ratio.
+
+    For the spin-$\tfrac{1}{2}$ sector,
+    \begin{equation}
+      \mu_2
+      = \frac{1}{2}\bigl(12\,\chi_2(10a) + 12\,\chi_2(10b)\bigr)
+      = 6\bigl(\chi_2(10a)+\chi_2(10b)\bigr).
+      \label{eq:mu2-computation}
+    \end{equation}
+    Using
+    \begin{equation}
+      \chi_2(10a)+\chi_2(10b)
+      = \varphi + (-\bar\varphi)
+      = \varphi - \bar\varphi
+      = 1,
+      \label{eq:golden-identity}
+    \end{equation}
+    we obtain
+    \begin{equation}
+      \mu_2 = 6.
+      \label{eq:mu2-final}
+    \end{equation}
+
+    For the spin-$\tfrac{3}{2}$ sector, both classes have character $+1$:
+    \begin{equation}
+      \chi_4(10a)=\chi_4(10b)=1,
+      \qquad
+      \mu_4=\frac{12+12}{4}=6.
+      \label{eq:mu4-computation}
+    \end{equation}
+
+    The spin-2 sector satisfies
+    \begin{equation}
+      \chi_5(10a)=\chi_5(10b)=0,
+      \qquad
+      \mu_5=0.
+      \label{eq:mu5-computation}
+    \end{equation}
+    It is therefore spectrally neutral with respect to the order-10 generators.
+
+    The identity
+    \begin{equation}
+      \varphi - \frac{1}{\varphi} = 1
+    \end{equation}
+    is thus the structural reason why the spin-$\tfrac{1}{2}$ sector reaches
+    the maximal non-trivial adjacency value on this Cayley graph.
+    In that sense, it plays on $2I$ the same structural role that Pauli
+    tracelessness played on $Q_8$.
+
+  \subsection{Comparison with $Q_8$ and the strengthening hierarchy}
+    \label{sec:step5-comparison}
+
+    The $Q_8$ and $2I$ toy models can be compared through the ratio between the
+    most admissible and the least admissible non-trivial sectors.
+
+    On $Q_8$ with $S=\{\pm i,\pm j,\pm k\}$,
+    \begin{equation}
+      \frac{A^{\max}_{\mathrm{best}}}{A^{\max}_{\mathrm{worst}}}
+      = \sqrt{\frac{8}{6}}
+      = \sqrt{\frac{4}{3}}
+      \approx 1.155.
+      \label{eq:Q8-ratio}
+    \end{equation}
+
+    On $2I$ with $S = 10a \cup 10b$, the corresponding ratio is
+    \begin{equation}
+      \frac{A^{\max}_{1/2}}{A^{\max}_{5/2}}
+      = \sqrt{\frac{28}{18}}
+      = \sqrt{\frac{14}{9}}
+      \approx 1.247.
+      \label{eq:2I-ratio}
+    \end{equation}
+
+    Thus the admissibility contrast increases from $Q_8$ to $2I$:
+    \begin{equation}
+      \sqrt{\frac{4}{3}}
+      \approx 1.155
+      \quad\longrightarrow\quad
+      \sqrt{\frac{14}{9}}
+      \approx 1.247.
+      \label{eq:growing-hierarchy}
+    \end{equation}
+    This does not yet prove a general monotone trend along
+    \eqref{eq:chain}, but it does support the hypothesis that the spectral
+    hierarchy sharpens as one moves from $Q_8$ to larger finite subgroups of
+    $\mathrm{SU}(2)$.
+
+  \subsection{Physical interpretation: towards low-spin selection}
+    \label{sec:step5-physics}
+
+    The $2I$ result refines the $Q_8$ result in a physically meaningful
+    direction.
+
+    On $Q_8$, the admissibility hierarchy separated the non-abelian sector from
+    the abelian sectors.
+    On $2I$, the hierarchy is resolved across several spin sectors:
+    \begin{equation}
+      \text{spin-}\tfrac{1}{2},\,\text{spin-}\tfrac{3}{2}
+      \;\succ\;
+      \text{spin-}1
+      \;\succ\;
+      \text{spin-}2
+      \;\succ\;
+      \text{spin-}\tfrac{5}{2},
+      \label{eq:spin-ladder}
+    \end{equation}
+    where $\succ$ denotes a strictly larger admissibility window.
+
+    The ordering is not strictly monotone in spin, since the
+    spin-$\tfrac{1}{2}$ and spin-$\tfrac{3}{2}$ sectors are degenerate.
+    Even so, the hierarchy is clearly biased toward lower spins.
+
+    The mechanism is the same as on $Q_8$.
+    The bounded substrate flux condition
+    \[
+      |\partial_t \chi_v| \le c_\chi
+    \]
+    filters modes through the envelope
     \[
       A_n^{\max} = \frac{c_\chi}{\sqrt{\lambda_n}}.
     \]
-    On $Q_8$, this produces a strict hierarchy in which the quaternionic
-    non-abelian sector $\rho_4$ admits the largest effective amplitude window.
+    Modes with larger positive adjacency response have smaller Laplacian
+    eigenvalues and therefore survive with larger admissible amplitudes.
 
-  \paragraph{Step 2: weakly non-linear DBI reduction.}
-    The discrete Dirac--Born--Infeld dynamics has been reduced to a single-mode
-    effective equation, yielding the amplitude-dependent frequency
-    \[
-      \omega_n^2(A_n)
-      \approx
-      \lambda_n
-      \left(
-        1 - \frac{3\lambda_n A_n^2}{8c_\chi^2}
-      \right).
-    \]
-    On the $Q_8$ Cayley graph the ratio
-    $\kappa_n/\|\psi_n\|_\infty^2 = 1$
-    for all non-trivial sectors, implying that the non-linear softening depends
-    only on the Laplacian eigenvalue.
-    The spectral hierarchy obtained in Step~1 therefore remains stable under the
-    leading DBI correction.
+    For the generating set $S = 10a \cup 10b$, the golden-ratio identity
+    \eqref{eq:golden-identity} gives the spin-$\tfrac{1}{2}$ sector the same
+    maximal non-trivial adjacency value as the spin-$\tfrac{3}{2}$ sector.
+    The combined outcome of the $Q_8$ and $2I$ calculations is therefore
+    \begin{equation}
+      \text{bounded relational capacity}
+      \;\Longrightarrow\;
+      \text{spectral hierarchy}
+      \;\Longrightarrow\;
+      \text{partial low-spin resilience.}
+    \end{equation}
 
-  \paragraph{Step 3: non-perturbative DBI envelope.}
-    The next task is to move beyond the perturbative expansion in $c_\chi^{-2}$
-    and derive the full amplitude-dependent period from the exact one-mode
-    Lagrangian~\eqref{eq:exact-mode-lagrangian}.
-    This can be obtained either through elliptic-integral methods or direct
-    numerical quadrature.
-    The resulting period--amplitude relation will determine the exact
-    non-perturbative admissibility envelope replacing the linear boundary
-    \eqref{eq:envelope}.
+    \bigskip
+    \noindent\textbf{Summary of Step~5.}
+    On the Cayley graph of $2I$ with generating set
+    $S = 10a \cup 10b$, the admissibility envelope
+    $A_n^{\max} = c_\chi/\sqrt{\lambda_n}$ produces a partial low-spin-favoured
+    hierarchy in which the spin-$\tfrac{1}{2}$ and spin-$\tfrac{3}{2}$ sectors
+    are jointly the most admissible.
+    The value $\mu_{1/2}=6$ is fixed by the golden-ratio identity
+    $\varphi - 1/\varphi = 1$.
+    Compared with the $Q_8$ result, the contrast between the most and least
+    admissible non-trivial sectors increases from $\sqrt{4/3}$ to
+    $\sqrt{14/9}$.
+    This supports the hypothesis that the spectral hierarchy sharpens along the
+    chain $Q_8 \subset 2I \subset \mathrm{SU}(2)$.
 
-  \paragraph{Step 4: structural origin of the admissibility hierarchy.}
-    Section~\ref{sec:step4} shows that the hierarchy observed on the $Q_8$
-    Cayley graph has a precise algebraic origin.
-    The non-abelian quaternionic sector satisfies $\mu_{\rho_4}=0$,
-    placing it at the centre of the adjacency spectrum and
-    yielding the smallest non-trivial Laplacian eigenvalue.
-    This structural property explains why bounded relational flux favours the
-    $\rho_4$ sector and suggests a possible connection with the
-    $\mathrm{SU}(2)\cong S^3$ geometry associated with spin.
+  \section{Next Steps}
+  \label{sec:next-steps}
 
-  \paragraph{Step 5: dynamical survival of spectral sectors.}
-    The next step is to simulate the full $Q_8$ substrate with the DBI
-    constraint imposed locally at each vertex.
-    The modal decomposition
+  The present note establishes the spectral admissibility mechanism on
+  finite Cayley graphs and demonstrates it explicitly on the $Q_8$ and $2I$
+  examples.
+  Several important directions remain open.
+
+  \paragraph{Non-perturbative DBI envelope.}
+    The perturbative expansion used in the weakly non-linear analysis captures
+    only the leading correction to the linear Laplacian dynamics.
+    A natural next step is to derive the exact one-mode dynamics associated
+    with the DBI Lagrangian~\eqref{eq:exact-mode-lagrangian}.
+
+    This requires computing the full amplitude--period relation,
+    which can be obtained either through elliptic-integral methods or through
+    direct numerical quadrature.
+    The resulting non-perturbative period determines the exact admissibility
+    envelope replacing the linear bound~\eqref{eq:envelope}.
+
+  \paragraph{Dynamical survival of spectral sectors.}
+    The admissibility hierarchy derived in the present work is kinematic.
+    A key open question is whether the hierarchy is dynamically realized
+    in the full relational substrate.
+
+    This can be tested by simulating the DBI dynamics on the $Q_8$ graph
+    with the bounded-flux constraint imposed locally at each vertex.
+    Tracking the modal amplitudes
     \[
       A_n(t) = a_n(t)\|\psi_n\|_\infty
     \]
-    can then be tracked dynamically.
-    The key question is whether spectral cascades concentrate energy in the
-    sector with the largest admissible window, namely the non-abelian
-    $\rho_4$ sector.
+    would reveal whether nonlinear cascades concentrate energy in the
+    spectral sector with the largest admissible window.
 
-  \paragraph{Step 6: extension to larger graphs.}
-    Finally, the toy model should be extended to Cayley graphs of larger
-    groups approximating $S^3$ more faithfully.
-    Natural candidates include the binary icosahedral group $2I$ (order~120)
-    and families of Cayley graphs on $\mathrm{SL}(2,\mathbb{F}_p)$.
+  \paragraph{Larger Cayley graphs and continuum limits.}
+    A further step is to test spectral admissibility on larger Cayley graphs
+    approximating the geometry of $S^3$ more faithfully.
 
-    In particular, Ramanujan graph constructions such as the
+    Natural candidates include families of Cayley graphs on
+    $\mathrm{SL}(2,\mathbb{F}_p)$ and related constructions.
+    In particular, Ramanujan graphs such as the
     Lubotzky--Phillips--Sarnak graphs provide sequences with optimal spectral
     gap properties.
-    Studying bounded-flux filtering on such graphs would test whether the
-    spectral admissibility hierarchy persists in large expanders and may
-    reveal a deeper connection between substrate capacity constraints and
-    the spectral theory of expander graphs.
 
-    \bibliographystyle{ieeetr}
-    \bibliography{refs}
+    Studying bounded-flux filtering on such graphs would test whether the
+    admissibility hierarchy persists in large expanders and clarify how the
+    mechanism behaves as the discrete substrate approaches the
+    $\mathrm{SU}(2)\cong S^3$ continuum limit.
 
 \end{document}
