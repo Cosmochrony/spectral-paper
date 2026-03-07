@@ -3,6 +3,7 @@
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{hyperref}
 \usepackage{geometry}
+\usepackage{graphicx}
 \geometry{margin=2.5cm}
 
 \newtheorem{proposition}{Proposition}
@@ -256,6 +257,21 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
     \end{equation}
     This defines the \emph{admissibility envelope} in the $(\lambda_n, A_n)$ plane.
 
+    \begin{figure}[t]
+      \centering
+      \includegraphics[width=0.82\textwidth]{fig1_Q8_admissibility}
+      \caption{
+        Admissibility envelope on the $Q_8$ Cayley graph with
+        $S=\{\pm i,\pm j,\pm k\}$.
+        The maximal effective amplitude
+        $A_n^{\max}=c_\chi/\sqrt{\lambda_n}$
+        is larger in the quaternionic non-abelian sector
+        $\rho_4$ ($\lambda=6$) than in the non-trivial abelian sectors
+        ($\lambda=8$), by the factor $\sqrt{4/3}$.
+      }
+      \label{fig:q8-admissibility}
+    \end{figure}
+
     \begin{remark}
       The linearised dispersion $\omega_n^2 = \lambda_n$ is valid for
       $A_n \ll c_\chi / \sqrt{\lambda_n}$.
@@ -412,8 +428,7 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
   \subsection{Weakly Non-linear Modal DBI Reduction}
     \label{subsec:weakly-nonlinear-dbi}
 
-    To incorporate the first Born--Infeld correction, consider the discrete DBI
-    Lagrangian
+    To incorporate the first Born--Infeld correction, consider the discrete DBI Lagrangian
     \begin{equation}
       \label{eq:dbi-lagrangian}
       L
@@ -551,6 +566,22 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
       \right)
     \end{equation}
     in both the nontrivial abelian and non-abelian sectors.
+
+    \begin{figure}[t]
+      \centering
+      \includegraphics[width=0.9\textwidth]{fig2_Q8_DBI_dynamics}
+      \caption{
+        One-mode DBI dynamics on the $Q_8$ Cayley graph.
+        Top: effective amplitudes in the quaternionic and abelian sectors.
+        Bottom: corresponding saturation fractions relative to the exact
+        admissibility bounds.
+        The quaternionic sector retains the largest admissible window,
+        consistent with the spectral hierarchy derived from the bounded-flux
+        constraint.
+      }
+      \label{fig:q8-dbi-dynamics}
+    \end{figure}
+
     At fixed effective amplitude, the non-abelian sector thus remains less penalised
     by the weakly non-linear DBI correction, solely because $\lambda_{\rho_4}=6$
     is smaller than $\lambda_{\rho_k}=8$.
@@ -1511,6 +1542,23 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
 
   \subsection{Comparison with $Q_8$ and the strengthening hierarchy}
     \label{sec:step5-comparison}
+
+    \begin{figure}[t]
+      \centering
+      \includegraphics[width=0.95\textwidth]{fig3_hierarchy_Q8_vs_2I}
+      \caption{
+        Spectral admissibility hierarchy from $Q_8$ to $2I$.
+        Left: on $Q_8$, the quaternionic sector has the smallest non-trivial
+        Laplacian eigenvalue.
+        Right: on $2I$ with generating set $S=10a\cup 10b$, the hierarchy
+        resolves into the ordered spin-type sectors
+        $\lambda_{1/2}=\lambda_{3/2}=18 < \lambda_1=20 < \lambda_2=24 <
+        \lambda_{5/2}=28$.
+        The comparison illustrates the sharpening of the admissibility
+        hierarchy along the chain $Q_8 \subset 2I \subset \mathrm{SU}(2)$.
+      }
+      \label{fig:q8-2i-hierarchy}
+    \end{figure}
 
     The $Q_8$ and $2I$ toy models can be compared through the ratio between the
     most admissible and the least admissible non-trivial sectors.
