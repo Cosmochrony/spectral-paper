@@ -107,15 +107,21 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
       \begin{center}
         \begin{tabular}{lcccc}
           \hline
-          Label & Dimension & $\rho(i)$ & $\rho(j)$ & $\rho(k)$ \\
+          Label              & Dimension & $\rho(i)$ & $\rho(j)$ & $\rho(k)$ \\
           \hline
-          $\rho_0$ (trivial) & 1 & $1$ & $1$ & $1$ \\
-          $\rho_1$ & 1 & $1$ & $-1$ & $-1$ \\
-          $\rho_2$ & 1 & $-1$ & $1$ & $-1$ \\
-          $\rho_3$ & 1 & $-1$ & $-1$ & $1$ \\
-          $\rho_4$ (quaternionic) & 2 & $\begin{pmatrix}i&0\\0&-i\end{pmatrix}$
-          & $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$
-          & $\begin{pmatrix}0&i\\i&0\end{pmatrix}$ \\
+          $\rho_0$ (trivial) & 1         & $1$       & $1$       & $1$       \\
+          $\rho_1$           & 1         & $1$       & $-1$      & $-1$      \\
+          $\rho_2$           & 1         & $-1$      & $1$       & $-1$      \\
+          $\rho_3$           & 1         & $-1$      & $-1$      & $1$       \\
+          $\rho_4$ (quaternionic) & 2 & $\begin{pmatrix}
+                                               i&0\\0&-i
+          \end{pmatrix}$
+          & $\begin{pmatrix}
+                   0&1\\-1&0
+          \end{pmatrix}$
+          & $\begin{pmatrix}
+                   0&i\\i&0
+          \end{pmatrix}$ \\
           \hline
         \end{tabular}
       \end{center}
@@ -154,7 +160,9 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
         The matrices $\rho_4(i)$, $\rho_4(-i)$, $\rho_4(j)$, $\rho_4(-j)$, $\rho_4(k)$,
         $\rho_4(-k)$ each have trace zero: for instance,
         $\mathrm{tr}(\rho_4(i)) =
-        \mathrm{tr}\bigl(\begin{smallmatrix}i&0\\0&-i\end{smallmatrix}\bigr) = 0$,
+        \mathrm{tr}\bigl(\begin{smallmatrix}
+                               i&0\\0&-i
+        \end{smallmatrix}\bigr) = 0$,
         and $\mathrm{tr}(\rho_4(-i)) = 0$; similarly for $j$ and $k$.
         Thus $\sum_{s \in S} \chi_{\rho_4}(s) = 0$ and
       \begin{equation}
@@ -168,11 +176,11 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
     \begin{center}
       \begin{tabular}{lccc}
         \hline
-        Sector & $\lambda_n$ & Multiplicity & Type \\
+        Sector                   & $\lambda_n$ & Multiplicity & Type                       \\
         \hline
-        $\rho_0$ & $0$ & $1$ & Trivial (zero mode) \\
-        $\rho_1, \rho_2, \rho_3$ & $8$ & $3$ & Nontrivial abelian \\
-        $\rho_4$ & $6$ & $4$ & Non-abelian (quaternionic) \\
+        $\rho_0$                 & $0$         & $1$          & Trivial (zero mode)        \\
+        $\rho_1, \rho_2, \rho_3$ & $8$         & $3$          & Nontrivial abelian         \\
+        $\rho_4$                 & $6$         & $4$          & Non-abelian (quaternionic) \\
         \hline
       \end{tabular}
     \end{center}
@@ -533,7 +541,7 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
     \label{subsec:nonperturbative-dbi}
 
     The weakly non-linear reduction derived above provides the first correction
-    to the dispersion relation.  However, the Dirac--Born--Infeld dynamics
+    to the dispersion relation. However, the Dirac--Born--Infeld dynamics
     possesses an exact single-mode description that allows the admissibility
     boundary to be determined non-perturbatively.
 
@@ -543,23 +551,18 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
     \]
     with $\mathcal{L}\psi_n=\lambda_n\psi_n$.
 
-    Substituting into the discrete DBI Lagrangian yields the exact
-    one-mode Lagrangian
-    \begin{equation}
-      L(q,\dot q)
-      =
-      -c_\chi^2
-      \sum_{v\in Q_8}
-      \sqrt{1-\frac{\dot q^2\psi_n(v)^2}{c_\chi^2}}
-      -
-      \frac12\lambda_n q^2 .
-      \label{eq:exact-mode-lagrangian}
-    \end{equation}
+    Consider again a single eigenmode
+    \[
+      \chi_v(t)=q(t)\psi_n(v)
+    \]
+    with $\mathcal{L}\psi_n=\lambda_n\psi_n$.
+    The exact one-mode Lagrangian is given by
+    Eq.~\eqref{eq:exact-mode-lagrangian}.
 
     \subsubsection*{Energy conservation}
 
-      Since the Lagrangian is time independent, the corresponding Hamiltonian
-      is conserved.  One obtains
+      Since the Lagrangian is time independent, the corresponding Hamiltonian is conserved.
+      One obtains
       \begin{equation}
         E
         =
@@ -850,6 +853,26 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
 
     Matter may thus be interpreted as the dynamical residue of the spectral
     filtering imposed by the substrate.
+
+    A further dynamical effect appears when the effective amplitude approaches the admissibility boundary.
+    In the non-perturbative DBI regime, modes approaching saturation
+
+    \[
+      A_n \rightarrow A_n^{\max}
+    \]
+
+    experience a strong suppression of their oscillation frequency
+
+    \[
+      \omega_n \rightarrow 0 .
+    \]
+
+    Such modes effectively undergo a \emph{dynamical freezing}.
+    Energy injected into saturated modes can no longer propagate efficiently
+    through them and is redistributed toward modes with smaller spectral weight.
+    The bounded capacity of the substrate therefore acts not merely
+    as a spectral cut-off but as a dynamical selector concentrating activity
+    in the most resilient spectral sectors.
 
   \subsection{Beyond the $Q_8$ Toy Model}
 
