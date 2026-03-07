@@ -1,0 +1,341 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newtheorem{definition}{Definition}
+
+\title{Spectral Admissibility in the $Q_8$ Cayley Graph:\\
+A Minimal Toy Model for Bounded-Flux Mode Selection}
+\author{Working note -- Cosmochrony programme}
+\date{\today}
+
+\begin{document}
+  \maketitle
+
+  \begin{abstract}
+    We establish the first analytically tractable instance of the spectral admissibility
+    programme outlined in the Cosmochrony framework.
+    On the undirected Cayley graph of the quaternion group $Q_8$, with generators
+    $S = \{\pm i, \pm j, \pm k\}$, the local bounded-flux constraint $|\partial_t \chi_v| \leq c_\chi$
+    induces a hierarchy of maximal admissible effective amplitudes across irreducible
+    spectral sectors.
+    In the linearised dispersion regime, the non-abelian irreducible sector
+    admits a maximal effective amplitude larger than the nontrivial abelian sectors
+    by a factor of $\sqrt{4/3} \approx 1.155$.
+    This constitutes a minimal model demonstration that bounded substrate capacity
+    may structurally favour non-abelian relational modes, independently of any dynamical
+    postulate.
+  \end{abstract}
+
+  \section{Setting and Motivation}
+
+    The Cosmochrony framework identifies the physical spectrum with the residue of two
+    successive constraints acting on the relational operator $\mathcal{L}_\chi$:
+    \begin{enumerate}
+      \item \textbf{Topological discretisation}: the fibre structure of the non-injective
+      projection $\Pi$ organises modes into discrete winding sectors.
+      \item \textbf{Bounded-flux filtering}: the saturation bound
+      $|\partial_t \chi| \leq c_\chi$ eliminates modes whose local evolution would
+      exceed the substrate's relational capacity.
+    \end{enumerate}
+    The goal of this note is to make step~2 explicit and calculable on the simplest
+    non-trivial finite graph encoding a quaternionic algebraic structure,
+    as a minimal discrete proxy for $\mathrm{SU}(2)$-type sectors.
+
+  \section{The $Q_8$ Cayley Graph}
+
+    Let $Q_8 = \{{\pm 1, \pm i, \pm j, \pm k}\}$ denote the quaternion group of order~8.
+    We define the undirected Cayley graph $\Gamma(Q_8, S)$ with generating set
+    \begin{equation}
+      S = \{\pm i, \pm j, \pm k\}.
+    \end{equation}
+    Since $S$ is closed under inversion ($s^{-1} \in S$ for all $s \in S$) and does
+    not contain the identity, $\Gamma(Q_8, S)$ is a well-defined, connected, undirected,
+    $6$-regular graph on $8$ vertices.
+
+    \begin{remark}
+      The choice $S = \{i, j, k\}$ (without inverses) would yield a directed graph with an
+      asymmetric adjacency operator.
+      For a self-adjoint Laplacian, the full symmetric set $S = \{\pm i, \pm j, \pm k\}$ is
+      required.
+      The resulting graph is $6$-regular, not $3$-regular.
+    \end{remark}
+
+    \subsection{Adjacency Operator and Graph Laplacian}
+
+      The adjacency operator $A$ of $\Gamma(Q_8, S)$ acts on functions
+      $f \colon Q_8 \to \mathbb{C}$ by
+      \begin{equation}
+        (Af)(g) = \sum_{s \in S} f(gs) = \sum_{s \in \{\pm i, \pm j, \pm k\}} f(gs).
+      \end{equation}
+      The combinatorial graph Laplacian is
+      \begin{equation}
+        \mathcal{L} = dI - A, \qquad d = |S| = 6,
+      \end{equation}
+      where $I$ is the identity on $\ell^2(Q_8)$.
+      The eigenvalues of $\mathcal{L}$ are $\lambda = 6 - \mu$, where $\mu$ ranges over
+      the eigenvalues of $A$.
+
+  \section{Spectral Decomposition via Representation Theory}
+
+    Since $Q_8$ is a finite group, $\ell^2(Q_8) \cong \mathbb{C}[Q_8]$ decomposes
+    as a $Q_8$-module into irreducible representations.
+    By the Peter--Weyl theorem for finite groups:
+    \begin{equation}
+      \mathbb{C}[Q_8] \cong \bigoplus_{\rho \in \widehat{Q_8}} V_\rho^{\oplus \dim \rho},
+    \end{equation}
+    where the sum runs over the five irreducible representations of $Q_8$.
+
+    \subsection{Irreducible Representations of $Q_8$}
+
+      $Q_8$ has five irreducible representations:
+      \begin{center}
+        \begin{tabular}{lcccc}
+          \hline
+          Label & Dimension & $\rho(i)$ & $\rho(j)$ & $\rho(k)$ \\
+          \hline
+          $\rho_0$ (trivial) & 1 & $1$ & $1$ & $1$ \\
+          $\rho_1$ & 1 & $1$ & $-1$ & $-1$ \\
+          $\rho_2$ & 1 & $-1$ & $1$ & $-1$ \\
+          $\rho_3$ & 1 & $-1$ & $-1$ & $1$ \\
+          $\rho_4$ (quaternionic) & 2 & $\begin{pmatrix}i&0\\0&-i\end{pmatrix}$
+          & $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$
+          & $\begin{pmatrix}0&i\\i&0\end{pmatrix}$ \\
+          \hline
+        \end{tabular}
+      \end{center}
+      The dimension check: $1^2 + 1^2 + 1^2 + 1^2 + 2^2 = 8 = |Q_8|$. \checkmark
+
+    \subsection{Eigenvalues of the Adjacency Operator}
+
+      For any irreducible representation $\rho$, the adjacency operator acts as the
+      scalar $\mu_\rho \cdot I_{V_\rho}$ on $V_\rho$.
+      Since $S$ is a union of conjugacy classes of $Q_8$, the corresponding element
+      of the group algebra is central, and Schur's lemma gives
+      \begin{equation}
+        \mu_\rho = \frac{1}{\dim \rho} \sum_{s \in S} \chi_\rho(s),
+      \end{equation}
+      where $\chi_\rho$ is the character of $\rho$.
+
+      \paragraph{1D sectors.}
+        For the trivial representation $\rho_0$: $\chi_{\rho_0}(s) = 1$ for all $s \in S$,
+        so $\sum_{s \in S} \chi_{\rho_0}(s) = 6$ and
+      \begin{equation}
+        \mu_{\rho_0} = \frac{1}{1} \cdot 6 = 6, \qquad \lambda_{\rho_0} = 6 - 6 = 0.
+        \end{equation}
+        For $\rho_1$: $\chi_{\rho_1}(\pm i) = 1$ and $\chi_{\rho_1}(\pm j) = \chi_{\rho_1}(\pm k) = -1$,
+        so $\sum_{s \in S} \chi_{\rho_1}(s) = 2(1) + 4(-1) = -2$, giving
+        $\mu_{\rho_1} = -2$ and $\lambda_{\rho_1} = 8$.
+        By the symmetry of $Q_8$ under permutations of $\{i,j,k\}$,
+        $\mu_{\rho_2} = \mu_{\rho_3} = -2$ and $\lambda_{\rho_2} = \lambda_{\rho_3} = 8$.
+
+      \paragraph{2D sector.}
+        For the quaternionic representation $\rho_4$, we compute the character at each
+        generator.
+        The matrices $\rho_4(i)$, $\rho_4(-i)$, $\rho_4(j)$, $\rho_4(-j)$, $\rho_4(k)$,
+        $\rho_4(-k)$ each have trace zero: for instance,
+        $\mathrm{tr}(\rho_4(i)) = \mathrm{tr}\bigl(\begin{smallmatrix}i&0\\0&-i\end{smallmatrix}\bigr) = 0$,
+        and $\mathrm{tr}(\rho_4(-i)) = 0$; similarly for $j$ and $k$.
+        Thus $\sum_{s \in S} \chi_{\rho_4}(s) = 0$ and
+      \begin{equation}
+        \mu_{\rho_4} = \frac{1}{2} \cdot 0 = 0, \qquad \lambda_{\rho_4} = 6 - 0 = 6.
+        \end{equation}
+
+  \subsection{Summary of the Spectrum}
+
+    \begin{center}
+      \begin{tabular}{lccc}
+        \hline
+        Sector & $\lambda_n$ & Multiplicity & Type \\
+        \hline
+        $\rho_0$ & $0$ & $1$ & Trivial (zero mode) \\
+        $\rho_1, \rho_2, \rho_3$ & $8$ & $3$ & Nontrivial abelian \\
+        $\rho_4$ & $6$ & $4$ & Non-abelian (quaternionic) \\
+        \hline
+      \end{tabular}
+    \end{center}
+    Total dimension: $1 + 3 + 4 = 8$. \checkmark
+
+  \section{Bounded-Flux Admissibility Condition}
+
+  \subsection{Setup}
+
+    Let the substrate field $\chi \colon Q_8 \times \mathbb{R} \to \mathbb{R}$ evolve on the
+    graph, subject to the local bounded-flux constraint
+    \begin{equation}
+      \label{eq:flux-bound}
+      |\partial_t \chi_v(t)| \leq c_\chi \qquad \forall v \in Q_8, \; \forall t.
+    \end{equation}
+    Consider a single-mode excitation
+    \begin{equation}
+      \chi_v(t) = a_n \psi_n(v) \cos(\omega_n t),
+    \end{equation}
+    where $\psi_n$ is an eigenmode of $\mathcal{L}$ with eigenvalue $\lambda_n$,
+    normalised in $\ell^2(Q_8)$, and $a_n > 0$ is the mode amplitude.
+    The time derivative at vertex $v$ is
+    \begin{equation}
+      \partial_t \chi_v(t) = -a_n \omega_n \psi_n(v) \sin(\omega_n t).
+    \end{equation}
+    The constraint~\eqref{eq:flux-bound} requires
+    \begin{equation}
+      |\omega_n| \cdot a_n \cdot |\psi_n(v)| \leq c_\chi \qquad \forall v \in Q_8.
+    \end{equation}
+    The binding constraint is at the vertex where $|\psi_n(v)|$ is maximal:
+    \begin{equation}
+      |\omega_n| \cdot a_n \cdot \|\psi_n\|_\infty \leq c_\chi.
+    \end{equation}
+
+  \subsection{Effective Amplitude and Admissibility Envelope}
+
+    \begin{definition}
+      The \emph{effective amplitude} of a mode $(\psi_n, a_n)$ is
+      \begin{equation}
+        A_n := a_n \|\psi_n\|_\infty.
+      \end{equation}
+      A mode is \emph{dynamically admissible} (in the linearised regime) if
+      \begin{equation}
+        \label{eq:admissibility}
+        |\omega_n| \cdot A_n \leq c_\chi.
+      \end{equation}
+    \end{definition}
+
+    In the linearised dispersion approximation, $\omega_n^2 \approx \lambda_n$, so the
+    maximal admissible effective amplitude is
+    \begin{equation}
+      \label{eq:envelope}
+      A_n^{\max} = \frac{c_\chi}{\sqrt{\lambda_n}}.
+    \end{equation}
+    This defines the \emph{admissibility envelope} in the $(\lambda_n, A_n)$ plane.
+
+    \begin{remark}
+      The linearised dispersion $\omega_n^2 = \lambda_n$ is valid for $A_n \ll c_\chi / \sqrt{\lambda_n}$.
+      The non-linear (Born-Infeld) correction modifies this relation near saturation and
+      requires a modal reduction of the DBI action; it is deferred to a separate calculation.
+      The envelope~\eqref{eq:envelope} should therefore be understood as the admissibility
+      boundary in the weakly non-linear regime.
+    \end{remark}
+
+  \section{Main Result}
+
+  \begin{proposition}[Spectral admissibility hierarchy on $Q_8$]
+    \label{prop:main}
+    In the undirected Cayley graph $\Gamma(Q_8, \{\pm i, \pm j, \pm k\})$,
+    under the local bounded-flux constraint~\eqref{eq:flux-bound} and linearised
+    dispersion, the maximal admissible effective amplitude satisfies
+    \begin{equation}
+      A^{\max}_{\rho_4} = \frac{c_\chi}{\sqrt{6}} > \frac{c_\chi}{\sqrt{8}}
+      = A^{\max}_{\rho_k}, \quad k = 1, 2, 3.
+    \end{equation}
+    The non-abelian sector $\rho_4$ occupies a strictly larger admissible region in the
+    space of effective mode amplitudes than any nontrivial abelian sector, by a factor
+    \begin{equation}
+      \frac{A^{\max}_{\rho_4}}{A^{\max}_{\rho_k}} = \sqrt{\frac{8}{6}} = \sqrt{\frac{4}{3}} \approx 1.155.
+    \end{equation}
+  \end{proposition}
+
+  \begin{proof}
+    Direct substitution of $\lambda_{\rho_4} = 6$ and $\lambda_{\rho_k} = 8$
+    into the admissibility envelope~\eqref{eq:envelope}.
+  \end{proof}
+
+  \begin{remark}
+    The trivial sector $\rho_0$ has $\lambda = 0$ and thus formally unbounded $A^{\max}$.
+    It corresponds to the uniform zero mode of the connected graph.
+    In the present analysis it is factored out, since we are interested only in
+    non-trivial excitations above the connected background.
+  \end{remark}
+
+  \section{Interpretation}
+
+  Proposition~\ref{prop:main} establishes that, at fixed substrate capacity $c_\chi$,
+  the non-abelian irreducible sector of the quaternion Cayley graph sustains a larger
+  local effective amplitude before violating the bounded-flux constraint.
+  In the language of the Cosmochrony programme:
+
+  \begin{itemize}
+    \item The admissibility envelope $A_n^{\max} = c_\chi / \sqrt{\lambda_n}$ defines a
+    \emph{geometry of exclusion} in the space of relational modes: modes above the
+    envelope are dynamically inadmissible.
+    \item The non-abelian sector $\rho_4$ lies strictly below this envelope for a larger
+    range of effective amplitudes than the nontrivial abelian sectors
+    $\rho_1, \rho_2, \rho_3$: the bounded-flux constraint is less restrictive for
+    non-abelian modes, enlarging their admissible window by a factor of $\sqrt{4/3}$.
+    \item This provides a minimal admissibility advantage for non-abelian relational
+    modes, without any dynamical postulate beyond the local flux bound.
+  \end{itemize}
+
+  \begin{remark}[Real field and complex eigenmodes]
+    The substrate field $\chi$ is taken real-valued.
+    The natural eigenmodes of the 2D sector are matrix coefficients of $\rho_4$,
+    which are complex-valued.
+    One may either work in $\ell^2(Q_8, \mathbb{C})$ and take real and imaginary parts to
+    obtain real eigenmodes, or directly choose a real basis for each eigenspace.
+    The admissibility bound on $A_n$ is basis-independent (it depends on
+    $\|\psi_n\|_\infty$, which may vary within a degenerate eigenspace); this basis
+    dependence is addressed in Step~1 of Section~\ref{sec:next-steps}.
+  \end{remark}
+
+  This result does not yet establish:
+  \begin{itemize}
+    \item that the non-abelian sector will dominate in a full dynamical simulation;
+    \item the origin of the eigenvalue gap $\lambda_{\rho_4} = 6 < 8 = \lambda_{\rho_k}$
+    from the topological structure of $\Pi$ alone;
+    \item the Born-Infeld correction to the admissibility envelope near saturation.
+  \end{itemize}
+  These remain open and constitute the next steps of the programme.
+
+  \section{Next Steps}
+
+  The natural continuation of this calculation proceeds as follows.
+
+  \paragraph{Step 1: explicit eigenmodes and $\|\psi_n\|_\infty$.}
+    \label{sec:next-steps}
+    Choose an explicit $\ell^2$-normalised basis in each eigenspace using the matrix
+    coefficients of the representations.
+    For each basis vector, compute $\|\psi_n\|_\infty$ explicitly.
+    In degenerate eigenspaces (multiplicity $> 1$, in particular the 2D sector with
+    multiplicity~4), determine the basis dependence of the admissibility bound
+    $a_n^{\max} = c_\chi / (\sqrt{\lambda_n}\,\|\psi_n\|_\infty)$ and identify the
+    basis minimising or maximising $\|\psi_n\|_\infty$ within the eigenspace.
+    Expected values: $\|\psi_n\|_\infty = 1/\sqrt{8}$ for 1D sectors and
+    $\|\psi_n\|_\infty \leq 1/\sqrt{2}$ for the 2D sector (upper bound from
+    $L^2$-normalisation).
+
+  \paragraph{Step 2: modal DBI reduction.}
+    For a single mode $\chi_v(t) = q(t)\psi_n(v)$, substitute into the discrete DBI
+    Lagrangian
+    \begin{equation}
+      L = -c_\chi^2 \sum_v \sqrt{1 - \dot{\chi}_v^2/c_\chi^2}
+      - \tfrac{1}{2} \sum_{v,w} \chi_v \mathcal{L}_{vw} \chi_w,
+    \end{equation}
+    and derive the effective equation for $q(t)$.
+    Extract the amplitude-dependent frequency $\omega_n(a_n)$ via harmonic balance.
+    This yields the corrected admissibility envelope replacing~\eqref{eq:envelope}.
+
+  \paragraph{Step 3: dynamical simulation.}
+    Simulate the full $Q_8$ substrate with the DBI constraint imposed locally at
+    each vertex.
+    Track the modal decomposition $A_n(t) = a_n(t)\|\psi_n\|_\infty$ over time.
+    Test whether modes initialised above the envelope~\eqref{eq:envelope} decay,
+    and whether modes in the non-abelian sector survive longer than those in
+    nontrivial abelian sectors at comparable initial $A_n$.
+
+  \paragraph{Step 4: extension to larger graphs.}
+    Replace $Q_8$ by the Cayley graph of a group approximating $S^3$ more faithfully
+    at large $N$ (e.g.\ the binary icosahedral group $2I$ of order~120, or
+    $\mathrm{SL}(2, \mathbb{F}_p)$ for small primes $p$).
+    Test whether the spectral admissibility hierarchy persists under this refinement.
+    A particularly natural continuation is provided by Cayley graphs in Ramanujan
+    families -- such as the Lubotzky--Phillips--Sarnak construction on
+    $\mathrm{SL}(2, \mathbb{F}_p)$ -- where the spectral gap is asymptotically optimal.
+    This would allow the admissibility hierarchy to be tested in graph sequences with
+    extremal expansion properties, directly connecting bounded-flux filtering to the
+    theory of expander graphs.
+
+\end{document}
