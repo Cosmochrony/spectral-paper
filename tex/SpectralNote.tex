@@ -624,39 +624,210 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
   \end{itemize}
   These remain open and constitute the next steps of the programme.
 
+  \section{Synthesis: Spectral Filtering by Bounded Flux}
+
+  The analysis performed in this note identifies the effective amplitude
+  \[
+    A_n = a_n \|\psi_n\|_\infty
+  \]
+  as the physically relevant variable controlling the saturation of the
+  substrate.
+
+  \subsection{Local Flux Constraint as a Spectral Filter}
+
+    The bounded-flux condition
+    \[
+      |\partial_t \chi_v| \le c_\chi
+    \]
+    acts locally on each vertex of the relational substrate.
+
+    For a single eigenmode
+    \[
+      \chi_v(t) = a_n \psi_n(v) \cos(\omega_n t),
+    \]
+    the constraint becomes
+    \[
+      |\omega_n|\,a_n\,\|\psi_n\|_\infty \le c_\chi.
+    \]
+
+    Introducing the effective amplitude
+    \[
+      A_n = a_n \|\psi_n\|_\infty
+    \]
+    yields the admissibility envelope
+    \[
+      A_n^{\max} = \frac{c_\chi}{\sqrt{\lambda_n}}.
+    \]
+
+    A key consequence is that the localization of the mode does not alter the
+    admissibility bound itself.
+    Localization only determines how the raw amplitude $a_n$ translates into
+    a local flux impact on the substrate.
+    The selection mechanism is therefore governed purely by the spectral
+    eigenvalue $\lambda_n$.
+
+  \subsection{DBI Softening as Dynamical Spectral Filtering}
+
+    In the weakly non-linear regime the discrete Dirac--Born--Infeld dynamics
+    produces an amplitude-dependent frequency
+
+    \[
+      \omega_n^2(A_n)
+      \approx
+      \lambda_n
+      \left(
+        1 -
+        \frac{3\lambda_n A_n^2}{8c_\chi^2}
+      \right).
+    \]
+
+    This simplified expression follows from the identity
+
+    \[
+      \frac{\kappa_n}{\|\psi_n\|_\infty^2}=1
+    \]
+
+    which holds for all non-trivial sectors of the $Q_8$ Cayley graph.
+
+    The non-linear correction therefore depends only on the Laplacian
+    eigenvalue.
+    Modes with larger $\lambda_n$ undergo stronger softening as the
+    effective amplitude increases.
+
+    The relational substrate thus behaves as a dynamical low-pass spectral
+    filter.
+
+  \subsection{Conceptual Interpretation}
+
+    The mechanism uncovered in this toy model can be summarized as
+
+    \[
+      \text{sub\-strate capacity}
+      \;\rightarrow\;
+      \text{spectral admissibility}
+      \;\rightarrow\;
+      \text{nonlinear filtering}
+      \;\rightarrow\;
+      \text{surviving sectors}.
+    \]
+
+    On the $Q_8$ Cayley graph the smallest non-trivial eigenvalue
+
+    \[
+      \lambda_{\rho_4}=6
+    \]
+
+    belongs to the quaternionic non-abelian sector.
+    This sector therefore possesses the largest admissible amplitude window
+    and is the least affected by DBI softening.
+
+    In this sense, physical structures correspond to the spectral
+    components that remain dynamically admissible under the bounded
+    capacity of the relational substrate.
+
+    Matter may thus be interpreted as the dynamical residue of the spectral
+    filtering imposed by the substrate.
+
+  \subsection{Beyond the $Q_8$ Toy Model}
+
+    The identity
+    \[
+      \frac{\kappa_n}{\|\psi_n\|_\infty^2}=1
+    \]
+    is a special feature of the small and highly symmetric $Q_8$ graph.
+
+    On larger graphs this ratio will generally depend on the structure of
+    the eigenmodes.
+    The non-linear DBI correction may therefore amplify the spectral
+    selection mechanism rather than acting uniformly across sectors.
+
+    This motivates extending the analysis to larger Cayley graphs,
+    including Ramanujan families such as the Lubotzky--Phillips--Sarnak
+    constructions on $\mathrm{SL}(2,\mathbb{F}_p)$.
+
+  \subsection{Next Step: Dynamical Survival}
+
+    The next stage of the programme is to test this mechanism dynamically.
+
+    The proposed protocol is to initialise the substrate with a mixture of
+    spectral modes close to the admissibility envelope and evolve the
+    system under the discrete DBI dynamics.
+
+    If spectral cascades preferentially accumulate in the lowest
+    admissible sector, this would demonstrate a genuine dynamical
+    selection of symmetry sectors driven by the bounded relational
+    capacity of the substrate.
+
   \section{Next Steps}
   \label{sec:next-steps}
 
-  The natural continuation of this calculation proceeds as follows.
+  The present note completes the first two stages of the spectral admissibility
+  programme on the $Q_8$ Cayley graph.
 
-  \paragraph{Step 2: non-perturbative modal DBI reduction.}
-    The weakly non-linear reduction has now been obtained explicitly in
-    Section~\ref{subsec:weakly-nonlinear-dbi}.
-    The next task is to go beyond the expansion in $c_\chi^{-2}$ and derive the
-    full amplitude-dependent period from the exact one-mode Lagrangian
-    \eqref{eq:exact-mode-lagrangian}, for instance through elliptic-integral methods
-    or direct numerical quadrature.
-    This will yield the non-perturbative admissibility envelope replacing the
-    linear boundary~\eqref{eq:envelope}.
+  \paragraph{Step 1: spectral admissibility.}
+    The bounded-flux constraint
+    $|\partial_t \chi_v| \le c_\chi$
+    selects admissible modes through the effective amplitude
+    $A_n = a_n \|\psi_n\|_\infty$,
+    leading to the envelope
+    \[
+      A_n^{\max} = \frac{c_\chi}{\sqrt{\lambda_n}}.
+    \]
+    On $Q_8$, this produces a strict hierarchy in which the quaternionic
+    non-abelian sector $\rho_4$ admits the largest effective amplitude window.
 
-  \paragraph{Step 3: dynamical simulation.}
-    Simulate the full $Q_8$ substrate with the DBI constraint imposed locally at
-    each vertex.
-    Track the modal decomposition $A_n(t) = a_n(t)\|\psi_n\|_\infty$ over time.
-    Test whether modes initialised above the envelope~\eqref{eq:envelope} decay,
-    and whether modes in the non-abelian sector survive longer than those in
-    nontrivial abelian sectors at comparable initial $A_n$.
+  \paragraph{Step 2: weakly non-linear DBI reduction.}
+    The discrete Dirac--Born--Infeld dynamics has been reduced to a single-mode
+    effective equation, yielding the amplitude-dependent frequency
+    \[
+      \omega_n^2(A_n)
+      \approx
+      \lambda_n
+      \left(
+        1 - \frac{3\lambda_n A_n^2}{8c_\chi^2}
+      \right).
+    \]
+    On the $Q_8$ Cayley graph the ratio
+    $\kappa_n/\|\psi_n\|_\infty^2 = 1$
+    for all non-trivial sectors, implying that the non-linear softening depends
+    only on the Laplacian eigenvalue.
+    The spectral hierarchy obtained in Step~1 therefore remains stable under the
+    leading DBI correction.
 
-  \paragraph{Step 4: extension to larger graphs.}
-    Replace $Q_8$ by the Cayley graph of a group approximating $S^3$ more faithfully
-    at large $N$ (e.g.\ the binary icosahedral group $2I$ of order~120, or
-    $\mathrm{SL}(2, \mathbb{F}_p)$ for small primes $p$).
-    Test whether the spectral admissibility hierarchy persists under this refinement.
-    A particularly natural continuation is provided by Cayley graphs in Ramanujan
-    families -- such as the Lubotzky--Phillips--Sarnak construction on
-    $\mathrm{SL}(2, \mathbb{F}_p)$ -- where the spectral gap is asymptotically optimal.
-    This would allow the admissibility hierarchy to be tested in graph sequences with
-    extremal expansion properties, directly connecting bounded-flux filtering to the
-    theory of expander graphs.
+  \paragraph{Step 3: non-perturbative DBI envelope.}
+    The next task is to move beyond the perturbative expansion in $c_\chi^{-2}$
+    and derive the full amplitude-dependent period from the exact one-mode
+    Lagrangian~\eqref{eq:exact-mode-lagrangian}.
+    This can be obtained either through elliptic-integral methods or direct
+    numerical quadrature.
+    The resulting period--amplitude relation will determine the exact
+    non-perturbative admissibility envelope replacing the linear boundary
+    \eqref{eq:envelope}.
+
+  \paragraph{Step 4: dynamical survival of spectral sectors.}
+    The subsequent step is to simulate the full $Q_8$ substrate with the DBI
+    constraint imposed locally at each vertex.
+    The modal decomposition
+    \[
+      A_n(t) = a_n(t)\|\psi_n\|_\infty
+    \]
+    can then be tracked dynamically.
+    The key question is whether spectral cascades concentrate energy in the
+    sector with the largest admissible window, namely the non-abelian
+    $\rho_4$ sector.
+
+  \paragraph{Step 5: extension to larger graphs.}
+    Finally, the toy model should be extended to Cayley graphs of larger
+    groups approximating $S^3$ more faithfully.
+    Natural candidates include the binary icosahedral group $2I$ (order~120)
+    and families of Cayley graphs on $\mathrm{SL}(2,\mathbb{F}_p)$.
+
+    In particular, Ramanujan graph constructions such as the
+    Lubotzky--Phillips--Sarnak graphs provide sequences with optimal spectral
+    gap properties.
+    Studying bounded-flux filtering on such graphs would test whether the
+    spectral admissibility hierarchy persists in large expanders and may
+    reveal a deeper connection between substrate capacity constraints and
+    the spectral theory of expander graphs.
 
 \end{document}
