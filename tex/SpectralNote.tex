@@ -529,6 +529,129 @@ A Minimal Toy Model for Bounded-Flux Mode Selection}
     by the weakly non-linear DBI correction, solely because $\lambda_{\rho_4}=6$
     is smaller than $\lambda_{\rho_k}=8$.
 
+  \subsection{Non-perturbative DBI envelope}
+    \label{subsec:nonperturbative-dbi}
+
+    The weakly non-linear reduction derived above provides the first correction
+    to the dispersion relation.  However, the Dirac--Born--Infeld dynamics
+    possesses an exact single-mode description that allows the admissibility
+    boundary to be determined non-perturbatively.
+
+    Consider again a single eigenmode
+    \[
+      \chi_v(t)=q(t)\psi_n(v)
+    \]
+    with $\mathcal{L}\psi_n=\lambda_n\psi_n$.
+
+    Substituting into the discrete DBI Lagrangian yields the exact
+    one-mode Lagrangian
+    \begin{equation}
+      L(q,\dot q)
+      =
+      -c_\chi^2
+      \sum_{v\in Q_8}
+      \sqrt{1-\frac{\dot q^2\psi_n(v)^2}{c_\chi^2}}
+      -
+      \frac12\lambda_n q^2 .
+      \label{eq:exact-mode-lagrangian}
+    \end{equation}
+
+    \subsubsection*{Energy conservation}
+
+      Since the Lagrangian is time independent, the corresponding Hamiltonian
+      is conserved.  One obtains
+      \begin{equation}
+        E
+        =
+        c_\chi^2
+        \sum_{v\in Q_8}
+        \frac{1}{\sqrt{1-\frac{\dot q^2\psi_n(v)^2}{c_\chi^2}}}
+        +
+        \frac12\lambda_n q^2 .
+      \end{equation}
+
+      At turning points $\dot q=0$ the energy reduces to
+      \begin{equation}
+        E
+        =
+        8c_\chi^2+\frac12\lambda_n A_n^2 ,
+      \end{equation}
+      where $A_n$ denotes the oscillation amplitude.
+
+    \subsubsection*{Velocity bound}
+
+      The DBI square root imposes the constraint
+      \[
+        |\dot q|\;|\psi_n(v)|<c_\chi
+        \qquad\forall v .
+      \]
+
+      The most restrictive condition is obtained at the vertex where
+      $|\psi_n|$ is maximal, yielding
+
+      \begin{equation}
+        |\dot q| < \frac{c_\chi}{\|\psi_n\|_\infty}.
+        \label{eq:dbi-speed-bound}
+      \end{equation}
+
+      Thus the modal coordinate $q(t)$ obeys a relativistic-type speed limit.
+
+    \subsubsection*{Period--amplitude relation}
+
+      Combining the energy conservation law with
+      \eqref{eq:dbi-speed-bound} gives
+
+      \[
+        \dot q
+        =
+        \frac{c_\chi}{\|\psi_n\|_\infty}
+        \sqrt{
+          1-
+          \left(
+            \frac{\lambda_n q^2}{\lambda_n A_n^2}
+          \right)
+        }.
+      \]
+
+      The oscillation period therefore becomes
+
+      \begin{equation}
+        T(A_n)
+        =
+        4
+        \int_0^{A_n}
+        \frac{dq}{\dot q}.
+      \end{equation}
+
+      Near the saturation limit
+      \[
+        A_n \rightarrow A_n^{\max},
+      \]
+      the velocity approaches the DBI bound and the integral develops a
+      logarithmic divergence.
+
+      Consequently the oscillation frequency behaves as
+
+      \begin{equation}
+        \omega_n(A_n)\rightarrow0
+        \qquad
+        (A_n\rightarrow A_n^{\max}).
+      \end{equation}
+
+    \subsubsection*{Interpretation}
+
+      The non-perturbative DBI dynamics therefore produces a dynamical
+      freezing of modes approaching the saturation boundary.
+      Modes close to the admissibility envelope oscillate increasingly
+      slowly, effectively trapping energy near the lowest admissible
+      spectral sectors.
+
+      This mechanism strengthens the spectral filtering effect identified
+      in the linear analysis.
+      Modes with larger eigenvalues $\lambda_n$ approach the freezing regime
+      at smaller effective amplitudes, reinforcing the advantage of the
+      lowest spectral sector.
+
   \section{Main Result}
 
   \begin{proposition}[Spectral admissibility hierarchy on $Q_8$]
