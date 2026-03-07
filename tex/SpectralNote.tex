@@ -19,44 +19,44 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
   \maketitle
 
   \begin{abstract}
-      We establish the first analytically tractable instance of the spectral admissibility
-      programme outlined in the Cosmochrony framework.
-      On the undirected Cayley graph of the quaternion group $Q_8$, with generators
-      $S = \{\pm i, \pm j, \pm k\}$, the local bounded-flux constraint
-      $|\partial_t \chi_v| \leq c_\chi$ induces a hierarchy of maximal admissible
-      effective amplitudes across irreducible spectral sectors.
+    We establish the first analytically tractable instance of the spectral admissibility
+    programme outlined in the Cosmochrony framework.
+    On the undirected Cayley graph of the quaternion group $Q_8$, with generators
+    $S = \{\pm i, \pm j, \pm k\}$, the local bounded-flux constraint
+    $|\partial_t \chi_v| \leq c_\chi$ induces a hierarchy of maximal admissible
+    effective amplitudes across irreducible spectral sectors.
 
-      In the linearised dispersion regime, the non-abelian irreducible sector
-      admits a maximal effective amplitude larger than the nontrivial abelian sectors
-      by a factor of $\sqrt{4/3} \approx 1.155$.
-      Resolving explicitly the basis dependence in the degenerate $\rho_4$ eigenspace,
-      we show that this advantage holds for the physically relevant effective amplitude
-      $A_n = a_n \|\psi_n\|_\infty$, but not for the raw amplitude $a_n$.
+    In the linearised dispersion regime, the non-abelian irreducible sector
+    admits a maximal effective amplitude larger than the nontrivial abelian sectors
+    by a factor of $\sqrt{4/3} \approx 1.155$.
+    Resolving explicitly the basis dependence in the degenerate $\rho_4$ eigenspace,
+    we show that this advantage holds for the physically relevant effective amplitude
+    $A_n = a_n \|\psi_n\|_\infty$, but not for the raw amplitude $a_n$.
 
-      We then perform the weakly non-linear modal reduction of the discrete
-      Dirac--Born--Infeld (DBI) Lagrangian and derive the first amplitude-dependent
-      correction to the dispersion relation, governed by the quartic shape factor
-      $\kappa_n = \sum_v \psi_n(v)^4$.
-      When expressed in terms of the effective amplitude, this correction depends
-      only on the Laplacian eigenvalue $\lambda_n$, leaving the spectral hierarchy
-      unchanged.
+    We then perform the weakly non-linear modal reduction of the discrete
+    Dirac--Born--Infeld (DBI) Lagrangian and derive the first amplitude-dependent
+    correction to the dispersion relation, governed by the quartic shape factor
+    $\kappa_n = \sum_v \psi_n(v)^4$.
+    When expressed in terms of the effective amplitude, this correction depends
+    only on the Laplacian eigenvalue $\lambda_n$, leaving the spectral hierarchy
+    unchanged.
 
-      Finally, solving the one-mode DBI dynamics exactly on the $Q_8$ Cayley graph,
-      we show that the admissibility envelope
-      \[
-        A_n^{\max} = \frac{c_\chi}{\sqrt{\lambda_n}}
-      \]
-      coincides with the exact saturation boundary of the DBI dynamics.
-      The spectral hierarchy therefore remains structurally stable beyond the
-      perturbative regime.
+    Finally, solving the one-mode DBI dynamics exactly on the $Q_8$ Cayley graph,
+    we show that the admissibility envelope
+    \[
+      A_n^{\max} = \frac{c_\chi}{\sqrt{\lambda_n}}
+    \]
+    coincides with the exact saturation boundary of the DBI dynamics.
+    The spectral hierarchy therefore remains structurally stable beyond the
+    perturbative regime.
 
-      This provides a minimal explicit demonstration that bounded substrate capacity
-      can favour non-abelian relational modes purely through spectral admissibility,
-      without invoking additional dynamical selection principles.
+    This provides a minimal explicit demonstration that bounded substrate capacity
+    can favour non-abelian relational modes purely through spectral admissibility,
+    without invoking additional dynamical selection principles.
 
-      More broadly, it suggests that non-abelian symmetry sectors may emerge
-      as the dynamically most resilient components of the relational spectrum
-      under bounded-flux constraints.
+    More broadly, it suggests that non-abelian symmetry sectors may emerge
+    as the dynamically most resilient components of the relational spectrum
+    under bounded-flux constraints.
   \end{abstract}
 
   \section{Setting and Motivation}
@@ -132,13 +132,13 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
           $\rho_2$           & 1         & $-1$      & $1$       & $-1$      \\
           $\rho_3$           & 1         & $-1$      & $-1$      & $1$       \\
           $\rho_4$ (quaternionic) & 2 & $\begin{pmatrix}
-                                               i&0\\0&-i
+                                           i&0\\0&-i
           \end{pmatrix}$
           & $\begin{pmatrix}
-                   0&1\\-1&0
+               0&1\\-1&0
           \end{pmatrix}$
           & $\begin{pmatrix}
-                   0&i\\i&0
+               0&i\\i&0
           \end{pmatrix}$ \\
           \hline
         \end{tabular}
@@ -179,7 +179,7 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
         $\rho_4(-k)$ each have trace zero: for instance,
         $\mathrm{tr}(\rho_4(i)) =
         \mathrm{tr}\bigl(\begin{smallmatrix}
-                               i&0\\0&-i
+                           i&0\\0&-i
         \end{smallmatrix}\bigr) = 0$,
         and $\mathrm{tr}(\rho_4(-i)) = 0$; similarly for $j$ and $k$.
         Thus $\sum_{s \in S} \chi_{\rho_4}(s) = 0$ and
@@ -993,6 +993,308 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
     selection of symmetry sectors driven by the bounded relational
     capacity of the substrate.
 
+    Sections~2–7 established the spectral admissibility hierarchy on the $Q_8$ Cayley graph.
+    We now identify the structural origin of this hierarchy and its
+    possible connection with the $\mathrm{SU}(2)$ geometry underlying spin.
+
+    % ============================================================
+% Spectral Origin of Non-Abelian Resilience
+%              and the SU(2) Emergence Thread
+% ============================================================
+% This section extends the completed Steps 1–3 of the present note.
+% It provides the algebraic explanation of the ratio sqrt(4/3),
+% identifies the connection with the S^3 / SU(2) spectral geometry,
+% and outlines the programme toward SU(2) emergence via bounded flux.
+
+  \section{Structural Origin of the Admissibility Hierarchy and the SU(2) Emergence Thread}
+  \label{sec:step4}
+
+  \subsection{The ratio $\sqrt{4/3}$ is not accidental}
+    \label{sec:step4-origin}
+
+    The admissibility hierarchy established in Proposition~2,
+    \begin{equation}
+      \frac{A^{\max}_{\rho_4}}{A^{\max}_{\rho_k}}
+      = \sqrt{\frac{8}{6}} = \sqrt{\frac{4}{3}} \approx 1.155,
+      \label{eq:ratio}
+    \end{equation}
+    has a precise internal origin in the $Q_8$ Cayley spectrum.
+    It originates entirely from the Laplacian eigenvalues $\lambda_{\rho_4} = 6$ and
+    $\lambda_{\rho_k} = 8$ ($k = 1,2,3$).
+    The ratio $8/6$ is in turn fixed by the adjacency eigenvalues $\mu_{\rho_k} = -2$
+    and $\mu_{\rho_4} = 0$ through $\lambda = d - \mu$ with $d = 6$.
+
+    The central observation is that $\mu_{\rho_4} = 0$: the quaternionic sector
+    lies \emph{exactly at the centre} of the adjacency spectrum
+    $\mu \in [-d, d] = [-6, 6]$.
+    This is a structural consequence of the character theory of $Q_8$,
+    not a numerical coincidence.
+
+  \subsection{Why $\mu_{\rho_4} = 0$: character-theoretic argument}
+    \label{sec:step4-character}
+
+    For any Cayley graph on a finite group $G$ with symmetric generating set $S$,
+    Schur's lemma gives the adjacency eigenvalue in the irreducible sector $\rho$ as
+    \begin{equation}
+      \mu_\rho = \frac{1}{\dim \rho} \sum_{s \in S} \chi_\rho(s).
+      \label{eq:mu-character}
+    \end{equation}
+    For the quaternionic representation $\rho_4$ of $Q_8$, the generating set
+    $S = \{\pm i, \pm j, \pm k\}$ (with $|S| = 6$, fixing the regularity degree
+    $d = 6$) maps to the matrices
+    \begin{equation}
+      \rho_4({\pm i}) = \pm\begin{pmatrix}
+                             i & 0 \\ 0 & -i
+      \end{pmatrix},
+      \quad
+      \rho_4({\pm j}) = \pm\begin{pmatrix}
+                             0 & 1 \\ -1 & 0
+      \end{pmatrix},
+      \quad
+      \rho_4({\pm k}) = \pm\begin{pmatrix}
+                             0 & i \\ i & 0
+      \end{pmatrix}.
+    \end{equation}
+    All six generator matrices are traceless: they are proportional to the Pauli
+    matrices $\sigma_x, \sigma_y, \sigma_z$, which satisfy
+    $\mathrm{tr}(\sigma_\alpha) = 0$.
+    Therefore
+    \begin{equation}
+      \chi_{\rho_4}(s) = \mathrm{tr}(\rho_4(s)) = 0
+      \qquad \forall\, s \in S,
+      \label{eq:vanishing-character}
+    \end{equation}
+    and the character sum in Eq.~\eqref{eq:mu-character} vanishes identically,
+    giving $\mu_{\rho_4} = 0$.
+
+    This is a structural property: the generators of $Q_8$ map to traceless matrices
+    under $\rho_4$ because $Q_8$ is generated by the unit quaternions $i, j, k$,
+    whose matrix images are exactly the imaginary units of $\mathrm{SU}(2)$.
+    The tracelessness is not a special feature of the graph but of the embedding
+    $Q_8 \hookrightarrow \mathrm{SU}(2)$.
+
+    \begin{quote}
+      The ratio $\sqrt{4/3}$ appearing in the admissibility hierarchy is not an
+      accidental numerical feature of the toy model.
+      It originates from the character structure of the quaternionic
+      representation of $Q_8$, for which the adjacency eigenvalue satisfies
+      $\mu_{\rho_4} = 0$.
+      The non-abelian sector occupies the central position of the adjacency
+      spectrum, resulting in the smallest non-trivial Laplacian eigenvalue and
+      hence the largest admissible amplitude window.
+    \end{quote}
+
+  \subsection{$Q_8$ as the minimal discrete encoding of spin}
+    \label{sec:step4-spin}
+
+    The connection between $Q_8$ and spin is not coincidental but topological.
+    The rotation group $SO(3)$ has fundamental group
+    $\pi_1(SO(3)) = \mathbb{Z}_2$,
+    meaning that a rotation by $2\pi$ cannot be continuously contracted to the
+    identity: one must rotate by $4\pi$ to return topologically to the
+    starting point.
+    This is the origin of half-integer spin.
+
+    The simply-connected double cover of $SO(3)$ is $\mathrm{SU}(2)$,
+    which is topologically the three-sphere $S^3$:
+    \begin{equation}
+      \mathrm{SU}(2) \cong \big\{a_0 I + i a_1 \sigma_x + i a_2 \sigma_y
+      + i a_3 \sigma_z \;:\; a_0^2 + a_1^2 + a_2^2 + a_3^2 = 1\big\}
+      \cong S^3.
+      \label{eq:SU2-S3}
+    \end{equation}
+    The unit quaternions $\{q = a_0 + a_1 i + a_2 j + a_3 k : |q| = 1\}$ are
+    in bijection with $\mathrm{SU}(2)$ via the identification
+    $i \leftrightarrow i\sigma_x$, $j \leftrightarrow i\sigma_y$,
+    $k \leftrightarrow i\sigma_z$.
+
+    The group $Q_8 = \{\pm 1, \pm i, \pm j, \pm k\}$ is the smallest
+    non-abelian subgroup of the unit quaternions, hence the smallest
+    non-abelian subgroup of $\mathrm{SU}(2)$.
+    Its elements have the following interpretation as spin rotations:
+    $-1$ is a $2\pi$-rotation (the spinorial sign flip);
+    $\pm i$, $\pm j$, $\pm k$ are $\pi$-rotations around the three coordinate
+    axes.
+    $Q_8$ therefore captures the minimal non-abelian subgroup structure
+    compatible with the $\mathrm{SU}(2)$ spin algebra:
+    it contains both the $2\pi$ phase ($-1$) and the three independent
+    rotation axes ($\pm i$, $\pm j$, $\pm k$).
+
+    The matrices $i\sigma_x$, $i\sigma_y$, and $i\sigma_z$ generate the Lie algebra
+    $\mathfrak{su}(2)$ under commutation, so
+    \begin{equation}
+      Q_8
+      \xrightarrow{\;\rho_4\;}
+      \text{Pauli algebra}
+      \;\longrightarrow\;
+      \mathfrak{su}(2)
+      \;\longrightarrow\;
+      \mathrm{SU}(2)
+      \;\longrightarrow\;
+      \text{spin}.
+    \end{equation}
+    The spectral result of this note---that bounded relational flux favours
+    the $\rho_4$ sector---therefore says that bounded substrate capacity
+    preferentially sustains precisely those modes encoding the spin structure
+    of $\mathrm{SU}(2)$.
+
+  \subsection{Connection with the $S^3$ spectral invariant $\lambda_2/\lambda_1 = 8/3$}
+    \label{sec:step4-S3}
+
+    On the three-sphere $S^3$, the Laplacian eigenvalues are
+    $\lambda_\ell = \ell(\ell + 2)$ with multiplicity $(\ell+1)^2$, giving
+    \begin{equation}
+      \ell = 0:\;\lambda_0 = 0, \qquad
+      \ell = 1:\;\lambda_1 = 3, \qquad
+      \ell = 2:\;\lambda_2 = 8, \qquad
+      \ell = 3:\;\lambda_3 = 15.
+    \end{equation}
+    The fundamental spectral ratio of $S^3$ is
+    \begin{equation}
+      \frac{\lambda_2}{\lambda_1}\bigg|_{S^3} = \frac{8}{3}.
+      \label{eq:S3-ratio}
+    \end{equation}
+    This ratio is the primary spectral invariant used elsewhere in the
+    Cosmochrony programme to characterise the $S^3$ geometry from the
+    relational spectrum~\cite{Spectral121}.
+
+    The ratio from the present $Q_8$ calculation,
+    \begin{equation}
+      \frac{\lambda_{\rho_k}}{\lambda_{\rho_4}} = \frac{8}{6} = \frac{4}{3},
+    \end{equation}
+    is related to the $S^3$ ratio by
+    \begin{equation}
+      \frac{\lambda_{\rho_k}}{\lambda_{\rho_4}}
+      = \frac{1}{2} \cdot \frac{\lambda_2}{\lambda_1}\bigg|_{S^3}.
+      \label{eq:ratio-relation}
+    \end{equation}
+    This numerical relation suggests a possible connection between the coarse
+    spectral structure of the $Q_8$ Cayley graph and the continuum spectrum
+    of $S^3$.
+    At present this relation should be regarded as heuristic rather than as a
+    derived theorem.
+    The factor $1/2$ may reflect the extreme coarseness of the $Q_8$
+    approximation of $S^3$, which has only 8 vertices.
+    Testing whether this factor approaches unity for larger subgroups such as
+    $2I$ is an open question.
+
+    Two independent computations in the Cosmochrony programme nonetheless
+    point toward the same $S^3$ geometry: the spectral reconstruction ratio
+    $8/3$ from~\cite{Spectral121}, and the admissibility ratio $4/3$ derived
+    here.
+
+  \subsection{The SU(2) emergence programme}
+    \label{sec:step4-programme}
+
+    The $Q_8$ result motivates a systematic programme toward $\mathrm{SU}(2)$
+    emergence via spectral admissibility.
+    The key chain of inclusions is
+    \begin{equation}
+      Q_8 \;\subset\; 2I \;\subset\; \mathrm{SU}(2),
+      \label{eq:inclusion-chain}
+    \end{equation}
+    where $2I$ is the binary icosahedral group of order 120, the
+    \emph{largest} finite subgroup of $\mathrm{SU}(2)$, which is a double cover
+    of $A_5 \cong \mathrm{PSL}(2, \mathbb{F}_5)$.
+
+    The irreducible representations of $2I$ have dimensions
+    $1, 2, 2', 3, 3', 4, 4', 5, 6$,
+    which reproduce the low-spin content of $\mathrm{SU}(2)$:
+    spin-$1/2$ (dim~2), spin-$1$ (dim~3), spin-$3/2$ (dim~4),
+    spin-$2$ (dim~5), spin-$5/2$ (dim~6).
+    The admissibility envelope $A^{\max}_n = c_\chi/\sqrt{\lambda_n}$ applied
+    to Cayley graphs of $2I$ should therefore produce a \emph{low-spin survival}
+    hierarchy, in which lower-spin representations---carrying smaller Laplacian
+    eigenvalues---are favoured.
+
+    \begin{remark}[Heuristic status of low-spin survival]
+  The statement that lower-spin representations correspond to smaller
+  Laplacian eigenvalues on $\mathrm{Cay}(2I, S)$ is a structural hypothesis,
+  not a theorem.
+  It holds for $Q_8$ and is consistent with the general pattern that
+  lower-dimensional representations tend to sit lower in the Cayley graph
+  spectrum for groups approximating compact Lie groups, but it requires
+  explicit verification on $2I$.
+    \end{remark}
+
+    The asymptotic step is provided by the Ramanujan graphs of
+    Lubotzky, Phillips, and Sarnak~\cite{LPS1988}, which are Cayley graphs of
+    $\mathrm{SL}(2, \mathbb{F}_p)$ designed to approximate $S^3$ with
+    near-optimal spectral gap.
+    These graphs have the property that all non-trivial eigenvalues satisfy
+    $|\mu| \leq 2\sqrt{d-1}$ (the Alon--Boppana bound), making them
+    optimal expanders.
+    The bounded-flux admissibility mechanism studied here may therefore be
+    connected to expander graph theory via the spectral gap.
+
+    The full programme is:
+    \begin{equation}
+      Q_8
+      \;\xrightarrow{\;\text{Step 4}\;}\;
+      2I
+      \;\xrightarrow{\;\text{Step 5}\;}\;
+      \mathrm{SL}(2, \mathbb{F}_p)
+      \;\xrightarrow{\;p \to \infty\;}\;
+      \mathrm{SU}(2).
+    \end{equation}
+    At each stage the prediction is:
+    \begin{equation}
+      \text{bounded flux}
+      \;\Longrightarrow\;
+      \text{spectral hierarchy}
+      \;\Longrightarrow\;
+      \text{low-spin survival}
+      \;\Longrightarrow\;
+      \text{SU(2) emergence}.
+    \end{equation}
+
+  \subsection{Physical interpretation}
+    \label{sec:step4-physics}
+
+    The mechanism uncovered in this toy model has a precise physical reading
+    within the Cosmochrony framework.
+
+    The non-abelian quaternionic sector has zero net correlation with the
+    generators of the graph ($\mu_{\rho_4} = 0$): it neither oscillates
+    \emph{with} the graph structure nor against it.
+    It is spectrally neutral with respect to the dynamics.
+    This neutrality is the source of its resilience: the bounded-flux
+    constraint imposes less penalty on modes that do not couple to the
+    relational connectivity.
+
+    By contrast, the abelian sectors have $\mu_{\rho_k} = -2$, meaning that they
+    are anti-correlated with the generators.
+    They therefore pay a higher spectral price under bounded-flux filtering.
+
+    The mechanism is therefore not gauge symmetry, not dynamical postulate,
+    and not fine-tuning.
+    It is a purely structural consequence of the embedding
+    $Q_8 \hookrightarrow \mathrm{SU}(2)$ and the bounded capacity of the
+    relational substrate:
+    \begin{equation}
+      \text{bounded relational capacity}
+      \;\Longrightarrow\;
+      \text{non-abelian sector resilience}.
+    \end{equation}
+
+    If this mechanism persists along the chain~\eqref{eq:inclusion-chain},
+    the gauge symmetry group $\mathrm{SU}(2)$ would not need to be postulated.
+    It would emerge as the limiting residue of spectral filtering under
+    bounded substrate capacity.
+
+    \bigskip
+    \noindent\textbf{Summary of Step~4.}
+    The $Q_8$ admissibility hierarchy is explained by the vanishing character
+    sum $\sum_{s \in S} \chi_{\rho_4}(s) = 0$, itself a consequence of the
+    tracelessness of the Pauli matrices.
+    The resulting ratio $\sqrt{4/3}$ is numerically related by a factor $1/2$
+    to the fundamental spectral ratio $8/3$ of $S^3$; this relation is
+    heuristic at present but both quantities point toward the same
+    $\mathrm{SU}(2) \cong S^3$ geometry.
+    The $Q_8$ result is therefore not merely a toy model curiosity: it is
+    the first discrete instance of a potential mechanism by which bounded
+    relational capacity selects $\mathrm{SU}(2)$-type symmetry sectors.
+
   \section{Next Steps}
   \label{sec:next-steps}
 
@@ -1064,5 +1366,8 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
     spectral admissibility hierarchy persists in large expanders and may
     reveal a deeper connection between substrate capacity constraints and
     the spectral theory of expander graphs.
+
+    \bibliographystyle{ieeetr}
+    \bibliography{refs}
 
 \end{document}
