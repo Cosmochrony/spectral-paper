@@ -55,6 +55,18 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
     can favour non-abelian relational modes purely through spectral admissibility,
     without invoking additional dynamical selection principles.
 
+    We further extend the analysis to the binary icosahedral group $2I$,
+    the largest finite subgroup of $\mathrm{SU}(2)$.
+    Using the order-10 generating classes, the same admissibility envelope
+    produces a four-level spectral hierarchy across the spin sectors of $2I$,
+    with an admissibility contrast $\sqrt{14/9}$ between the most and least
+    admissible non-trivial sectors.
+    This provides the second explicit instance of the spectral admissibility
+    programme along the chain
+    \[
+      Q_8 \subset 2I \subset \mathrm{SU}(2).
+    \]
+
     More broadly, it suggests that non-abelian symmetry sectors may emerge
     as the dynamically most resilient components of the relational spectrum
     under bounded-flux constraints.
@@ -128,12 +140,12 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
       \begin{center}
         \begin{tabular}{lcccc}
           \hline
-          Label & Dimension & $\rho(i)$ & $\rho(j)$ & $\rho(k)$ \\
+          Label              & Dimension & $\rho(i)$ & $\rho(j)$ & $\rho(k)$ \\
           \hline
-          $\rho_0$ (trivial) & 1 & $1$ & $1$ & $1$ \\
-          $\rho_1$ & 1 & $1$ & $-1$ & $-1$ \\
-          $\rho_2$ & 1 & $-1$ & $1$ & $-1$ \\
-          $\rho_3$ & 1 & $-1$ & $-1$ & $1$ \\
+          $\rho_0$ (trivial) & 1         & $1$       & $1$       & $1$       \\
+          $\rho_1$           & 1         & $1$       & $-1$      & $-1$      \\
+          $\rho_2$           & 1         & $-1$      & $1$       & $-1$      \\
+          $\rho_3$           & 1         & $-1$      & $-1$      & $1$       \\
           $\rho_4$ (quaternionic) & 2 &
           $\begin{pmatrix}
              i&0\\0&-i
@@ -194,11 +206,11 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
     \begin{center}
       \begin{tabular}{lccc}
         \hline
-        Sector & $\lambda_n$ & Multiplicity & Type \\
+        Sector                   & $\lambda_n$ & Multiplicity & Type                     \\
         \hline
-        $\rho_0$ & $0$ & $1$ & Trivial zero mode \\
-        $\rho_1, \rho_2, \rho_3$ & $8$ & $3$ & Nontrivial abelian \\
-        $\rho_4$ & $6$ & $4$ & Non-abelian quaternionic \\
+        $\rho_0$                 & $0$         & $1$          & Trivial zero mode        \\
+        $\rho_1, \rho_2, \rho_3$ & $8$         & $3$          & Nontrivial abelian       \\
+        $\rho_4$                 & $6$         & $4$          & Non-abelian quaternionic \\
         \hline
       \end{tabular}
     \end{center}
@@ -1127,17 +1139,17 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
     \begin{center}
       \begin{tabular}{llcl}
         \hline
-        Class & Order & Size & Notation \\
+        Class & Order & Size & Notation                      \\
         \hline
-        $1a$  & 1  &  1 & identity \\
-        $2a$  & 2  &  1 & central element $-\mathbf{1}$ \\
-        $3a$  & 3  & 20 & \\
-        $4a$  & 4  & 30 & \\
-        $5a$  & 5  & 12 & \\
-        $5b$  & 5  & 12 & algebraic conjugate of $5a$ \\
-        $6a$  & 6  & 20 & \\
-        $10a$ & 10 & 12 & \\
-        $10b$ & 10 & 12 & algebraic conjugate of $10a$ \\
+        $1a$  & 1     & 1    & identity                      \\
+        $2a$  & 2     & 1    & central element $-\mathbf{1}$ \\
+        $3a$  & 3     & 20   &                               \\
+        $4a$  & 4     & 30   &                               \\
+        $5a$  & 5     & 12   &                               \\
+        $5b$  & 5     & 12   & algebraic conjugate of $5a$   \\
+        $6a$  & 6     & 20   &                               \\
+        $10a$ & 10    & 12   &                               \\
+        $10b$ & 10    & 12   & algebraic conjugate of $10a$  \\
         \hline
       \end{tabular}
     \end{center}
@@ -1320,64 +1332,159 @@ in the $Q_8$ Cayley Graph under Bounded Flux}
     Even so, the hierarchy is clearly biased toward lower spins.
 
   \section{Next Steps}
-  \label{sec:next-steps}
+  \label{sec:next}
 
-  The present note establishes the spectral admissibility mechanism on
-  finite Cayley graphs and demonstrates it explicitly on the $Q_8$ and $2I$
-  examples.
-  Several important directions remain open.
+  The programme has now established spectral admissibility on two finite
+  subgroups of $\mathrm{SU}(2)$:
+  \begin{center}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{lll}
+      \hline
+      Step & Group & Key result \\
+      \hline
+      1--3 & $Q_8$ & $\lambda_{\text{non-ab}} = 6 < \lambda_{\text{abel}} = 8$;
+      admissibility ratio $\sqrt{4/3}$ \\
+      4 & $Q_8$ & structural origin via Pauli tracelessness
+      ($\mu_{\rho_4} = 0$) \\
+      5 & $2I$ & four-level hierarchy; ratio $\sqrt{14/9}$;
+      origin via $\varphi - 1/\varphi = 1$ \\
+      \hline
+    \end{tabular}
+  \end{center}
 
-  \paragraph{Dynamical survival of spectral sectors.}
-    The admissibility hierarchy derived in the present work is structural.
-    A key open question is whether the same hierarchy is dynamically realised
-    in the full relational substrate.
+  Both results are exact, non-perturbative, and derived from character
+  theory alone.
+  The hierarchy strengthens along the inclusion chain
+  $Q_8 \subset 2I \subset \mathrm{SU}(2)$, and its algebraic origin is
+  structural at each step.
 
-    This can be tested by simulating the DBI dynamics on the $Q_8$ graph
-    with the bounded-flux constraint imposed locally at each vertex.
-    Tracking the modal amplitudes
-    \[
-      A_n(t) = a_n(t)\|\psi_n\|_\infty
-    \]
-    would reveal whether nonlinear cascades concentrate energy in the
-    spectral sector with the largest admissible window.
+  \paragraph{Step~6: Large Cayley graphs approaching $\mathrm{SU}(2)$.}
 
-  \paragraph{Mode coupling beyond the one-mode sector.}
-    The exact DBI envelope derived here applies to single-mode trajectories.
-    The next theoretical step is to analyse multi-mode DBI dynamics, where
-    different eigenmodes interact through the local square-root constraint.
+    The natural continuation is to test whether the spectral hierarchy
+    persists and sharpens along a family of Cayley graphs whose size grows
+    without bound while the geometry converges toward
+    $\mathrm{SU}(2) \cong S^3$.
+    The complete programme chain is
+    \begin{equation}
+      Q_8
+      \;\longrightarrow\;
+      2I
+      \;\longrightarrow\;
+      \mathrm{SL}(2,\mathbb{F}_p)
+      \;\xrightarrow{\;p \to \infty\;}
+      \mathrm{SU}(2),
+      \label{eq:chain-full}
+    \end{equation}
+    where the final arrow denotes local spectral convergence of the Cayley
+    graphs toward the $S^3$ Laplacian.
 
-    In that regime, the key issue is whether the one-mode admissibility
-    hierarchy remains stable under modal mixing, or whether nonlinear transfer
-    terms generate new collective selection effects.
+    Natural candidates are the Ramanujan graphs of Lubotzky, Phillips, and
+    Sarnak~\cite{LPS1988} on $\mathrm{SL}(2,\mathbb{F}_p)$.
+    These graphs have three properties that make them ideal for the
+    programme:
 
-  \paragraph{Larger Cayley graphs and continuum limits.}
-    A further step is to test spectral admissibility on larger Cayley graphs
-    approximating the geometry of $S^3$ more faithfully.
+    \begin{enumerate}
+      \item \emph{Near-optimal spectral gap.}
+      The non-trivial Laplacian eigenvalues satisfy
+      $\lambda \ge d - 2\sqrt{d-1}$ (Alon--Boppana bound),
+      where $d = p + 1 = |S|$.
+      The admissibility envelope
+      $A^{\max}_\rho = c_\chi/\sqrt{\lambda_\rho}$ therefore remains
+      uniformly controlled as $p$ grows.
 
-    Natural candidates include families of Cayley graphs on
-    $\mathrm{SL}(2,\mathbb{F}_p)$ and related constructions.
-    In particular, Ramanujan graphs such as the
-    Lubotzky--Phillips--Sarnak graphs provide sequences with optimal spectral
-    gap properties.
+      \item \emph{Increasing size.}
+      $|\mathrm{SL}(2,\mathbb{F}_p)| = p(p^2-1)$ provides a sequence of
+      progressively finer discrete approximations to $S^3$.
 
-    Studying bounded-flux filtering on such graphs would test whether the
-    admissibility hierarchy persists in large expanders and clarify how the
-    mechanism behaves as the discrete substrate approaches the
-    $\mathrm{SU}(2)\cong S^3$ continuum limit.
+      \item \emph{Full spin tower in the limit.}
+      The irreducible representations of $\mathrm{SL}(2,\mathbb{F}_p)$
+      include all half-integer spins
+      $j = 0, \tfrac12, \ldots, \tfrac{p-1}{2}$,
+      reproducing the complete spin spectrum of $\mathrm{SU}(2)$ as
+      $p \to \infty$.
+    \end{enumerate}
 
-  \paragraph{Selection of generating sets.}
-    The comparison between $Q_8$ and $2I$ shows that the generating set is not
-    a mere technical detail.
-    It enters directly into the adjacency spectrum and therefore into the
-    admissibility hierarchy.
+    Step~6 consists of four sub-tasks.
 
-    A remaining task is to identify structural criteria selecting physically
-    distinguished generating sets, especially on larger finite subgroups of
-    $\mathrm{SU}(2)$.
-    This is necessary to determine whether the observed low-spin-favoured
-    hierarchy is robust or generator-dependent in the continuum-oriented limit.
+    \medskip
+    \noindent\textbf{Step~6a (generating set).}
+    The LPS construction provides an explicit symmetric set of $p+1$
+    generators of $\mathrm{SL}(2,\mathbb{F}_p)$, defined by the solutions to
+    $a^2+b^2+c^2+d^2 \equiv 1 \pmod p$ with $a$ odd and $b,c,d$ even,
+    embedded via the standard quaternion-to-matrix map.
+    This set plays the same structural role as the generators
+    $\{\pm i,\pm j,\pm k\}$ of $Q_8$ and the order-10 elements of $2I$.
 
-    \bibliographystyle{ieeetr}
-    \bibliography{refs}
+    \medskip
+    \noindent\textbf{Step~6b (character computation).}
+    For any Cayley graph generated by a union of conjugacy classes,
+    the adjacency eigenvalue in the irreducible sector $\rho$ is
+    \begin{equation}
+      \mu_\rho
+      =
+      \frac{1}{\dim\rho}
+      \sum_{C \subseteq S} |C|\,\chi_\rho(C).
+      \label{eq:mu-SL2}
+    \end{equation}
+    The character tables of $\mathrm{SL}(2,\mathbb{F}_p)$ are classical,
+    and the spin-$j$ sector corresponds to the representation
+    $\mathrm{Sym}^{2j}(V_2)$, exactly as in the $Q_8$ and $2I$ cases.
+
+    \medskip
+    \noindent\textbf{Step~6c (admissibility envelope).}
+    The Laplacian eigenvalue and admissibility window for the spin-$j$
+    sector are
+    \begin{equation}
+      \lambda_j = (p+1) - \mu_j,
+      \qquad
+      A^{\max}_j = \frac{c_\chi}{\sqrt{\lambda_j}}.
+      \label{eq:Amax-SL2}
+    \end{equation}
+
+    \medskip
+    \noindent\textbf{Step~6d ($p\to\infty$ limit).}
+    The key observable is the ratio
+    \begin{equation}
+      R_p
+      =
+      \frac{A^{\max}_{j=1/2}}{A^{\max}_{j=j_{\max}}}
+      =
+      \sqrt{\frac{\lambda_{j_{\max}}}{\lambda_{1/2}}},
+      \qquad
+      j_{\max} = \frac{p-1}{2}.
+      \label{eq:ratio-p}
+    \end{equation}
+
+    The programme predicts $R_p>1$ for all finite $p$,
+    meaning that the spin-$\tfrac12$ sector remains the most
+    admissible sector along the sequence.
+
+    If the ordering
+    $\lambda_{1/2} < \lambda_1 < \cdots < \lambda_{j_{\max}}$
+    becomes monotone for large $p$ and
+    $\lim_{p\to\infty} R_p > 1$,
+    this would establish
+    \begin{equation}
+      \text{bounded relational flux}
+      \;\Longrightarrow\;
+      \text{monotone low-spin survival}
+      \quad
+      \text{in the }\mathrm{SU}(2)\text{ limit.}
+      \label{eq:conclusion}
+    \end{equation}
+
+    The results on $Q_8$ and $2I$ already provide the first two
+    non-trivial instances of this mechanism.
+    Their algebraic origins — Pauli tracelessness and the golden-ratio
+    identity $\varphi - 1/\varphi = 1$ — are both instances of the same
+    underlying principle: the generating set $S$ is positively correlated
+    with the low-spin representations in character.
+    This yields
+    $\mu_{\text{low spin}} > \mu_{\text{high spin}}$
+    and therefore
+    $\lambda_{\text{low}} < \lambda_{\text{high}}$.
+
+    Whether this structural correlation persists uniformly along the chain
+    \eqref{eq:chain-full} is the central open question of Step~6.
 
 \end{document}
