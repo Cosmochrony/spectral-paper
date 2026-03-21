@@ -18,7 +18,7 @@ Usage:
 """
 
 import numpy as np
-from spectral_relaxation_lib import (
+from spectral.relaxation.spectral_relaxation_lib import (
     lam_support, km_cdf, normalised_levels, levels_in_support,
     reading_A, reading_B, exit_p_exact, support_table,
     ADE_CASES, SM_RATIOS
