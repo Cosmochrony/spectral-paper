@@ -9,8 +9,7 @@
       d_{ij}^{C} = \min_{\gamma_{ij}} \sum_{(u,v)\in\gamma_{ij}} 1,
     \]
     where $\gamma_{ij}$ ranges over paths connecting $i$ and $j$.
-    This hop-count distance depends only on adjacency and is independent
-    of the field $\chi$.
+    This hop-count distance depends only on adjacency.
 
     \item \textbf{Weighted distance} (effective):
     \[
@@ -20,8 +19,22 @@
     This distance underlies the emergent geometric constructions.
   \end{enumerate}
 
-  The separation ensures that the coarse-grained background
-  $\bar{\chi}$ is defined using $d_{ij}^{C}$ alone, while
-  the effective geometry is encoded by $d_{ij}^{W}$ through
-  weights depending only on $\bar{\chi}$.
+  To avoid circularity, the weights $w_{uv}$ are not defined from $d^W$ itself
+  but from local neighbourhood aggregates $\bar{\chi}_i$ computed using $d^C$ alone.
+  Let $N_i = \{ j \mid d_{ij}^C \le \ell_0 \}$ be the combinatorial neighbourhood
+  of radius $\ell_0$ around node~$i$.
+  The local aggregate at node~$i$ is
+  \begin{equation}
+    \bar{\chi}_i \;=\; \frac{1}{|N_i|} \sum_{j \in N_i} \chi_j,
+    \label{eq:chi-bar}
+  \end{equation}
+  where $\chi_j$ denotes the local relational observable at node~$j$.
+  The values $\chi_j$ are graph-level descriptors with no ontological status
+  as a fundamental field; they serve solely as inputs to the weight calibration
+  in Section~\ref{subsec:weight-functional-and-positivity}.
+  Because $N_i$ depends only on $d^C$, the aggregate $\bar{\chi}$ is
+  \textbf{independent of any weighted metric}.
+
+  The scale $\ell_0$ is an auxiliary coarse-graining parameter; it does not
+  correspond to a physical length scale prior to the emergence of geometry.
   The combinatorial distance plays a purely auxiliary role.

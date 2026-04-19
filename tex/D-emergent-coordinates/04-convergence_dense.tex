@@ -1,26 +1,29 @@
-\subsection{Convergence of the hierarchical construction in the dense graph limit}
+\subsection{Convergence of the relational weight construction in the dense graph limit}
   \label{subsec:convergence_dense}
 
-  The hierarchical construction of $\chi_{\mathrm{eff}}$ is defined for finite graphs.
-  We examine its compatibility with the dense limit $N\to\infty$, where the neighborhood radius $\ell_0(N)$ is scaled
-  appropriately.
+  The relational weight construction is defined for finite graphs.
+  We examine its compatibility with the dense limit $N\to\infty$, where the neighbourhood
+  radius $\ell_0(N)$ is scaled appropriately.
 
-  The combinatorial neighborhood $\mathcal{N}_i$ of radius $\ell_0$
+  The combinatorial neighbourhood $\mathcal{N}_i$ of radius $\ell_0$
   corresponds to a ball of radius $O(\ell_0/N^{1/d})$ in the ambient
   metric as the graph becomes dense, with $d$ the intrinsic spectral
   dimension.
-  Under standard bandwidth conditions on $\ell_0(N)$ — namely
-  $\ell_0(N)\to 0$ and $N\,\ell_0(N)^d \to \infty$ for i.i.d. sampling
-  from a $C^2$ density on a compact manifold — $\bar{\chi}_i$ converges
-  pointwise to a smooth field $\chi(x_i)$.
+  Under standard bandwidth conditions on $\ell_0(N)$ --- namely
+  $\ell_0(N)\to 0$ and $N\,\ell_0(N)^d \to \infty$ for i.i.d.\ sampling
+  from a $C^2$ density on a compact manifold --- the local neighbourhood
+  aggregates $\bar{\chi}_i$ defined in Eq.~\eqref{eq:chi-bar} converge
+  pointwise to a smooth function on the underlying manifold.
 
   The weight functional~\eqref{eq:weights} satisfies the smoothness and
   locality assumptions required by the convergence results of
-  Belkin and Niyogi~\cite{Belkin2003} and Hein, Audibert, and von Luxburg~\cite{Hein2007}.
-  Consequently, the weighted graph Laplacian converges to the Laplace--Beltrami operator
-  (modulated by the local relational stiffness), $\chi_{\mathrm{eff}}$ converges to a smooth
-  coarse-grained field, and the spectral distances approximate the
-  corresponding continuous diffusion distances.
+  Belkin and Niyogi~\cite{Belkin2003} and Hein, Audibert, and von
+  Luxburg~\cite{Hein2007}.
+  Consequently, the weighted graph Laplacian converges to the
+  Laplace\textendash Beltrami operator (modulated by the local relational
+  stiffness), the effective spectral description converges to a smooth
+  coarse-grained representation, and the spectral distances approximate
+  the corresponding continuous diffusion distances.
 
-  Thus, under standard regularity assumptions, the finite-graph
-  hierarchical construction is consistent with the continuum limit.
+  Thus, under standard regularity assumptions, the relational weight
+  construction is consistent with the continuum limit.
