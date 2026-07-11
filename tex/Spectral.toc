@@ -1,0 +1,61 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Relational Substrate and Spectral Structure}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Relational Structure}{5}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Spectral Distance and Embedding}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Spectral proximity}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Spectral distance}{6}{subsection.3.2}%
+\contentsline {paragraph}{Emergent spectral dimension.}{6}{section*.3}%
+\contentsline {paragraph}{From graph distance to effective geodesics.}{6}{section*.4}%
+\contentsline {subsection}{\numberline {3.3}Local embedding and quadratic approximation}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Scope and limitations}{7}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Continuum Limit and Emergent Metric}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Spectral Admissibility and Regularity}{7}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Operational Geometry}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Collective Coupling and Operational Geometry}{8}{subsection.5.1}%
+\contentsline {paragraph}{Spectral convergence and continuum limit.}{9}{section*.5}%
+\contentsline {paragraph}{Spectral dimension as emergent observable.}{9}{section*.6}%
+\contentsline {paragraph}{Role of the spectral scale $\lambda _*$.}{9}{section*.7}%
+\contentsline {subsection}{\numberline {5.2}Emergent Curvature}{9}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Static Spherically Symmetric Geometry}{10}{subsection.5.3}%
+\contentsline {section}{\numberline {6}GR Limit: Schwarzschild-type Recovery}{10}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Non-uniqueness of Spectral Reconstruction}{10}{subsection.6.1}%
+\contentsline {paragraph}{Flux conservation and radial scaling.}{11}{section*.8}%
+\contentsline {paragraph}{Origin of the $1/r$ profile.}{11}{section*.9}%
+\contentsline {subsection}{\numberline {6.2}Validity of Geometric Descriptions}{11}{subsection.6.2}%
+\contentsline {paragraph}{Relational encoding of mass.}{11}{section*.10}%
+\contentsline {subsection}{\numberline {6.3}Limits of Schwarzschild-Type Reconstruction}{12}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Discussion}{12}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Structural robustness beyond geometric descriptions}{12}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Status of spacetime geometry}{13}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Relation to existing approaches}{13}{subsection.7.3}%
+\contentsline {paragraph}{Graph Laplacian convergence.}{13}{section*.11}%
+\contentsline {subsection}{\numberline {7.4}Non-uniqueness and regime dependence}{14}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Spectral rigidity and structural invariants}{14}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Scope and limitations}{14}{subsection.7.6}%
+\contentsline {paragraph}{Kinematic status and constraints on dynamics.}{14}{section*.12}%
+\contentsline {subsection}{\numberline {7.7}Outlook}{15}{subsection.7.7}%
+\contentsline {section}{\numberline {A}Relational Distance as a Minimal Path Functional}{16}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}Combinatorial vs.\ weighted distance}{16}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Weight functional and positivity}{16}{subsection.A.2}%
+\contentsline {paragraph}{Intrinsic saturation scale.}{17}{section*.14}%
+\contentsline {paragraph}{Rescaling invariance.}{17}{section*.15}%
+\contentsline {subsection}{\numberline {A.3}Metric status}{17}{subsection.A.3}%
+\contentsline {section}{\numberline {B}Relation to the Effective Geometric Description}{17}{appendix.B}%
+\contentsline {section}{\numberline {C}Emergent Coordinates via Manifold Reconstruction}{18}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}MDS embedding from relational distances}{18}{subsection.C.1}%
+\contentsline {subsection}{\numberline {C.2}Intrinsic dimension from the eigenvalue gap}{18}{subsection.C.2}%
+\contentsline {subsection}{\numberline {C.3}Breakdown as a physical prediction}{19}{subsection.C.3}%
+\contentsline {paragraph}{Status of the effective metric.}{19}{section*.16}%
+\contentsline {paragraph}{Regime-dependent field equations.}{19}{section*.17}%
+\contentsline {paragraph}{Descriptive hierarchy.}{19}{section*.18}%
+\contentsline {subsection}{\numberline {C.4}Convergence of the relational weight construction in the dense graph limit}{20}{subsection.C.4}%
+\contentsline {subsection}{\numberline {C.5}Analytical derivation of the spectral ratio on $S^3$}{20}{subsection.C.5}%
+\contentsline {paragraph}{Scalar spectrum of $S^3$.}{20}{section*.19}%
+\contentsline {paragraph}{Role of the Hopf structure.}{20}{section*.20}%
+\contentsline {paragraph}{Relation to the numerical estimator.}{21}{section*.21}%
+\contentsline {paragraph}{Diagnostic status.}{21}{section*.22}%
+\contentsline {paragraph}{Exact spectral benchmark.}{21}{section*.24}%
+\contentsline {paragraph}{Hopf-compatible splitting.}{21}{section*.25}%
+\contentsline {paragraph}{Connection to $R(\alpha )$.}{21}{section*.26}%
+\contentsline {paragraph}{Conclusion.}{22}{section*.27}%
+\contentsline {subsection}{\numberline {C.6}Example of a Robust Spectral Ratio in a Relational Laplacian}{22}{subsection.C.6}%

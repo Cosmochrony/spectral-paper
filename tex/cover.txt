@@ -1,0 +1,28 @@
+Dear Editor,
+
+Please find attached our manuscript entitled “Spectral Reconstruction of Effective Geometry from Relational Laplacians”
+submitted for consideration as a Paper in your journal.
+
+This work presents an original and self-contained framework for reconstructing effective geometric structures from
+purely relational and spectral data. Starting from a relational Laplacian defined without reference to a background
+manifold, we show how continuum-like geometric behavior can emerge as an effective and regime-dependent description,
+and we identify intrinsic limits beyond which such a geometric interpretation necessarily breaks down.
+
+The manuscript combines analytical arguments with numerical investigations, including a robust spectral ratio emerging
+under refinement, and clarifies the operational status of geometric operators in discrete-to-continuum settings.
+The results are intended to be of interest to researchers working on spectral geometry, relational approaches to
+spacetime, and foundational aspects of gravity and geometry.
+
+This submission reports original research that has not been published elsewhere and is not under consideration by any
+other journal. All authorship and affiliation information is included in the manuscript, and the submission is intended
+for single-anonymous peer review.
+
+Thank you for your consideration. We believe this work fits well within the scope of the journal and we look forward to
+your response.
+
+Sincerely,
+
+Jérôme Beau
+Independent Researcher
+France
+Email: javarome@gmail.com
