@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you cite this work, please use the metadata from this file."
+title: "Relational Reconstruction of Spacetime Geometry from Graph Laplacians"
+type: software
+authors:
+  - family-names: "Beau"
+    given-names: "Jérôme"
+repository-code: "https://github.com/Cosmochrony/spectral-paper"
+url: "https://cosmochrony.org/science/spectral/"
+doi: "10.5281/zenodo.18356037"
+license: "CC-BY-4.0"
+preferred-citation:
+  type: article
+  title: "Relational Reconstruction of Spacetime Geometry from Graph Laplacians"
+  authors:
+    - family-names: "Beau"
+      given-names: "Jérôme"
+  year: 2026
+  doi: "10.5281/zenodo.18356037"
+  url: "https://doi.org/10.5281/zenodo.18356037"
